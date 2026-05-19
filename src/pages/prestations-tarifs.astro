@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = 'Prestations & Tarifs Mariage Bretagne';
-const description = 'Packs photo et vidéo mariage Bretagne : Pack White 1490€, Pack Black 2390€, Pack Gold 3290€. Reportage authentique, livraison 2 semaines.';
+const description = 'Packs photo mariage Bretagne : Pack White 1490€, Pack Black 2390€, Pack Gold 3290€. Reportage authentique, livraison 2 semaines.';
 
 const packs = [
   {
@@ -10,6 +10,9 @@ const packs = [
     price: '1 490 €',
     photos: '300 photos',
     sections: ['Cérémonie', 'Cocktail', 'Photos de Groupes', 'Séance Couple'],
+    image: '/images/photo-006.jpg',
+    imageAlt: 'Enfants qui se chamaillent pendant le mariage',
+    theme: 'white',
     featured: false,
   },
   {
@@ -17,6 +20,9 @@ const packs = [
     price: '2 390 €',
     photos: '500 photos',
     sections: ['Préparation', 'Cérémonie', 'Cocktail', 'Photos de Groupes', 'Séance Couple', 'Soirée'],
+    image: '/images/photo-002.jpg',
+    imageAlt: 'Mariée pendant les préparatifs',
+    theme: 'black',
     featured: true,
     badge: 'Le plus choisi',
   },
@@ -25,6 +31,9 @@ const packs = [
     price: '3 290 €',
     photos: '700 photos',
     sections: ['Tout le Pack Black', 'Save the Date OU Trash the Dress', 'Retour de Noce'],
+    image: '/images/photo-070.jpg',
+    imageAlt: 'Séance couple à la Ferme du Roudouic',
+    theme: 'gold',
     featured: false,
   },
 ];
@@ -35,6 +44,62 @@ const alaCarte = [
   { name: 'Soirée', price: '500 €' },
   { name: 'Trash the Dress', price: '400 €' },
   { name: 'Retour de Noce', price: '500 €' },
+];
+
+const inclus = [
+  {
+    title: 'Couleur ET noir & blanc',
+    desc: 'Chaque photo livrée dans les deux versions, systématiquement.',
+    icon: 'camera',
+  },
+  {
+    title: 'Livraison sous 2 semaines',
+    desc: 'Vos photos retouchées, prêtes à partager, en moins de 14 jours.',
+    icon: 'calendar',
+  },
+  {
+    title: 'Déplacement Bretagne inclus',
+    desc: 'Finistère, Morbihan, Côtes-d\'Armor, Ille-et-Vilaine. Hors Bretagne sur devis.',
+    icon: 'pin',
+  },
+  {
+    title: 'Galerie en ligne sécurisée',
+    desc: 'Espace privé pour vous et vos invités, téléchargement haute définition.',
+    icon: 'lock',
+  },
+  {
+    title: 'Droits d\'usage personnels',
+    desc: 'Vous utilisez vos photos comme vous le souhaitez (impression, web, famille).',
+    icon: 'heart',
+  },
+];
+
+const timeline = [
+  {
+    label: 'Préparation',
+    desc: 'Détails de la robe, du costume, le rituel du matin, les premiers regards. L\'intime qui ne se raconte qu\'en images.',
+    pack: 'À partir du Pack Black',
+  },
+  {
+    label: 'Cérémonie',
+    desc: 'Civile, religieuse ou laïque — je m\'efface pour capter chaque émotion, chaque larme, chaque sourire complice.',
+    pack: 'Inclus dans tous les packs',
+  },
+  {
+    label: 'Cocktail & Groupes',
+    desc: 'L\'effervescence des retrouvailles, les photos de famille organisées avec efficacité, les détails du lieu.',
+    pack: 'Inclus dans tous les packs',
+  },
+  {
+    label: 'Séance Couple',
+    desc: 'Une parenthèse à deux dans la lumière de fin de journée. Pas de poses figées, juste vous deux.',
+    pack: 'Inclus dans tous les packs',
+  },
+  {
+    label: 'Soirée',
+    desc: 'Première danse, surprises, fête. L\'énergie nocturne capturée en couleur et noir & blanc.',
+    pack: 'À partir du Pack Black',
+  },
 ];
 ---
 
@@ -53,16 +118,77 @@ const alaCarte = [
     <div class="container">
       <div class="packs-grid">
         {packs.map((pack) => (
-          <article class:list={['pack-card', { featured: pack.featured }]}>
+          <article class:list={['pack-card', {
+            'pack-theme-white': pack.theme === 'white',
+            'pack-theme-black': pack.theme === 'black',
+            'pack-theme-gold': pack.theme === 'gold',
+            featured: pack.featured,
+          }]}>
             {pack.badge && <p class="pack-badge">{pack.badge}</p>}
-            <h2>{pack.name}</h2>
-            <p class="pack-price">{pack.price}</p>
-            <p class="pack-photos text-muted">{pack.photos}</p>
-            <ul class="pack-sections">
-              {pack.sections.map((s) => <li>{s}</li>)}
-            </ul>
-            <a href="/contact" class="button">Réserver</a>
+            <div class="pack-image">
+              <img src={pack.image} alt={pack.imageAlt} width="580" height="326" />
+            </div>
+            <div class="pack-body">
+              <h2>{pack.name}</h2>
+              <p class="pack-price">{pack.price}</p>
+              <p class="pack-photos">{pack.photos}</p>
+              <ul class="pack-sections">
+                {pack.sections.map((s) => <li>{s}</li>)}
+              </ul>
+              <a href="/contact" class="pack-cta">Réserver</a>
+            </div>
           </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="inclus">
+    <div class="container">
+      <p class="eyebrow text-center">Sans surprise</p>
+      <h2 class="text-center">Inclus dans tous les packs</h2>
+      <div class="inclus-grid">
+        {inclus.map((item) => (
+          <div class="inclus-item">
+            <div class="inclus-icon">
+              {item.icon === 'camera' && (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
+              )}
+              {item.icon === 'calendar' && (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              )}
+              {item.icon === 'pin' && (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              )}
+              {item.icon === 'lock' && (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              )}
+              {item.icon === 'heart' && (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              )}
+            </div>
+            <h3>{item.title}</h3>
+            <p class="text-muted">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="timeline">
+    <div class="container">
+      <p class="eyebrow text-center">Une journée type</p>
+      <h2 class="text-center">Du matin à la nuit, je capture l'essentiel</h2>
+      <div class="timeline-grid">
+        {timeline.map((step, i) => (
+          <div class="timeline-step">
+            <div class="timeline-marker">
+              <span class="timeline-number">{String(i + 1).padStart(2, '0')}</span>
+            </div>
+            <h3>{step.label}</h3>
+            <p>{step.desc}</p>
+            <p class="timeline-pack">{step.pack}</p>
+          </div>
         ))}
       </div>
     </div>
@@ -83,6 +209,35 @@ const alaCarte = [
     </div>
   </section>
 
+  <section class="pour-qui">
+    <div class="container">
+      <p class="eyebrow text-center">Honnêteté</p>
+      <h2 class="text-center">On est faits pour bosser ensemble si…</h2>
+      <div class="pour-qui-grid">
+        <div class="pour-qui-col yes">
+          <h3>Oui, si vous voulez :</h3>
+          <ul>
+            <li>Un reportage authentique, sans poses figées</li>
+            <li>Que vos émotions soient capturées en vrai</li>
+            <li>Du noir et blanc travaillé, pas juste un filtre</li>
+            <li>Un photographe qui s'efface mais voit tout</li>
+            <li>Une livraison rapide et propre</li>
+            <li>Quelqu'un qui connaît la Bretagne et ses lumières</li>
+          </ul>
+        </div>
+        <div class="pour-qui-col no">
+          <h3>Mieux vaut chercher ailleurs si :</h3>
+          <ul>
+            <li>Vous cherchez un style très posé et chorégraphié</li>
+            <li>Vous voulez 1 500 photos retouchées en HDR saturé</li>
+            <li>Vous préférez un photographe qui dirige tout le monde</li>
+            <li>Vous n'êtes pas à l'aise avec un long reportage immersif</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="conditions">
     <div class="container-narrow text-center">
       <p class="eyebrow">Bon à savoir</p>
@@ -90,9 +245,10 @@ const alaCarte = [
       <p>Acompte de 30 % à la réservation, solde réglé le jour du mariage.</p>
       <p>Livraison des photos sous 2 semaines maximum.</p>
       <p>Déplacement en Bretagne inclus. Hors Bretagne : devis personnalisé.</p>
-      <p style="margin-top: 2rem;">
+      <div class="conditions-cta">
         <a href="/faq" class="button button-outline">Voir la FAQ complète</a>
-      </p>
+        <a href="/contact" class="button">Demander un devis</a>
+      </div>
     </div>
   </section>
 </BaseLayout>
@@ -100,44 +256,56 @@ const alaCarte = [
 <style>
   .page-hero { padding-bottom: 0; }
   .lead { font-size: 1.2rem; color: var(--color-text-muted); }
+
+  /* ===== PACKS ===== */
   .packs-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
   }
   .pack-card {
-    padding: 3rem 2rem;
     border: 1px solid var(--color-border);
-    background: var(--color-bg);
     text-align: center;
     position: relative;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
   }
-  .pack-card.featured {
-    border-color: var(--color-accent);
-    box-shadow: 0 8px 24px rgba(181, 152, 90, 0.1);
+  .pack-image {
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    background: var(--color-border);
   }
-  .pack-badge {
-    position: absolute;
-    top: -0.7rem;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--color-accent);
-    color: var(--color-bg);
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.4rem 1rem;
-    margin: 0;
+  .pack-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  .pack-card:hover .pack-image img {
+    transform: scale(1.04);
+  }
+  .pack-body {
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  .pack-card h2 {
+    font-size: 2rem;
+    margin: 0 0 0.5rem;
   }
   .pack-price {
     font-family: var(--font-serif);
     font-size: 2.5rem;
-    color: var(--color-accent-dark);
-    margin: 1rem 0 0.25rem;
+    margin: 0.5rem 0 0.25rem;
   }
-  .pack-photos { font-size: 0.9rem; margin-bottom: 1.5rem; }
+  .pack-photos {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.7;
+  }
   .pack-sections {
     list-style: none;
     padding: 0;
@@ -147,10 +315,180 @@ const alaCarte = [
   }
   .pack-sections li {
     padding: 0.6rem 0;
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 1px solid currentColor;
+    border-bottom-color: rgba(128, 128, 128, 0.2);
     font-size: 0.95rem;
   }
   .pack-sections li:last-child { border-bottom: none; }
+  .pack-cta {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px solid;
+    transition: all 0.2s;
+  }
+  .pack-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--color-accent);
+    color: white;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.9rem;
+    margin: 0;
+    z-index: 2;
+    font-weight: 500;
+  }
+
+  /* Thème WHITE - fond crème, texte sombre, accent doré */
+  .pack-theme-white {
+    background: white;
+    color: var(--color-text);
+  }
+  .pack-theme-white .pack-price {
+    color: var(--color-accent-dark);
+  }
+  .pack-theme-white .pack-cta {
+    background: var(--color-text);
+    color: white;
+    border-color: var(--color-text);
+  }
+  .pack-theme-white .pack-cta:hover {
+    background: transparent;
+    color: var(--color-text);
+  }
+
+  /* Thème BLACK - fond noir, texte clair, accent doré */
+  .pack-theme-black {
+    background: #1A1A1A;
+    color: #F0EBE0;
+    border-color: #1A1A1A;
+  }
+  .pack-theme-black .pack-price {
+    color: var(--color-accent);
+  }
+  .pack-theme-black .pack-photos {
+    color: rgba(240, 235, 224, 0.7);
+  }
+  .pack-theme-black .pack-sections li {
+    border-bottom-color: rgba(240, 235, 224, 0.15);
+  }
+  .pack-theme-black .pack-cta {
+    background: var(--color-accent);
+    color: #1A1A1A;
+    border-color: var(--color-accent);
+  }
+  .pack-theme-black .pack-cta:hover {
+    background: transparent;
+    color: var(--color-accent);
+  }
+
+  /* Thème GOLD - fond doré, texte sombre */
+  .pack-theme-gold {
+    background: var(--color-accent);
+    color: #1A1A1A;
+    border-color: var(--color-accent);
+  }
+  .pack-theme-gold .pack-price {
+    color: #1A1A1A;
+  }
+  .pack-theme-gold .pack-photos {
+    color: rgba(26, 26, 26, 0.7);
+  }
+  .pack-theme-gold .pack-sections li {
+    border-bottom-color: rgba(26, 26, 26, 0.2);
+  }
+  .pack-theme-gold .pack-cta {
+    background: #1A1A1A;
+    color: var(--color-accent);
+    border-color: #1A1A1A;
+  }
+  .pack-theme-gold .pack-cta:hover {
+    background: transparent;
+    color: #1A1A1A;
+    border-color: #1A1A1A;
+  }
+
+  /* ===== INCLUS ===== */
+  .inclus { background: white; }
+  .inclus-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .inclus-item { text-align: center; }
+  .inclus-icon {
+    display: block;
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 1.25rem;
+    color: var(--color-accent-dark);
+  }
+  .inclus-icon svg {
+    display: block;
+    width: 48px;
+    height: 48px;
+  }
+  .inclus-item h3 {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    margin-bottom: 0.5rem;
+  }
+  .inclus-item p { font-size: 0.9rem; }
+
+  /* ===== TIMELINE ===== */
+  .timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+    position: relative;
+  }
+  .timeline-step {
+    text-align: center;
+    position: relative;
+  }
+  .timeline-marker {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  .timeline-number {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    color: var(--color-accent-dark);
+    border: 1px solid var(--color-accent);
+    width: 56px;
+    height: 56px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--color-bg);
+  }
+  .timeline-step h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  .timeline-step p { font-size: 0.9rem; color: var(--color-text-muted); }
+  .timeline-pack {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-accent-dark);
+    font-weight: 500;
+  }
+
+  /* ===== À LA CARTE ===== */
+  .alacarte { background: white; }
   .alacarte-list {
     list-style: none;
     padding: 0;
@@ -166,5 +504,71 @@ const alaCarte = [
     font-family: var(--font-serif);
     font-size: 1.2rem;
     color: var(--color-accent-dark);
+  }
+
+  /* ===== POUR QUI ===== */
+  .pour-qui-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 3rem;
+  }
+  .pour-qui-col {
+    padding: 2rem;
+    border-top: 3px solid;
+    background: white;
+  }
+  .pour-qui-col.yes {
+    border-top-color: var(--color-accent);
+  }
+  .pour-qui-col.no {
+    border-top-color: var(--color-border);
+  }
+  .pour-qui-col h3 {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    margin-bottom: 1.25rem;
+  }
+  .pour-qui-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .pour-qui-col li {
+    padding: 0.6rem 0 0.6rem 1.75rem;
+    position: relative;
+    font-size: 0.95rem;
+  }
+  .pour-qui-col.yes li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent-dark);
+    font-weight: 600;
+  }
+  .pour-qui-col.no li::before {
+    content: '−';
+    position: absolute;
+    left: 0;
+    color: var(--color-text-muted);
+    font-weight: 600;
+  }
+
+  /* ===== CONDITIONS ===== */
+  .conditions { background: white; }
+  .conditions-cta {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 800px) {
+    .pour-qui-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
   }
 </style>

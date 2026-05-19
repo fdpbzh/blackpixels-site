@@ -2,16 +2,16 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = 'Contact — Devis mariage Bretagne';
-const description = 'Demandez un devis personnalisé pour votre mariage en Bretagne. Réponse sous 48h. Black Pixels — photographe et vidéaste.';
+const description = 'Envoyez-moi votre date et votre lieu, je vous réponds sous 48h. Black Pixels — photographe mariage Bretagne.';
 ---
 
 <BaseLayout title={title} description={description}>
   <section>
     <div class="container-narrow">
       <p class="eyebrow text-center">Contact</p>
-      <h1 class="text-center">Parlons de votre mariage</h1>
+      <h1 class="text-center">On en parle ?</h1>
       <p class="text-center text-muted lead">
-        Je réponds à toutes les demandes sous 48h.
+        Envoyez-moi votre date, votre lieu, et ce que vous avez en tête. Je réponds sous 48h.
       </p>
 
       <div class="contact-grid">
@@ -24,7 +24,7 @@ const description = 'Demandez un devis personnalisé pour votre mariage en Breta
 
         <form
           class="contact-form"
-          action="https://formspree.io/f/REMPLACER_PAR_TON_ENDPOINT"
+          action="https://formspree.io/f/xgoqvgbg"
           method="POST"
         >
           <label>
@@ -55,8 +55,12 @@ const description = 'Demandez un devis personnalisé pour votre mariage en Breta
           </label>
           <label>
             Votre message
-            <textarea name="message" rows="5" required></textarea>
+            <textarea name="message" rows="5" required placeholder="Quelques mots sur votre mariage, vos envies, ce qui compte pour vous…"></textarea>
           </label>
+          <!-- Honeypot anti-spam (caché) -->
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+          <!-- Sujet personnalisé dans l'email reçu -->
+          <input type="hidden" name="_subject" value="Nouvelle demande de devis — Black Pixels" />
           <button type="submit" class="button">Envoyer ma demande</button>
           <p class="form-note text-muted">
             Vos données ne sont utilisées que pour répondre à votre demande. Pas de mailing, pas de revente.
@@ -75,7 +79,12 @@ const description = 'Demandez un devis personnalisé pour votre mariage en Breta
     gap: 3rem;
     margin-top: 2rem;
   }
-  .contact-info h3 { margin-bottom: 1.5rem; }
+  .contact-info h3 { margin-bottom: 1rem; }
+  .contact-intro {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
   .contact-info p { font-size: 0.95rem; margin-bottom: 1.25rem; }
   .contact-form {
     display: flex;

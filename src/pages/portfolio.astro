@@ -1,0 +1,238 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Portfolio — Photographe Mariage Bretagne';
+const description = 'Reportages de mariage en Bretagne par Black Pixels. Sélection de photos : cérémonies, séances couple, soirée, détails. Œil cinéma au service de votre journée.';
+
+// Sélection curatée des 30 meilleures photos
+// Tu peux modifier l'ordre ou retirer des numéros pour ajuster la grille
+const photos = [
+  { n: '001', alt: 'Première danse coucher de soleil — Ferme du Roudouic' },
+  { n: '068', alt: 'Cérémonie laïque à la Ferme du Roudouic' },
+  { n: '073', alt: 'Sortie de mairie avec confettis' },
+  { n: '002', alt: 'Mariée pendant les préparatifs' },
+  { n: '067', alt: 'Détail du chignon de la mariée' },
+  { n: '005', alt: 'Orangerie de Lanniron illuminée de nuit' },
+  { n: '020', alt: "Sortie d'église, regard d'enfant" },
+  { n: '070', alt: 'Séance couple à la Ferme du Roudouic' },
+  { n: '063', alt: 'Les alliances avant la cérémonie' },
+  { n: '078', alt: 'Lieu de mariage — manoir de Bretagne' },
+  { n: '006', alt: 'Enfants pendant le mariage' },
+  { n: '016', alt: 'Détail — feuille de discours' },
+  { n: '003', alt: 'Reportage mariage Bretagne' },
+  { n: '004', alt: 'Reportage mariage Bretagne' },
+  { n: '007', alt: 'Reportage mariage Bretagne' },
+  { n: '008', alt: 'Reportage mariage Bretagne' },
+  { n: '009', alt: 'Reportage mariage Bretagne' },
+  { n: '010', alt: 'Reportage mariage Bretagne' },
+  { n: '011', alt: 'Reportage mariage Bretagne' },
+  { n: '012', alt: 'Reportage mariage Bretagne' },
+  { n: '013', alt: 'Reportage mariage Bretagne' },
+  { n: '014', alt: 'Reportage mariage Bretagne' },
+  { n: '015', alt: 'Reportage mariage Bretagne' },
+  { n: '017', alt: 'Reportage mariage Bretagne' },
+  { n: '018', alt: 'Reportage mariage Bretagne' },
+  { n: '019', alt: 'Reportage mariage Bretagne' },
+  { n: '021', alt: 'Reportage mariage Bretagne' },
+  { n: '022', alt: 'Reportage mariage Bretagne' },
+  { n: '023', alt: 'Reportage mariage Bretagne' },
+  { n: '025', alt: 'Reportage mariage Bretagne' },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="portfolio-hero">
+    <div class="container-narrow text-center">
+      <p class="eyebrow">Portfolio</p>
+      <h1>Reportages de mariage en Bretagne</h1>
+      <p class="lead text-muted">
+        Une sélection de moments captés au fil des années — l'œil cinéma au service de votre journée.
+      </p>
+    </div>
+  </section>
+
+  <section class="portfolio-grid-section">
+    <div class="portfolio-container">
+      <div class="masonry">
+        {photos.map((p, i) => (
+          <button
+            type="button"
+            class="photo-btn"
+            data-index={i}
+            data-src={`/images/photo-${p.n}.jpg`}
+            data-alt={p.alt}
+            aria-label={`Agrandir : ${p.alt}`}
+          >
+            <img
+              src={`/images/photo-${p.n}.jpg`}
+              alt={p.alt}
+              loading="lazy"
+            />
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="portfolio-cta">
+    <div class="container-narrow text-center">
+      <p class="eyebrow">Envie d'en voir plus ?</p>
+      <h2>Parlons de votre mariage.</h2>
+      <p class="text-muted">Chaque reportage est unique. Demandez-moi le récit complet d'un mariage qui ressemble au vôtre.</p>
+      <p style="margin-top: 2rem;">
+        <a href="/contact" class="button">Demander un devis</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Visionneuse de photo">
+    <button type="button" class="lightbox-close" aria-label="Fermer">×</button>
+    <button type="button" class="lightbox-prev" aria-label="Photo précédente">‹</button>
+    <img class="lightbox-img" src="" alt="" />
+    <button type="button" class="lightbox-next" aria-label="Photo suivante">›</button>
+  </div>
+
+  <script is:inline>
+    (function () {
+      const lb = document.getElementById('lightbox');
+      const lbImg = lb.querySelector('.lightbox-img');
+      const btnClose = lb.querySelector('.lightbox-close');
+      const btnPrev = lb.querySelector('.lightbox-prev');
+      const btnNext = lb.querySelector('.lightbox-next');
+      const triggers = Array.from(document.querySelectorAll('.photo-btn'));
+      let currentIndex = 0;
+
+      function open(index) {
+        currentIndex = index;
+        const btn = triggers[index];
+        lbImg.src = btn.dataset.src;
+        lbImg.alt = btn.dataset.alt;
+        lb.classList.add('is-open');
+        lb.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function close() {
+        lb.classList.remove('is-open');
+        lb.setAttribute('aria-hidden', 'true');
+        lbImg.src = '';
+        document.body.style.overflow = '';
+      }
+
+      function move(dir) {
+        currentIndex = (currentIndex + dir + triggers.length) % triggers.length;
+        const btn = triggers[currentIndex];
+        lbImg.src = btn.dataset.src;
+        lbImg.alt = btn.dataset.alt;
+      }
+
+      triggers.forEach((btn, i) => btn.addEventListener('click', () => open(i)));
+      btnClose.addEventListener('click', close);
+      btnPrev.addEventListener('click', () => move(-1));
+      btnNext.addEventListener('click', () => move(1));
+      lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+      document.addEventListener('keydown', (e) => {
+        if (!lb.classList.contains('is-open')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') move(-1);
+        if (e.key === 'ArrowRight') move(1);
+      });
+    })();
+  </script>
+</BaseLayout>
+
+<style>
+  .portfolio-hero { padding: 5rem 0 3rem; }
+  .portfolio-hero .lead { font-size: 1.15rem; max-width: 600px; margin: 1rem auto 0; }
+
+  .portfolio-grid-section { padding-bottom: 6rem; }
+  .portfolio-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .masonry {
+    column-count: 3;
+    column-gap: 1rem;
+  }
+  .masonry .photo-btn {
+    display: block;
+    width: 100%;
+    margin: 0 0 1rem 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: zoom-in;
+    overflow: hidden;
+    break-inside: avoid;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .masonry .photo-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(26, 26, 26, 0.15);
+  }
+  .masonry .photo-btn img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  @media (max-width: 900px) {
+    .masonry { column-count: 2; }
+  }
+  @media (max-width: 500px) {
+    .masonry { column-count: 1; }
+  }
+
+  .portfolio-cta { background: white; padding: 5rem 0; }
+  .portfolio-cta h2 { margin: 0.5rem 0 1rem; }
+
+  /* Lightbox */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.95);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 2rem;
+  }
+  .lightbox.is-open { display: flex; }
+  .lightbox-img {
+    max-width: 90vw;
+    max-height: 88vh;
+    object-fit: contain;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+  .lightbox-close,
+  .lightbox-prev,
+  .lightbox-next {
+    position: absolute;
+    background: transparent;
+    border: 0;
+    color: white;
+    cursor: pointer;
+    font-size: 2.5rem;
+    line-height: 1;
+    padding: 0.5rem 1rem;
+    transition: color 0.2s;
+  }
+  .lightbox-close:hover,
+  .lightbox-prev:hover,
+  .lightbox-next:hover {
+    color: var(--color-accent);
+  }
+  .lightbox-close {
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 2.5rem;
+  }
+  .lightbox-prev { left: 1rem; top: 50%; transform: translateY(-50%); }
+  .lightbox-next { right: 1rem; top: 50%; transform: translateY(-50%); }
+  @media (max-width: 600px) {
+    .lightbox-prev, .lightbox-next { font-size: 2rem; }
+  }
+</style>

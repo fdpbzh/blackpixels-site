@@ -2,60 +2,72 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = 'FAQ — Questions fréquentes';
-const description = 'Vos questions les plus fréquentes sur les prestations photo et vidéo de mariage Black Pixels en Bretagne.';
+const description = 'Vos questions sur mes prestations photo de mariage en Bretagne : tarifs, livraison, méthode, lieux, matériel. Réponses claires et directes.';
 
 const faqs = [
   {
-    q: 'Quels sont vos tarifs ?',
-    a: 'Trois packs : White à 1 490 €, Black à 2 390 €, Gold à 3 290 €. Voir le détail sur la page Prestations & Tarifs.',
+    q: "C'est quoi vos tarifs ?",
+    a: "3 packs : Pack White à 1 490 €, Pack Black à 2 390 €, Pack Gold à 3 290 €. Le détail complet est sur la page Prestations & Tarifs.",
   },
   {
-    q: 'Intervenez-vous dans toute la Bretagne ?',
-    a: 'Oui — Finistère, Morbihan, Côtes-d\'Armor et Ille-et-Vilaine. Déplacement inclus. Hors Bretagne, devis sur demande.',
+    q: "Sous quel délai je reçois mes photos ?",
+    a: "2 semaines maxi après votre mariage. Toutes en couleur ET en noir & blanc, retouchées sous Lightroom.",
   },
   {
-    q: 'Sous quel délai recevons-nous les photos ?',
-    a: 'Sous 2 semaines maximum après votre mariage. Toutes les photos en couleur ET en noir et blanc.',
+    q: "Comment je réserve une date ?",
+    a: "Vous me demandez un devis via le formulaire de contact. Je réponds sous 48h, et si vous voulez on prend un café ou un appel pour faire connaissance avant de bloquer la date.",
   },
   {
-    q: 'Quel acompte faut-il verser ?',
-    a: '30 % à la réservation, le solde le jour du mariage.',
+    q: "Combien de mariages couvrez-vous par an ?",
+    a: "Une vingtaine, pas plus. Au-delà, je ne peux plus garantir le niveau d'attention que chaque mariage mérite — rencontre en amont, présence intégrale le jour J, retouche soignée et livraison rapide. Je préfère faire moins, et faire bien.",
   },
   {
-    q: 'Combien de photos recevons-nous ?',
-    a: 'Cela dépend du pack : 300 photos (White), 500 (Black), 700 (Gold). Toutes retouchées, livrées en haute définition.',
+    q: "Comment ça se passe pour le paiement ?",
+    a: "30 % d'acompte à la réservation (qui bloque votre date), le solde le jour J. Virement, espèces ou chèque, comme vous préférez.",
   },
   {
-    q: 'Faites-vous aussi de la vidéo ?',
-    a: 'Oui — je suis également vidéaste. Films primés en festivals avant les mariages (Blue Road 2017, TAN 2018, 10+ récompenses).',
+    q: "Vous intervenez dans toute la Bretagne ?",
+    a: "Oui — Finistère, Morbihan, Côtes-d'Armor, Ille-et-Vilaine. Déplacement inclus partout en Bretagne. Hors Bretagne, faites-moi rêver, on en parle.",
   },
   {
-    q: 'Quelle est votre approche ?',
-    a: 'Reportage authentique. Peu de poses, beaucoup d\'instants spontanés. Je m\'efface pour capter les vraies émotions.',
+    q: "Combien de photos je reçois ?",
+    a: "Selon le pack : 300 (White), 500 (Black), 700 (Gold). Toutes retouchées, livrées en haute définition.",
   },
   {
-    q: 'Avez-vous des récompenses ?',
-    a: 'Wedding Awards 2021, 2022 et 2026 (mariages.net) — décernés par les couples eux-mêmes.',
+    q: "C'est quoi votre approche ?",
+    a: "Reportage authentique. J'aime prendre mon temps, observer, varier les angles et les cadres, et capter ce que vous ressentez vraiment — pas ce que vous montrez. Je me fais discret pour laisser place au naturel.",
   },
   {
-    q: 'Comment réserver une date ?',
-    a: 'Demandez un devis via la page Contact. Je réponds sous 48h, et nous fixons un appel ou un rendez-vous.',
+    q: "On peut personnaliser un pack ?",
+    a: "Bien sûr. Vous pouvez ajouter Save the Date (400 €), Préparation (400 €), Soirée (500 €), Trash the Dress (400 €) ou Retour de Noce (500 €) à n'importe quel pack.",
   },
   {
-    q: 'Travaillez-vous dans des lieux spécifiques ?',
-    a: 'J\'interviens régulièrement à la Ferme du Roudouic, au Château de Keriolet, au Manoir de Kerhuel, à l\'Orangerie de Lanniron, au Manoir des Indes, et partout en Bretagne.',
+    q: "Vous avez des récompenses ?",
+    a: "Wedding Awards Mariages.net en 2021, 2022 et 2026. Ce sont les couples qui votent. 100 % de mes 61 clients me recommandent.",
   },
   {
-    q: 'Peut-on personnaliser un pack ?',
-    a: 'Oui — les options à la carte (Save the Date, Préparation, Soirée, Trash the Dress, Retour de Noce) s\'ajoutent à n\'importe quel pack.',
+    q: "Dans quels lieux vous travaillez le plus ?",
+    a: "J'ai mes habitudes à la Ferme du Roudouic, au Château de Keriolet, au Manoir de Kerhuel, à l'Orangerie de Lanniron et au Manoir des Indes. Mais je m'adapte partout en Bretagne.",
   },
   {
-    q: 'Sur quel matériel travaillez-vous ?',
-    a: 'Matériel professionnel haute définition, double boîtier en backup. Détails techniques disponibles sur demande.',
+    q: "Vous travaillez seul ou en équipe ?",
+    a: "Seul. Je suis présent du début à la fin, c'est ma promesse. Pas de second photographe qui ferait moitié des photos pendant que je suis ailleurs.",
   },
   {
-    q: 'Comment recevons-nous les photos ?',
-    a: 'Galerie en ligne sécurisée et privée (espace client), avec téléchargement haute définition pour tous les invités.',
+    q: "Et s'il y a un imprévu ?",
+    a: "J'ai des photographes de confiance en backup pour les cas vraiment exceptionnels (accident, maladie grave). Mais en 8 ans, je n'ai jamais loupé un mariage.",
+  },
+  {
+    q: "Vous pouvez rester plus longtemps si besoin ?",
+    a: "Oui — heures supplémentaires à 150 €/heure. À décider sur le moment si la fête bat son plein.",
+  },
+  {
+    q: "Quel matériel vous utilisez ?",
+    a: "Nikon Z9 avec des optiques fixes : 50 mm f/1.2, 24 mm f/1.4, 105 mm f/1.4. Pour les puristes : du matériel pro avec double boîtier en backup. Pour les autres : ça fait des belles photos.",
+  },
+  {
+    q: "Comment je récupère mes photos ?",
+    a: "Galerie en ligne sécurisée et privée. Vous et vos invités pouvez télécharger les photos en haute définition. Pratique pour partager.",
   },
 ];
 
