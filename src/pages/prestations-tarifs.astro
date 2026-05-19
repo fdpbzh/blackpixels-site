@@ -1,0 +1,170 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Prestations & Tarifs Mariage Bretagne';
+const description = 'Packs photo et vidéo mariage Bretagne : Pack White 1490€, Pack Black 2390€, Pack Gold 3290€. Reportage authentique, livraison 2 semaines.';
+
+const packs = [
+  {
+    name: 'Pack White',
+    price: '1 490 €',
+    photos: '300 photos',
+    sections: ['Cérémonie', 'Cocktail', 'Photos de Groupes', 'Séance Couple'],
+    featured: false,
+  },
+  {
+    name: 'Pack Black',
+    price: '2 390 €',
+    photos: '500 photos',
+    sections: ['Préparation', 'Cérémonie', 'Cocktail', 'Photos de Groupes', 'Séance Couple', 'Soirée'],
+    featured: true,
+    badge: 'Le plus choisi',
+  },
+  {
+    name: 'Pack Gold',
+    price: '3 290 €',
+    photos: '700 photos',
+    sections: ['Tout le Pack Black', 'Save the Date OU Trash the Dress', 'Retour de Noce'],
+    featured: false,
+  },
+];
+
+const alaCarte = [
+  { name: 'Save the Date', price: '400 €' },
+  { name: 'Préparation', price: '400 €' },
+  { name: 'Soirée', price: '500 €' },
+  { name: 'Trash the Dress', price: '400 €' },
+  { name: 'Retour de Noce', price: '500 €' },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="page-hero">
+    <div class="container-narrow text-center">
+      <p class="eyebrow">Prestations</p>
+      <h1>Trois packs, un même engagement</h1>
+      <p class="lead">
+        Couleur ET noir et blanc, livraison sous 2 semaines, déplacement Bretagne inclus.
+      </p>
+    </div>
+  </section>
+
+  <section class="packs">
+    <div class="container">
+      <div class="packs-grid">
+        {packs.map((pack) => (
+          <article class:list={['pack-card', { featured: pack.featured }]}>
+            {pack.badge && <p class="pack-badge">{pack.badge}</p>}
+            <h2>{pack.name}</h2>
+            <p class="pack-price">{pack.price}</p>
+            <p class="pack-photos text-muted">{pack.photos}</p>
+            <ul class="pack-sections">
+              {pack.sections.map((s) => <li>{s}</li>)}
+            </ul>
+            <a href="/contact" class="button">Réserver</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="alacarte">
+    <div class="container-narrow">
+      <p class="eyebrow text-center">À la carte</p>
+      <h2 class="text-center">Compléments à toute formule</h2>
+      <ul class="alacarte-list">
+        {alaCarte.map((item) => (
+          <li>
+            <span>{item.name}</span>
+            <span class="alacarte-price">{item.price}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="conditions">
+    <div class="container-narrow text-center">
+      <p class="eyebrow">Bon à savoir</p>
+      <h2>Les conditions</h2>
+      <p>Acompte de 30 % à la réservation, solde réglé le jour du mariage.</p>
+      <p>Livraison des photos sous 2 semaines maximum.</p>
+      <p>Déplacement en Bretagne inclus. Hors Bretagne : devis personnalisé.</p>
+      <p style="margin-top: 2rem;">
+        <a href="/faq" class="button button-outline">Voir la FAQ complète</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero { padding-bottom: 0; }
+  .lead { font-size: 1.2rem; color: var(--color-text-muted); }
+  .packs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+  .pack-card {
+    padding: 3rem 2rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg);
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .pack-card.featured {
+    border-color: var(--color-accent);
+    box-shadow: 0 8px 24px rgba(181, 152, 90, 0.1);
+  }
+  .pack-badge {
+    position: absolute;
+    top: -0.7rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-accent);
+    color: var(--color-bg);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    margin: 0;
+  }
+  .pack-price {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    color: var(--color-accent-dark);
+    margin: 1rem 0 0.25rem;
+  }
+  .pack-photos { font-size: 0.9rem; margin-bottom: 1.5rem; }
+  .pack-sections {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 2rem;
+    text-align: left;
+    flex-grow: 1;
+  }
+  .pack-sections li {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 0.95rem;
+  }
+  .pack-sections li:last-child { border-bottom: none; }
+  .alacarte-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0;
+  }
+  .alacarte-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .alacarte-price {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    color: var(--color-accent-dark);
+  }
+</style>

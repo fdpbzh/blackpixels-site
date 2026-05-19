@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Contact — Devis mariage Bretagne';
+const description = 'Demandez un devis personnalisé pour votre mariage en Bretagne. Réponse sous 48h. Black Pixels — photographe et vidéaste.';
+---
+
+<BaseLayout title={title} description={description}>
+  <section>
+    <div class="container-narrow">
+      <p class="eyebrow text-center">Contact</p>
+      <h1 class="text-center">Parlons de votre mariage</h1>
+      <p class="text-center text-muted lead">
+        Je réponds à toutes les demandes sous 48h.
+      </p>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>Mes coordonnées</h3>
+          <p><strong>Email</strong><br /><a href="mailto:blackpixels.fr@gmail.com">blackpixels.fr@gmail.com</a></p>
+          <p><strong>Téléphone</strong><br /><a href="tel:+33687708908">+33 6 87 70 89 08</a></p>
+          <p><strong>Adresse</strong><br />Pors Poulhan, Bâtiment les Cotiers<br />29780 Plouhinec, Bretagne, France</p>
+        </div>
+
+        <form
+          class="contact-form"
+          action="https://formspree.io/f/REMPLACER_PAR_TON_ENDPOINT"
+          method="POST"
+        >
+          <label>
+            Votre nom
+            <input type="text" name="name" required />
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" required />
+          </label>
+          <label>
+            Date du mariage (si connue)
+            <input type="date" name="wedding_date" />
+          </label>
+          <label>
+            Lieu envisagé
+            <input type="text" name="location" placeholder="Ferme du Roudouic, Manoir de Kerhuel…" />
+          </label>
+          <label>
+            Pack qui vous intéresse
+            <select name="pack">
+              <option value="">— Au choix —</option>
+              <option value="white">Pack White (1 490 €)</option>
+              <option value="black">Pack Black (2 390 €)</option>
+              <option value="gold">Pack Gold (3 290 €)</option>
+              <option value="autre">Sur-mesure</option>
+            </select>
+          </label>
+          <label>
+            Votre message
+            <textarea name="message" rows="5" required></textarea>
+          </label>
+          <button type="submit" class="button">Envoyer ma demande</button>
+          <p class="form-note text-muted">
+            Vos données ne sont utilisées que pour répondre à votre demande. Pas de mailing, pas de revente.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .lead { font-size: 1.15rem; margin-bottom: 3rem; }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+  .contact-info h3 { margin-bottom: 1.5rem; }
+  .contact-info p { font-size: 0.95rem; margin-bottom: 1.25rem; }
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .contact-form label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+    gap: 0.4rem;
+  }
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    padding: 0.85rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--color-text);
+    text-transform: none;
+    letter-spacing: normal;
+  }
+  .contact-form input:focus,
+  .contact-form select:focus,
+  .contact-form textarea:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 1px;
+  }
+  .contact-form textarea { resize: vertical; min-height: 120px; }
+  .form-note { font-size: 0.8rem; margin: 0.5rem 0 0; }
+  @media (max-width: 768px) {
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+</style>

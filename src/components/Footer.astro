@@ -1,0 +1,58 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-col">
+      <h4 class="footer-title">Black Pixels</h4>
+      <p class="text-muted">Photographe et vidéaste mariage en Bretagne depuis 2017.</p>
+      <p class="text-muted">Wedding Awards 2021, 2022, 2026.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="footer-title">Contact</h4>
+      <p><a href="mailto:blackpixels.fr@gmail.com">blackpixels.fr@gmail.com</a></p>
+      <p><a href="tel:+33687708908">+33 6 87 70 89 08</a></p>
+      <p class="text-muted">Pors Poulhan<br />29780 Plouhinec<br />Bretagne, France</p>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="footer-title">Liens</h4>
+      <p><a href="/prestations-tarifs">Prestations & Tarifs</a></p>
+      <p><a href="/faq">FAQ</a></p>
+      <p><a href="https://portfolio.blackpixels.fr" target="_blank" rel="noopener">Portfolio</a></p>
+      <p><a href="https://client.blackpixels.fr" target="_blank" rel="noopener">Espace client</a></p>
+    </div>
+  </div>
+
+  <div class="footer-bottom container">
+    <p class="text-muted">© {year} Black Pixels — Tous droits réservés</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--color-border);
+    padding: 4rem 0 1.5rem;
+    margin-top: 4rem;
+  }
+  .footer-inner {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  .footer-title {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  .footer-col p { font-size: 0.9rem; margin-bottom: 0.4rem; }
+  .footer-bottom {
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.5rem;
+    text-align: center;
+  }
+  .footer-bottom p { font-size: 0.8rem; margin: 0; }
+</style>

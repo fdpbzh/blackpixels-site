@@ -1,0 +1,109 @@
+:root {
+  --color-bg: #FAF8F4;
+  --color-text: #1A1A1A;
+  --color-text-muted: #6B6B6B;
+  --color-accent: #B5985A;
+  --color-accent-dark: #8B7544;
+  --color-border: #E5E0D5;
+
+  --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --container: 1200px;
+  --container-narrow: 800px;
+
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 8rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  line-height: 1.15;
+  margin: 0 0 var(--space-sm);
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+h2 { font-size: clamp(2rem, 4vw, 3rem); }
+h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+h4 { font-size: 1.25rem; }
+
+p { margin: 0 0 var(--space-sm); }
+
+a {
+  color: var(--color-accent-dark);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover { color: var(--color-text); }
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+.container-narrow {
+  max-width: var(--container-narrow);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.button {
+  display: inline-block;
+  padding: 0.875rem 2rem;
+  background: var(--color-text);
+  color: var(--color-bg);
+  border: 1px solid var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.button:hover {
+  background: transparent;
+  color: var(--color-text);
+}
+.button-outline {
+  background: transparent;
+  color: var(--color-text);
+}
+.button-outline:hover {
+  background: var(--color-text);
+  color: var(--color-bg);
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.8rem;
+  color: var(--color-accent-dark);
+  margin-bottom: var(--space-sm);
+}
+
+section { padding: var(--space-xl) 0; }
+section + section { border-top: 1px solid var(--color-border); }
+
+img { max-width: 100%; height: auto; display: block; }
+
+.text-center { text-align: center; }
+.text-muted { color: var(--color-text-muted); }

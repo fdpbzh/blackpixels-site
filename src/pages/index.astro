@@ -1,0 +1,132 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Photographe & Vidéaste Mariage Bretagne';
+const description = 'Photographe et vidéaste mariage en Bretagne (Finistère, Morbihan, Côtes-d\'Armor). Wedding Awards 2021, 2022, 2026. Reportage authentique. Devis sous 48h.';
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="hero">
+    <div class="container-narrow text-center">
+      <p class="eyebrow">Photographe & Vidéaste — Bretagne</p>
+      <h1>Vos émotions, à l'image de votre amour.</h1>
+      <p class="hero-tagline text-muted">
+        Reportage de mariage authentique en Bretagne et au-delà.
+        Wedding Awards 2021, 2022 et 2026.
+      </p>
+      <div class="hero-cta">
+        <a href="/prestations-tarifs" class="button">Découvrir les packs</a>
+        <a href="/contact" class="button button-outline">Demander un devis</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="intro">
+    <div class="container-narrow text-center">
+      <p class="eyebrow">Black Pixels</p>
+      <h2>L'âme de votre histoire, capturée pour la vie.</h2>
+      <p>
+        Depuis 2017, je raconte vos mariages comme de vraies histoires : des regards qui s'attrapent,
+        des éclats de rire, l'instant suspendu d'un premier baiser. Pas de poses figées ni de mises en scène
+        trop appuyées — juste vous, vos proches, et la lumière de Bretagne.
+      </p>
+      <p>
+        <a href="/about">En savoir plus sur moi →</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="packs-preview">
+    <div class="container text-center">
+      <p class="eyebrow">Prestations</p>
+      <h2>Trois formules, une seule promesse</h2>
+      <div class="packs-grid">
+        <article class="pack-card">
+          <h3>Pack White</h3>
+          <p class="pack-price">1 490 €</p>
+          <p class="text-muted">Cérémonie + Cocktail + Groupes + Couple. 300 photos.</p>
+        </article>
+        <article class="pack-card pack-featured">
+          <p class="pack-badge">Le plus choisi</p>
+          <h3>Pack Black</h3>
+          <p class="pack-price">2 390 €</p>
+          <p class="text-muted">Tout White + Préparation + Soirée. 500 photos.</p>
+        </article>
+        <article class="pack-card">
+          <h3>Pack Gold</h3>
+          <p class="pack-price">3 290 €</p>
+          <p class="text-muted">Tout Black + Save the Date OU Trash the Dress + Retour de Noce. 700 photos.</p>
+        </article>
+      </div>
+      <p style="margin-top: 2rem;">
+        <a href="/prestations-tarifs" class="button button-outline">Voir le détail des packs</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="lieux">
+    <div class="container-narrow text-center">
+      <p class="eyebrow">Lieux de mariage</p>
+      <h2>Bretagne, terre d'émotions</h2>
+      <p>
+        J'interviens régulièrement dans les plus beaux lieux de Bretagne :
+        <strong>Ferme du Roudouic</strong>, <strong>Château de Keriolet</strong>,
+        <strong>Manoir de Kerhuel</strong>, <strong>Orangerie de Lanniron</strong>,
+        <strong>Manoir des Indes</strong>… et partout où votre histoire vous mène.
+      </p>
+    </div>
+  </section>
+
+  <section class="cta-final">
+    <div class="container-narrow text-center">
+      <p class="eyebrow">Disponibilités</p>
+      <h2>Parlons de votre mariage</h2>
+      <p>Devis personnalisé sous 48h. Acompte 30 % à la réservation.</p>
+      <p style="margin-top: 1.5rem;">
+        <a href="/contact" class="button">Demander un devis</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero { padding: 6rem 0 4rem; }
+  .hero h1 { margin-bottom: 1.5rem; }
+  .hero-tagline { font-size: 1.2rem; margin-bottom: 2.5rem; }
+  .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .intro h2 { margin-bottom: 2rem; }
+  .packs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .pack-card {
+    padding: 2.5rem 2rem;
+    border: 1px solid var(--color-border);
+    text-align: center;
+    position: relative;
+  }
+  .pack-featured {
+    border-color: var(--color-accent);
+    background: rgba(181, 152, 90, 0.05);
+  }
+  .pack-badge {
+    position: absolute;
+    top: -0.7rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-accent);
+    color: var(--color-bg);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+  }
+  .pack-price {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    color: var(--color-accent-dark);
+    margin: 1rem 0;
+  }
+</style>

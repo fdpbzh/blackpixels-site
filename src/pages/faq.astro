@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'FAQ — Questions fréquentes';
+const description = 'Vos questions les plus fréquentes sur les prestations photo et vidéo de mariage Black Pixels en Bretagne.';
+
+const faqs = [
+  {
+    q: 'Quels sont vos tarifs ?',
+    a: 'Trois packs : White à 1 490 €, Black à 2 390 €, Gold à 3 290 €. Voir le détail sur la page Prestations & Tarifs.',
+  },
+  {
+    q: 'Intervenez-vous dans toute la Bretagne ?',
+    a: 'Oui — Finistère, Morbihan, Côtes-d\'Armor et Ille-et-Vilaine. Déplacement inclus. Hors Bretagne, devis sur demande.',
+  },
+  {
+    q: 'Sous quel délai recevons-nous les photos ?',
+    a: 'Sous 2 semaines maximum après votre mariage. Toutes les photos en couleur ET en noir et blanc.',
+  },
+  {
+    q: 'Quel acompte faut-il verser ?',
+    a: '30 % à la réservation, le solde le jour du mariage.',
+  },
+  {
+    q: 'Combien de photos recevons-nous ?',
+    a: 'Cela dépend du pack : 300 photos (White), 500 (Black), 700 (Gold). Toutes retouchées, livrées en haute définition.',
+  },
+  {
+    q: 'Faites-vous aussi de la vidéo ?',
+    a: 'Oui — je suis également vidéaste. Films primés en festivals avant les mariages (Blue Road 2017, TAN 2018, 10+ récompenses).',
+  },
+  {
+    q: 'Quelle est votre approche ?',
+    a: 'Reportage authentique. Peu de poses, beaucoup d\'instants spontanés. Je m\'efface pour capter les vraies émotions.',
+  },
+  {
+    q: 'Avez-vous des récompenses ?',
+    a: 'Wedding Awards 2021, 2022 et 2026 (mariages.net) — décernés par les couples eux-mêmes.',
+  },
+  {
+    q: 'Comment réserver une date ?',
+    a: 'Demandez un devis via la page Contact. Je réponds sous 48h, et nous fixons un appel ou un rendez-vous.',
+  },
+  {
+    q: 'Travaillez-vous dans des lieux spécifiques ?',
+    a: 'J\'interviens régulièrement à la Ferme du Roudouic, au Château de Keriolet, au Manoir de Kerhuel, à l\'Orangerie de Lanniron, au Manoir des Indes, et partout en Bretagne.',
+  },
+  {
+    q: 'Peut-on personnaliser un pack ?',
+    a: 'Oui — les options à la carte (Save the Date, Préparation, Soirée, Trash the Dress, Retour de Noce) s\'ajoutent à n\'importe quel pack.',
+  },
+  {
+    q: 'Sur quel matériel travaillez-vous ?',
+    a: 'Matériel professionnel haute définition, double boîtier en backup. Détails techniques disponibles sur demande.',
+  },
+  {
+    q: 'Comment recevons-nous les photos ?',
+    a: 'Galerie en ligne sécurisée et privée (espace client), avec téléchargement haute définition pour tous les invités.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout title={title} description={description}>
+  <section>
+    <div class="container-narrow">
+      <p class="eyebrow text-center">FAQ</p>
+      <h1 class="text-center">Vos questions, mes réponses</h1>
+
+      <div class="faqs">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <p class="text-center" style="margin-top: 3rem;">
+        Une autre question ? <a href="/contact">Écrivez-moi</a>.
+      </p>
+    </div>
+
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </section>
+</BaseLayout>
+
+<style>
+  .faqs { margin-top: 3rem; }
+  .faq-item {
+    border-bottom: 1px solid var(--color-border);
+    padding: 1.25rem 0;
+  }
+  .faq-item summary {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    cursor: pointer;
+    list-style: none;
+    padding: 0.5rem 0;
+    position: relative;
+    padding-right: 2rem;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color: var(--color-accent-dark);
+    transition: transform 0.2s;
+  }
+  .faq-item[open] summary::after {
+    content: '−';
+  }
+  .faq-item p {
+    margin-top: 0.5rem;
+    color: var(--color-text-muted);
+  }
+</style>

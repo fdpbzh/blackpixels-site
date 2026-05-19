@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'À propos — Yohann Strullu, photographe mariage';
+const description = 'Yohann Strullu, photographe et vidéaste mariage en Bretagne depuis 2017. Récompensé aux Wedding Awards 2021, 2022 et 2026.';
+---
+
+<BaseLayout title={title} description={description}>
+  <section>
+    <div class="container-narrow">
+      <p class="eyebrow">À propos</p>
+      <h1>Yohann Strullu</h1>
+      <p class="lead">
+        Photographe et vidéaste mariage en Bretagne depuis 2017. Basé à Pors Poulhan, Plouhinec.
+      </p>
+
+      <p>
+        Je m'appelle Yohann. Je raconte des mariages comme on raconte un film :
+        avec un œil pour le détail, le souci de la lumière, et surtout l'envie de vous montrer
+        à quel point votre journée a été belle, vraie, et entière.
+      </p>
+
+      <p>
+        Avant les mariages, j'ai réalisé deux films primés : <em>Blue Road</em> (2017) et <em>TAN</em> (2018),
+        qui ont reçu plus de dix récompenses dans des festivals internationaux. Cette expérience cinématographique
+        nourrit chaque reportage que je tourne aujourd'hui.
+      </p>
+
+      <p>
+        En 2021, 2022 et 2026, j'ai été récompensé aux <strong>Wedding Awards</strong> par mariages.net —
+        des prix décernés par les couples eux-mêmes.
+      </p>
+
+      <h2>Ma façon de travailler</h2>
+      <p>
+        Je travaille en reportage : peu de poses, beaucoup d'instants volés.
+        Couleur ET noir et blanc systématiquement livrés. Livraison sous 2 semaines.
+        Déplacement en Bretagne inclus dans tous les packs.
+      </p>
+
+      <p style="margin-top: 3rem;">
+        <a href="/contact" class="button">Discutons de votre mariage</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .lead {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+  h2 { margin-top: 3rem; }
+</style>

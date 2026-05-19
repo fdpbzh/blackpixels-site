@@ -1,0 +1,11 @@
+# Redirections 301 — préservation du SEO Zenfolio
+# Format : /ancienne-url  /nouvelle-url  301
+# Cloudflare Pages applique automatiquement ce fichier.
+
+# À compléter après audit Search Console des 106 pages indexées.
+# Exemples :
+# /about.html         /about                  301
+# /contact.html       /contact                301
+# /portfolio-mariage  https://portfolio.blackpixels.fr/portfolio-mariage  301
+
+# Fallback : Cloudflare Pages sert dist/404.html automatiquement.
