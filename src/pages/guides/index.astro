@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Guides — Mariage en Bretagne';
+const description = 'Réponses claires aux questions qu\'on me pose le plus souvent avant un mariage : tarifs, choix du photographe, délai de réservation, organisation à distance.';
+
+const guides = [
+  {
+    href: '/guides/prix-photographe-mariage-france',
+    title: 'Combien coûte un photographe de mariage haut de gamme en France ?',
+    excerpt: 'Les fourchettes réelles du marché, ce qu\'on paie vraiment derrière un tarif, et pourquoi le moins cher revient presque toujours plus cher.',
+  },
+  {
+    href: '/guides/choisir-photographe-mariage-bretagne',
+    title: 'Comment choisir son photographe de mariage en Bretagne ?',
+    excerpt: 'Les critères qui comptent vraiment, les questions à poser en rendez-vous, et les pièges classiques à éviter.',
+  },
+  {
+    href: '/guides/quand-reserver-photographe-mariage',
+    title: 'Quand faut-il réserver son photographe de mariage ?',
+    excerpt: 'Pourquoi 12 à 18 mois avant n\'est pas du marketing, ce qui se passe pour la saison bretonne, et comment ne pas se retrouver coincé.',
+  },
+  {
+    href: '/guides/mariage-destination-bretagne',
+    title: 'Se marier en Bretagne quand on vient d\'ailleurs : ce qu\'il faut savoir',
+    excerpt: 'La lumière atlantique, les lieux, la météo, l\'organisation à distance. Ce que je dis aux couples qui découvrent la région.',
+  },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <section>
+    <div class="container-narrow">
+      <p class="eyebrow text-center">Guides</p>
+      <h1 class="text-center">Pour aller plus loin</h1>
+      <p class="lede text-center text-muted">
+        Quatre réponses détaillées aux questions qu'on me pose le plus souvent avant un mariage.
+        Écrit honnêtement, avec ce que neuf ans de terrain m'ont appris.
+      </p>
+
+      <div class="guides-list">
+        {guides.map((g) => (
+          <a href={g.href} class="guide-card">
+            <h2>{g.title}</h2>
+            <p class="text-muted">{g.excerpt}</p>
+            <span class="guide-cta">Lire le guide →</span>
+          </a>
+        ))}
+      </div>
+
+      <p class="text-center" style="margin-top: 3rem;">
+        Une question qui n'est pas couverte ? <a href="/contact">Écrivez-moi</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .lede { font-size: 1.1rem; margin-top: 1.5rem; margin-bottom: 0; }
+  .guides-list {
+    margin-top: 4rem;
+    display: grid;
+    gap: 1.5rem;
+  }
+  .guide-card {
+    display: block;
+    padding: 2rem;
+    border: 1px solid var(--color-border);
+    background: rgba(255, 255, 255, 0.4);
+    color: var(--color-text);
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+  }
+  .guide-card:hover {
+    border-color: var(--color-accent);
+    background: rgba(255, 255, 255, 0.7);
+    transform: translateY(-2px);
+    color: var(--color-text);
+  }
+  .guide-card h2 {
+    font-size: 1.5rem;
+    margin: 0 0 0.75rem;
+  }
+  .guide-card p { margin: 0 0 1rem; }
+  .guide-cta {
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-accent-dark);
+  }
+</style>

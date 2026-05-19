@@ -1,0 +1,218 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Combien coûte un photographe de mariage haut de gamme en France ?';
+const description = 'Fourchettes réelles du marché en 2026, ce qu\'on paie vraiment derrière un tarif, et pourquoi le moins cher revient souvent plus cher. L\'analyse honnête d\'un photographe en activité depuis 9 ans.';
+
+const faqs = [
+  {
+    q: 'Quel est le prix moyen d\'un photographe de mariage en France ?',
+    a: 'En 2026, comptez entre 1 200 € et 2 500 € pour un photographe expérimenté qui couvre une journée complète. Le haut de gamme commence vers 2 500 € et monte facilement à 5 000 € voire au-delà pour les noms les plus établis. En dessous de 1 000 €, vous êtes presque toujours face à un débutant ou à quelqu\'un qui ne déclare pas son activité.',
+  },
+  {
+    q: 'Pourquoi un photographe haut de gamme coûte plus cher ?',
+    a: 'Trois raisons. D\'abord, l\'expérience : un photographe qui a fait 100+ mariages sait gérer les imprévus, la lumière compliquée, les familles tendues. Ensuite, le matériel : un boîtier pro, des optiques fixes lumineuses et un double boîtier de secours coûtent 15 000 € à 25 000 €. Enfin, le temps de retouche : 40 à 80 heures de post-production par mariage, c\'est ce qui transforme des fichiers RAW en livres d\'images cohérents.',
+  },
+  {
+    q: 'Combien dois-je budgéter pour les photos de mon mariage ?',
+    a: 'Une règle simple : 8 à 12 % du budget total du mariage. Pour un mariage à 25 000 €, c\'est 2 000 à 3 000 €. C\'est la seule prestation qui survit au jour J — la nourriture est mangée, les fleurs fanent, le lieu vous quitte le soir. Les photos restent toute votre vie.',
+  },
+  {
+    q: 'Est-ce que ça vaut le coup de payer plus pour les photos ?',
+    a: 'C\'est la seule question qui compte. Si vous regardez vos photos dans 10 ans et que vous trouvez qu\'elles ont mal vieilli, vous ne pourrez pas les refaire. Les couples qui regrettent leurs photos de mariage sont nombreux. Les couples qui regrettent d\'avoir mis 500 € de plus, je n\'en ai jamais croisé.',
+  },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: description,
+  author: {
+    '@type': 'Person',
+    name: 'Yohann Strullu',
+    url: 'https://www.blackpixels.fr/about',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Black Pixels',
+    logo: { '@type': 'ImageObject', url: 'https://www.blackpixels.fr/og-default.jpg' },
+  },
+  datePublished: '2026-05-20',
+  dateModified: '2026-05-20',
+  mainEntityOfPage: 'https://www.blackpixels.fr/guides/prix-photographe-mariage-france',
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout title={title} description={description}>
+  <section>
+    <div class="container-narrow">
+      <p class="eyebrow"><a href="/guides">Guides</a> · Tarifs</p>
+      <h1>Combien coûte un photographe de mariage haut de gamme en France ?</h1>
+
+      <p class="answer">
+        En 2026, un photographe de mariage haut de gamme en France se situe entre <strong>2 500 € et 5 000 €</strong>
+        pour une journée complète. En dessous de 1 500 €, vous trouvez surtout des débutants ou des photographes
+        qui ne couvrent qu\'une partie de la journée. Au-dessus de 5 000 €, on entre dans les profils éditoriaux,
+        rares et très demandés.
+      </p>
+
+      <h2>Les fourchettes réelles du marché en 2026</h2>
+      <p>
+        Le marché de la photo de mariage en France est segmenté de façon assez nette. Voici ce que j'observe après
+        neuf ans d'activité et 150+ mariages couverts.
+      </p>
+
+      <h3>Moins de 1 000 € : à éviter</h3>
+      <p>
+        À ce prix, vous tombez sur trois cas. Un débutant qui se cherche encore — pourquoi pas, mais c'est votre
+        mariage qui sert de laboratoire. Un photographe non déclaré — pas de facture, pas de recours en cas de
+        problème. Ou un loueur d'équipement qui sous-traite sans contrôle. Aucune de ces options ne devrait
+        être votre choix par défaut.
+      </p>
+
+      <h3>1 000 à 1 800 € : entrée de gamme honnête</h3>
+      <p>
+        On trouve à ce niveau des photographes sérieux mais en début de carrière, ou des professionnels qui ne
+        couvrent que la cérémonie et le vin d'honneur (4 à 6 heures). C'est défendable si votre mariage est
+        intime, sans préparatifs ni soirée, et si vous savez ce que vous voulez.
+      </p>
+
+      <h3>1 800 à 3 000 € : milieu de gamme expérimenté</h3>
+      <p>
+        Le cœur du marché. Un photographe qui couvre la journée entière, qui livre dans des délais raisonnables
+        (4 à 8 semaines), et qui a 5 à 10 ans d'expérience. C'est le segment où la qualité grimpe le plus vite à
+        l'euro investi — la marche entre un mariage à 1 500 € et un mariage à 2 500 € est souvent énorme.
+      </p>
+
+      <h3>3 000 à 5 000 € : haut de gamme</h3>
+      <p>
+        Photographes confirmés, souvent récompensés, qui font 15 à 25 mariages par an et passent autant de temps en
+        post-production qu'en captation. Vous payez l'expérience, la sélection (ils ne prennent pas tout le monde),
+        et la cohérence de rendu d'un mariage à l'autre. À ce niveau, la livraison est rapide (2 à 4 semaines), le
+        suivi est personnalisé, et le photographe vient au moins une fois vous rencontrer avant le mariage.
+      </p>
+
+      <h3>Au-delà de 5 000 € : éditorial et destination wedding</h3>
+      <p>
+        Profils rares, publiés dans la presse spécialisée (Madame Figaro Mariage, Junebug, La Mariée aux Pieds Nus),
+        intervenant souvent à l'international. Le tarif inclut généralement les déplacements, une seconde personne,
+        et une production très soignée. À ce niveau, le mariage est moins une prestation qu'une collaboration
+        d'auteur.
+      </p>
+
+      <h2>Ce que vous payez vraiment derrière un tarif</h2>
+      <p>
+        Beaucoup de couples pensent payer "la journée du photographe". En réalité, sur un mariage à 3 000 €, voici
+        comment ça se décompose côté photographe.
+      </p>
+      <ul>
+        <li><strong>Captation jour J :</strong> 10 à 14 heures de présence physique</li>
+        <li><strong>Préparation :</strong> 3 à 5 heures (repérage du lieu, rendez-vous préparatoire, planning)</li>
+        <li><strong>Post-production :</strong> 40 à 80 heures de tri, retouche et livraison</li>
+        <li><strong>Matériel :</strong> amortissement de 15 000 € à 25 000 € d'équipement, assurance, sauvegardes</li>
+        <li><strong>Charges :</strong> environ 45 % du tarif part en cotisations, impôts, frais professionnels</li>
+        <li><strong>Galerie et stockage :</strong> hébergement sécurisé des photos pendant plusieurs années</li>
+      </ul>
+      <p>
+        Une fois tout ça déduit, un photographe à 3 000 € le mariage gagne réellement entre 800 € et 1 200 € pour
+        une semaine de travail. Pas un salaire de superstar.
+      </p>
+
+      <h2>Pourquoi le moins cher revient presque toujours plus cher</h2>
+      <p>
+        J'ai récupéré plusieurs fois des mariages partiellement ratés par un photographe trop bon marché. La
+        recette est toujours la même : des photos floues, mal exposées, sans regard sur les moments forts, livrées
+        au bout de 6 mois ou jamais. Et là, vous n'avez plus de recours. Le mariage est passé.
+      </p>
+      <p>
+        La photo de mariage est une prestation à risque irréversible. Vous ne pouvez pas refaire l'arrivée à la
+        mairie, le premier regard sur la robe, ou les larmes du père de la mariée. C'est la seule prestation du
+        mariage qui survit au jour J — la nourriture est mangée, les fleurs fanent, le lieu vous quitte le soir.
+      </p>
+      <p>
+        Si vous devez économiser quelque part, économisez sur le menu, sur la déco, sur la voiture. Pas sur les
+        photos.
+      </p>
+
+      <h2>Comment se positionne Black Pixels</h2>
+      <p>
+        Mes packs vont de <a href="/prestations-tarifs">1 500 € à 3 300 €</a>. Je couvre une vingtaine de mariages
+        par an, en Bretagne et ailleurs. Je viens du cinéma documentaire — j'ai fait l'image et le montage de
+        <em>TAN</em> (2018), récompensé Best Cinematography au Surf Film Festival de San Diego — et j'ai
+        transposé cette approche au mariage : observation, lumière, moments réels.
+      </p>
+      <p>
+        Si vous voulez voir comment ça se traduit en photos, le <a href="/portfolio">portfolio</a> est en ligne. Si
+        vous voulez en parler, <a href="/contact">écrivez-moi</a> — je réponds toujours en 48 heures.
+      </p>
+
+      <hr />
+
+      <h2>Questions fréquentes sur les tarifs</h2>
+      <div class="faqs">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+
+    <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </section>
+</BaseLayout>
+
+<style>
+  .answer {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 3rem;
+    color: var(--color-text);
+  }
+  h2 { margin-top: 3rem; }
+  h3 { margin-top: 2rem; font-size: 1.3rem; }
+  ul { color: var(--color-text); padding-left: 1.5rem; }
+  ul li { margin-bottom: 0.5rem; }
+  hr { border: none; border-top: 1px solid var(--color-border); margin: 4rem 0; }
+  .faqs { margin-top: 2rem; }
+  .faq-item {
+    border-bottom: 1px solid var(--color-border);
+    padding: 1.25rem 0;
+  }
+  .faq-item summary {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    cursor: pointer;
+    list-style: none;
+    padding-right: 2rem;
+    position: relative;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 1.3rem;
+    color: var(--color-accent-dark);
+  }
+  .faq-item[open] summary::after { content: '−'; }
+  .faq-item p { margin-top: 0.5rem; color: var(--color-text-muted); }
+  .eyebrow a { color: var(--color-accent-dark); }
+</style>

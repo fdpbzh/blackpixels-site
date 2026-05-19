@@ -1,0 +1,243 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Se marier en Bretagne quand on vient d\'ailleurs : ce qu\'il faut savoir';
+const description = 'La lumière atlantique, les lieux emblématiques, la météo, l\'organisation à distance. Ce que je dis aux couples qui découvrent la région et veulent y poser leur mariage.';
+
+const faqs = [
+  {
+    q: 'Quelle est la meilleure période pour se marier en Bretagne ?',
+    a: 'Mai, juin et septembre offrent le meilleur compromis entre lumière, météo et disponibilité. Juillet-août sont chauds et plus touristiques. Octobre est magnifique pour les couleurs mais la lumière baisse vite. Avril et octobre sont les meilleurs choix si vous aimez les ambiances brumeuses et atmosphériques.',
+  },
+  {
+    q: 'Quels sont les plus beaux lieux pour se marier en Bretagne ?',
+    a: 'Côté Finistère sud : Château de Keriolet (Concarneau), Manoir de Kerhuel (Plonéour-Lanvern), Ferme du Roudouic, Orangerie de Lanniron (Quimper), Manoir des Indes. Côté Morbihan : Domaine de Suscinio, Château de Bienassis. Chaque lieu a son caractère — pierre, granit, bord de mer, intérieur historique — et impose un certain type de mariage.',
+  },
+  {
+    q: 'Est-il difficile d\'organiser un mariage à distance en Bretagne ?',
+    a: 'Pas si vous vous appuyez sur les bonnes personnes. Un wedding planner local ou un coordinateur de lieu connaît les prestataires fiables et gère les imprévus. La plupart des photographes bretons proposent un repérage gratuit le jour de votre visite des lieux — utilisez-le pour avoir un référent supplémentaire sur place.',
+  },
+  {
+    q: 'Quel temps faut-il prévoir en Bretagne pour un mariage ?',
+    a: 'La météo bretonne est aussi changeante que sa réputation. Plan A en extérieur, plan B en intérieur — toujours. La pluie reste rare en juillet-août mais le vent est constant en bord de mer. Le crachin de mai et septembre donne une lumière douce magnifique en photo. La Bretagne récompense les couples qui acceptent l\'imprévu météo.',
+  },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: description,
+  author: { '@type': 'Person', name: 'Yohann Strullu', url: 'https://www.blackpixels.fr/about' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Black Pixels',
+    logo: { '@type': 'ImageObject', url: 'https://www.blackpixels.fr/og-default.jpg' },
+  },
+  datePublished: '2026-05-20',
+  dateModified: '2026-05-20',
+  mainEntityOfPage: 'https://www.blackpixels.fr/guides/mariage-destination-bretagne',
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout title={title} description={description}>
+  <section>
+    <div class="container-narrow">
+      <p class="eyebrow"><a href="/guides">Guides</a> · Destination wedding</p>
+      <h1>Se marier en Bretagne quand on vient d'ailleurs</h1>
+
+      <p class="answer">
+        La Bretagne est une destination de mariage qui récompense les couples qui acceptent son caractère :
+        <strong>lumière douce et changeante</strong>, <strong>météo imprévisible</strong>,
+        <strong>lieux de pierre et de bord de mer</strong>. Ce n'est ni la Provence ni la Toscane. C'est
+        plus brut, plus poétique, plus singulier. Et c'est précisément ce qui en fait des mariages dont les
+        photos ne ressemblent à aucune autre.
+      </p>
+
+      <h2>La lumière atlantique, l'argument principal</h2>
+      <p>
+        Si vous venez de Paris, de Lyon ou du sud, la lumière bretonne va vous surprendre. Elle est plus douce,
+        plus filtrée, plus changeante. Une journée bretonne en septembre peut traverser cinq lumières
+        différentes — voile gris du matin, percées dorées de fin de matinée, plein soleil net en début
+        d'après-midi, ciel dramatique en fin de journée, golden hour interminable au coucher.
+      </p>
+      <p>
+        Pour la photographie, c'est un terrain de jeu exceptionnel. Aucun mariage en Bretagne ne ressemble à un
+        autre, parce que la lumière n'est jamais la même. Côté Provence ou Toscane, la lumière dure et constante
+        donne des images très belles mais souvent interchangeables. En Bretagne, chaque mariage a sa propre
+        atmosphère.
+      </p>
+
+      <h2>Les lieux emblématiques par zone</h2>
+
+      <h3>Finistère sud (Quimper, Concarneau, Pont-l'Abbé)</h3>
+      <p>
+        La zone que je connais le mieux. <strong>Château de Keriolet</strong> à Concarneau pour les mariages
+        somptueux dans une architecture néogothique unique en France. <strong>Manoir de Kerhuel</strong> à
+        Plonéour-Lanvern pour le calme et les grands jardins. <strong>Orangerie de Lanniron</strong> à
+        Quimper pour les mariages élégants au bord de l'Odet. <strong>Ferme du Roudouic</strong> pour
+        l'ambiance bois et pierres, plus champêtre. <strong>Manoir des Indes</strong> pour le mélange exotique
+        et celtique. Tous ces lieux sont à moins de 30 minutes de Quimper, l'aéroport et la gare TGV.
+      </p>
+
+      <h3>Finistère nord (Brest, côte des Abers)</h3>
+      <p>
+        Plus brut, plus sauvage. Phares, falaises, plages de galets. Idéal pour les couples qui veulent un
+        mariage très "bord de mer". Plus complexe en logistique — un wedding planner local devient quasi
+        indispensable.
+      </p>
+
+      <h3>Morbihan (Vannes, Quiberon, Golfe)</h3>
+      <p>
+        Le Morbihan est plus accessible depuis Paris (TGV direct en 2 h 30) et offre des paysages plus doux que
+        le Finistère. Domaine de Suscinio, Château de Trédion, Domaine du Net. Lumière souvent plus ensoleillée
+        qu'au bout du Finistère.
+      </p>
+
+      <h3>Côtes-d'Armor (Saint-Brieuc, Côte de Granit Rose)</h3>
+      <p>
+        La Côte de Granit Rose offre des paysages uniques au monde. Les couples qui choisissent cette zone
+        cherchent généralement un cadre très photogénique pour des séances couple en extérieur. Côté lieux de
+        réception, le choix est plus restreint qu'en Finistère ou Morbihan.
+      </p>
+
+      <h2>Organiser son mariage à distance : le mode d'emploi</h2>
+
+      <h3>1. Une visite des lieux groupée sur 2 jours</h3>
+      <p>
+        Visiter 4 ou 5 lieux dans la même région en deux jours est largement faisable. Beaucoup de couples font
+        leur "tournée bretonne" sur un long week-end et signent dans la foulée. Demandez à chaque lieu de vous
+        proposer un créneau en milieu de journée — vous évaluerez ainsi la lumière dans les conditions du
+        mariage.
+      </p>
+
+      <h3>2. Profitez de la visite pour rencontrer les prestataires</h3>
+      <p>
+        Le jour de votre visite, organisez des cafés avec 2 ou 3 photographes locaux et, si possible, un
+        wedding planner. Vous gagnerez plusieurs allers-retours par la suite. C'est exactement ce que
+        je propose à mes couples non bretons : un rendez-vous gratuit le jour de leur visite, sur le lieu
+        qu'ils envisagent.
+      </p>
+
+      <h3>3. Un wedding planner local ou un coordinateur</h3>
+      <p>
+        Indispensable si vous habitez à plus de 4 heures de route. Il gère les prestataires, anticipe les
+        imprévus, et fait le lien physique avec le terrain. Comptez 2 000 à 4 000 € pour une prestation
+        complète, mais c'est généralement vite amorti sur la sérénité que ça apporte.
+      </p>
+
+      <h3>4. La logistique invités</h3>
+      <p>
+        Pensez à bloquer des chambres dans plusieurs établissements autour du lieu, à prévoir un service de
+        navette (les transports en commun bretons sont limités le soir), et à indiquer clairement les options
+        train + voiture sur l'invitation. Les aéroports utiles sont Brest, Quimper, Lorient, Rennes et Nantes.
+      </p>
+
+      <h2>La météo : ce qu'il faut vraiment savoir</h2>
+      <p>
+        La réputation de la pluie bretonne est largement exagérée — Brest reçoit moins de pluie annuelle que
+        Biarritz. Mais cette pluie est mieux <em>répartie</em>, donc plus présente dans le souvenir collectif.
+        Concrètement :
+      </p>
+      <ul>
+        <li><strong>Juillet-août :</strong> rarement de grosse pluie, mais lumière dure en milieu de journée.</li>
+        <li><strong>Mai-juin :</strong> compromis idéal lumière/météo. Quelques averses courtes possibles.</li>
+        <li><strong>Septembre :</strong> sans doute le plus beau mois pour la lumière. Risque de crachin atmosphérique.</li>
+        <li><strong>Octobre :</strong> couleurs sublimes, mais journée courte (coucher à 19 h en début de mois, 18 h à la fin).</li>
+        <li><strong>Avril :</strong> sous-coté. Lumière magnifique, lieux disponibles, prestataires moins chargés.</li>
+      </ul>
+      <p>
+        <strong>La règle absolue :</strong> tout mariage breton doit avoir un plan B intérieur. Pas "au cas où",
+        mais comme partie intégrante de l'organisation. Les couples qui acceptent ça en amont sont sereins le
+        jour J. Ceux qui parient sur le grand beau temps sont stressés toute la semaine d'avant.
+      </p>
+
+      <h2>Pourquoi je crois à la Bretagne comme destination de mariage</h2>
+      <p>
+        Je suis breton, photographe depuis 2017, et je vois passer chaque année des couples venus de Paris,
+        Lyon, Marseille, et même de l'étranger. Tous me disent la même chose : ils sont venus pour la
+        singularité — la lumière, la pierre, la mer — et ils sont restés pour l'humain. Les prestataires
+        bretons sont moins chers qu'à Paris, plus accessibles, et leur engagement personnel est généralement
+        au-dessus de la moyenne.
+      </p>
+      <p>
+        Mon parcours d'image est aussi très "Bretagne" — j'ai fait l'image et le montage du film <em>TAN</em>,
+        documentaire sur un shaper breton, récompensé Best Cinematography au Surf Film Festival de San Diego en
+        2018. Cette sensibilité documentaire à un territoire, je la transpose dans chaque mariage.
+      </p>
+
+      <hr />
+
+      <h2>Questions fréquentes</h2>
+      <div class="faqs">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <p style="margin-top: 3rem;">
+        Pour comprendre comment je travaille, voyez la page <a href="/about">À propos</a> ou le
+        <a href="/portfolio">portfolio</a>. Pour un rendez-vous le jour de votre visite des lieux,
+        <a href="/contact">écrivez-moi</a> — je m'organise pour être disponible.
+      </p>
+    </div>
+
+    <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </section>
+</BaseLayout>
+
+<style>
+  .answer {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 3rem;
+    color: var(--color-text);
+  }
+  h2 { margin-top: 3rem; }
+  h3 { margin-top: 2rem; font-size: 1.3rem; }
+  ul { color: var(--color-text); padding-left: 1.5rem; }
+  ul li { margin-bottom: 0.5rem; }
+  hr { border: none; border-top: 1px solid var(--color-border); margin: 4rem 0; }
+  .faqs { margin-top: 2rem; }
+  .faq-item {
+    border-bottom: 1px solid var(--color-border);
+    padding: 1.25rem 0;
+  }
+  .faq-item summary {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    cursor: pointer;
+    list-style: none;
+    padding-right: 2rem;
+    position: relative;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 1.3rem;
+    color: var(--color-accent-dark);
+  }
+  .faq-item[open] summary::after { content: '−'; }
+  .faq-item p { margin-top: 0.5rem; color: var(--color-text-muted); }
+  .eyebrow a { color: var(--color-accent-dark); }
+</style>
