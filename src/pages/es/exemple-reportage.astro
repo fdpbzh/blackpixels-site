@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Reportaje de ejemplo · Boda completa en Bretaña';
+const description = 'Un reportaje de boda completo en Bretaña, de principio a fin. 115 fotos para mostrarte exactamente lo que recibes después de tu día.';
+
+const photos = Array.from({ length: 115 }, (_, i) => {
+  const n = String(i + 1).padStart(3, '0');
+  return { n, alt: `Reportaje boda Bretaña, foto ${i + 1}` };
+});
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="reportage-hero">
+    <div class="container-narrow text-center">
+      <p class="eyebrow">Una boda de ejemplo</p>
+      <h1>Un reportaje de boda completo</h1>
+      <p class="lead text-muted">
+        115 fotos de una boda, de principio a fin. Para mostrarte exactamente lo que
+        recibes después de tu día, sin una selección arreglada.
+      </p>
+    </div>
+  </section>
+
+  <section class="reportage-grid-section">
+    <div class="reportage-container">
+      <div class="masonry">
+        {photos.map((p, i) => (
+          <button
+            type="button"
+            class="photo-btn"
+            data-index={i}
+            data-src={`/images/reportage/reportage-${p.n}.jpg`}
+            aria-label={`Ver foto: ${p.alt}`}
+          >
+            <img
+              src={`/images/reportage/reportage-${p.n}.jpg`}
+              alt={p.alt}
+              loading="lazy"
+              width="800"
+              height="600"
+            />
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="reportage-cta">
+    <div class="container-narrow text-center">
+      <p class="eyebrow">¿Convencidos?</p>
+      <h2>Hablemos de tu boda</h2>
+      <p>Presupuesto personalizado en 48h.</p>
+      <p style="margin-top: 2rem;">
+        <a href="/es/contact" class="button">Pedir presupuesto</a>
+        <a href="/es/portfolio" class="button button-outline">Ver el portafolio</a>
+      </p>
+    </div>
+  </section>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" aria-label="Cerrar">×</button>
+    <button class="lightbox-prev" aria-label="Foto anterior">‹</button>
+    <img class="lightbox-img" src="" alt="" />
+    <button class="lightbox-next" aria-label="Foto siguiente">›</button>
+  </div>
+</BaseLayout>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('.lightbox-img');
+    const closeBtn = lightbox.querySelector('.lightbox-close');
+    const prevBtn = lightbox.querySelector('.lightbox-prev');
+    const nextBtn = lightbox.querySelector('.lightbox-next');
+    const buttons = Array.from(document.querySelectorAll('.photo-btn'));
+    let currentIndex = 0;
+    function open(idx) {
+      currentIndex = idx;
+      lightboxImg.src = buttons[idx].dataset.src;
+      lightboxImg.alt = buttons[idx].querySelector('img').alt;
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function close() {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+    function next() { open((currentIndex + 1) % buttons.length); }
+    function prev() { open((currentIndex - 1 + buttons.length) % buttons.length); }
+    buttons.forEach((btn, idx) => btn.addEventListener('click', () => open(idx)));
+    closeBtn.addEventListener('click', close);
+    prevBtn.addEventListener('click', prev);
+    nextBtn.addEventListener('click', next);
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowRight') next();
+      if (e.key === 'ArrowLeft') prev();
+    });
+  });
+</script>
+
+<style>
+  .reportage-hero { padding: 4rem 0 3rem; }
+  .lead { font-size: 1.1rem; margin-top: 1rem; }
+  .reportage-container { max-width: 1400px; margin: 0 auto; padding: 0 1rem; }
+  .masonry { column-count: 3; column-gap: 1rem; }
+  @media (max-width: 900px) { .masonry { column-count: 2; } }
+  @media (max-width: 500px) { .masonry { column-count: 1; } }
+  .photo-btn { width: 100%; padding: 0; margin: 0 0 1rem; border: none; background: none; cursor: pointer; break-inside: avoid; display: block; overflow: hidden; }
+  .photo-btn img { width: 100%; height: auto; display: block; transition: opacity 0.3s, transform 0.5s; }
+  .photo-btn:hover img { opacity: 0.85; transform: scale(1.02); }
+  .reportage-cta { padding: 4rem 0; background: white; }
+  .reportage-cta p { margin-bottom: 1.5rem; }
+  .reportage-cta .button { margin: 0 0.5rem; }
+  .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center; z-index: 1000; }
+  .lightbox.open { display: flex; }
+  .lightbox-img { max-width: 92%; max-height: 92%; object-fit: contain; display: block; }
+  .lightbox button { background: rgba(255,255,255,0.1); color: white; border: none; cursor: pointer; font-size: 2rem; position: absolute; transition: background 0.2s; }
+  .lightbox button:hover { background: rgba(255,255,255,0.2); }
+  .lightbox-close { top: 1.5rem; right: 1.5rem; width: 48px; height: 48px; }
+  .lightbox-prev, .lightbox-next { top: 50%; transform: translateY(-50%); width: 56px; height: 56px; }
+  .lightbox-prev { left: 1.5rem; }
+  .lightbox-next { right: 1.5rem; }
+</style>

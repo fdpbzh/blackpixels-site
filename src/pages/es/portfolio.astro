@@ -4,38 +4,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 const title = 'Portafolio · Fotógrafo de bodas Bretaña';
 const description = 'Reportajes de boda en Bretaña por Black Pixels. Selección de fotos: ceremonias, sesiones de pareja, fiesta, detalles. Mirada de cine al servicio de tu día.';
 
-const photos = [
-  { n: '001', alt: 'Primer baile al atardecer, Ferme du Roudouic' },
-  { n: '068', alt: 'Ceremonia al aire libre en la Ferme du Roudouic' },
-  { n: '073', alt: 'Salida de los novios con confeti' },
-  { n: '002', alt: 'Novia durante los preparativos' },
-  { n: '067', alt: 'Detalle del peinado de la novia' },
-  { n: '005', alt: 'Orangerie de Lanniron iluminada de noche' },
-  { n: '020', alt: 'Salida de la iglesia, mirada de niño' },
-  { n: '070', alt: 'Sesión de pareja en la Ferme du Roudouic' },
-  { n: '063', alt: 'Las alianzas antes de la ceremonia' },
-  { n: '078', alt: 'Lugar de boda, mansión en Bretaña' },
-  { n: '006', alt: 'Niños durante la boda' },
-  { n: '016', alt: 'Detalle, hoja de un discurso' },
-  { n: '003', alt: 'Reportaje boda Bretaña' },
-  { n: '004', alt: 'Reportaje boda Bretaña' },
-  { n: '007', alt: 'Reportaje boda Bretaña' },
-  { n: '008', alt: 'Reportaje boda Bretaña' },
-  { n: '009', alt: 'Reportaje boda Bretaña' },
-  { n: '010', alt: 'Reportaje boda Bretaña' },
-  { n: '011', alt: 'Reportaje boda Bretaña' },
-  { n: '012', alt: 'Reportaje boda Bretaña' },
-  { n: '013', alt: 'Reportaje boda Bretaña' },
-  { n: '014', alt: 'Reportaje boda Bretaña' },
-  { n: '015', alt: 'Reportaje boda Bretaña' },
-  { n: '017', alt: 'Reportaje boda Bretaña' },
-  { n: '018', alt: 'Reportaje boda Bretaña' },
-  { n: '019', alt: 'Reportaje boda Bretaña' },
-  { n: '021', alt: 'Reportaje boda Bretaña' },
-  { n: '022', alt: 'Reportaje boda Bretaña' },
-  { n: '023', alt: 'Reportaje boda Bretaña' },
-  { n: '025', alt: 'Reportaje boda Bretaña' },
-];
+const photos = Array.from({ length: 95 }, (_, i) => {
+  const n = String(i + 1).padStart(3, '0');
+  return { n, alt: `Reportaje boda Bretaña, foto ${i + 1}` };
+});
 ---
 
 <BaseLayout title={title} description={description}>
@@ -45,6 +17,9 @@ const photos = [
       <h1>Reportajes de boda en Bretaña</h1>
       <p class="lead text-muted">
         Una selección de momentos capturados a lo largo de los años, la mirada de cine al servicio de tu día.
+      </p>
+      <p style="margin-top: 1.5rem;">
+        <a href="/es/exemple-reportage" class="button button-outline">Ver un reportaje completo (115 fotos)</a>
       </p>
     </div>
   </section>
@@ -57,11 +32,11 @@ const photos = [
             type="button"
             class="photo-btn"
             data-index={i}
-            data-src={`/images/photo-${p.n}.jpg`}
+            data-src={`/images/portfolio-${p.n}.jpg`}
             aria-label={`Ver foto: ${p.alt}`}
           >
             <img
-              src={`/images/photo-${p.n}.jpg`}
+              src={`/images/portfolio-${p.n}.jpg`}
               alt={p.alt}
               loading="lazy"
               width="800"
@@ -133,11 +108,7 @@ const photos = [
   .masonry { column-count: 3; column-gap: 1rem; }
   @media (max-width: 900px) { .masonry { column-count: 2; } }
   @media (max-width: 500px) { .masonry { column-count: 1; } }
-  .photo-btn {
-    width: 100%; padding: 0; margin: 0 0 1rem;
-    border: none; background: none; cursor: pointer;
-    break-inside: avoid; display: block; overflow: hidden;
-  }
+  .photo-btn { width: 100%; padding: 0; margin: 0 0 1rem; border: none; background: none; cursor: pointer; break-inside: avoid; display: block; overflow: hidden; }
   .photo-btn img { width: 100%; height: auto; display: block; transition: opacity 0.3s, transform 0.5s; }
   .photo-btn:hover img { opacity: 0.85; transform: scale(1.02); }
   .portfolio-cta { padding: 4rem 0; }
