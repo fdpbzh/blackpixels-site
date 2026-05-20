@@ -1,0 +1,457 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Packages & Pricing · Wedding Photography Brittany';
+const description = 'Wedding photography packages in Brittany: White €1,500, Black €2,400, Gold €3,300. Documentary approach, delivery within 2 weeks.';
+
+const packs = [
+  {
+    name: 'White',
+    price: '€1,500',
+    photos: '300 photos',
+    sections: ['Ceremony', 'Cocktail', 'Group photos', 'Couple session'],
+    image: '/images/photo-006.jpg',
+    imageAlt: 'Children playing during the wedding',
+    theme: 'white',
+    featured: false,
+  },
+  {
+    name: 'Black',
+    price: '€2,400',
+    photos: '500 photos',
+    sections: ['Getting ready', 'Ceremony', 'Cocktail', 'Group photos', 'Couple session', 'Reception'],
+    image: '/images/photo-002.jpg',
+    imageAlt: 'Bride during the getting-ready moments',
+    theme: 'black',
+    featured: true,
+    badge: 'Most chosen',
+  },
+  {
+    name: 'Gold',
+    price: '€3,300',
+    photos: '700 photos',
+    sections: ['Everything in Black', '2h Couple session (off wedding day)', '3h Day-after shoot'],
+    image: '/images/photo-070.jpg',
+    imageAlt: 'Couple session at Ferme du Roudouic',
+    theme: 'gold',
+    featured: false,
+  },
+];
+
+const alaCarte = [
+  { name: 'Getting ready', price: '€400' },
+  { name: 'Reception', price: '€500' },
+  { name: '2h Couple session (off wedding day)', price: '€400' },
+  { name: 'Day-after shoot (3h)', price: '€500' },
+];
+
+const inclus = [
+  {
+    title: 'Color AND black & white',
+    desc: 'Every photo delivered in both versions, always.',
+    icon: 'camera',
+  },
+  {
+    title: 'Delivery within 2 weeks',
+    desc: 'Your retouched photos, ready to share, in less than 14 days.',
+    icon: 'calendar',
+  },
+  {
+    title: 'Brittany travel included',
+    desc: 'Finistère, Morbihan, Côtes-d\'Armor, Ille-et-Vilaine. Outside Brittany on quote.',
+    icon: 'pin',
+  },
+  {
+    title: 'Secure online gallery',
+    desc: 'Private space for you and your guests, high-definition download.',
+    icon: 'lock',
+  },
+  {
+    title: 'Personal usage rights',
+    desc: 'You use your photos however you like (print, web, family).',
+    icon: 'heart',
+  },
+];
+
+const timeline = [
+  {
+    label: 'Getting ready',
+    desc: "Details of the dress, the suit, the morning rituals, the first looks. The intimate side that only photography can really tell.",
+    pack: 'From the Black package',
+  },
+  {
+    label: 'Ceremony',
+    desc: "Civil, religious or secular, I step back to capture every emotion, every tear, every smile.",
+    pack: 'Included in all packages',
+  },
+  {
+    label: 'Cocktail & Groups',
+    desc: "The buzz of guests catching up, family photos organized efficiently, details of the venue.",
+    pack: 'Included in all packages',
+  },
+  {
+    label: 'Couple session',
+    desc: "A short break for just the two of you in the late-day light. No posed shots, just you both.",
+    pack: 'Included in all packages',
+  },
+  {
+    label: 'Reception',
+    desc: "First dance, surprises, party. The night-time energy captured up to 1 hour after the first dance.",
+    pack: 'From the Black package',
+  },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="page-hero">
+    <div class="container-narrow text-center">
+      <p class="eyebrow">Packages</p>
+      <h1>Three packages, one same commitment</h1>
+      <p class="lead">
+        Color AND black & white, delivery within 2 weeks, Brittany travel included.
+      </p>
+    </div>
+  </section>
+
+  <section class="packs">
+    <div class="container">
+      <div class="packs-grid">
+        {packs.map((pack) => (
+          <article class:list={['pack-card', {
+            'pack-theme-white': pack.theme === 'white',
+            'pack-theme-black': pack.theme === 'black',
+            'pack-theme-gold': pack.theme === 'gold',
+            featured: pack.featured,
+          }]}>
+            {pack.badge && <p class="pack-badge">{pack.badge}</p>}
+            <div class="pack-image">
+              <img src={pack.image} alt={pack.imageAlt} width="580" height="326" />
+            </div>
+            <div class="pack-body">
+              <h2>{pack.name}</h2>
+              <p class="pack-price">{pack.price}</p>
+              <p class="pack-photos">{pack.photos}</p>
+              <ul class="pack-sections">
+                {pack.sections.map((s) => <li>{s}</li>)}
+              </ul>
+              <a href="/en/contact" class="pack-cta">Book</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="inclus">
+    <div class="container">
+      <p class="eyebrow text-center">No surprises</p>
+      <h2 class="text-center">Included in all packages</h2>
+      <div class="inclus-grid">
+        {inclus.map((item) => (
+          <div class="inclus-item">
+            <div class="inclus-icon">
+              {item.icon === 'camera' && (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
+              )}
+              {item.icon === 'calendar' && (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              )}
+              {item.icon === 'pin' && (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              )}
+              {item.icon === 'lock' && (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              )}
+              {item.icon === 'heart' && (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              )}
+            </div>
+            <h3>{item.title}</h3>
+            <p class="text-muted">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="timeline">
+    <div class="container">
+      <p class="eyebrow text-center">A typical day</p>
+      <h2 class="text-center">From morning to night, I capture what matters</h2>
+      <div class="timeline-grid">
+        {timeline.map((step, i) => (
+          <div class="timeline-step">
+            <div class="timeline-marker">
+              <span class="timeline-number">{String(i + 1).padStart(2, '0')}</span>
+            </div>
+            <h3>{step.label}</h3>
+            <p>{step.desc}</p>
+            <p class="timeline-pack">{step.pack}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="alacarte">
+    <div class="container-narrow">
+      <p class="eyebrow text-center">À la carte</p>
+      <h2 class="text-center">Add-ons for any package</h2>
+      <ul class="alacarte-list">
+        {alaCarte.map((item) => (
+          <li>
+            <span>{item.name}</span>
+            <span class="alacarte-price">{item.price}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="conditions">
+    <div class="container-narrow text-center">
+      <p class="eyebrow">Good to know</p>
+      <h2>The conditions</h2>
+      <p>30% deposit to book, balance paid on the wedding day.</p>
+      <p>Photos delivered within 2 weeks maximum.</p>
+      <p>Travel within Brittany included. Outside Brittany: custom quote.</p>
+      <div class="conditions-cta">
+        <a href="/en/faq" class="button button-outline">See the full FAQ</a>
+        <a href="/en/contact" class="button">Get a quote</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero { padding-bottom: 0; }
+  .lead { font-size: 1.2rem; color: var(--color-text-muted); }
+
+  .packs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+  .pack-card {
+    border: 1px solid var(--color-border);
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .pack-image {
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    background: var(--color-border);
+  }
+  .pack-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  .pack-card:hover .pack-image img {
+    transform: scale(1.04);
+  }
+  .pack-body {
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  .pack-card h2 {
+    font-size: 2rem;
+    margin: 0 0 0.5rem;
+  }
+  .pack-price {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    margin: 0.5rem 0 0.25rem;
+  }
+  .pack-photos {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.7;
+  }
+  .pack-sections {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 2rem;
+    text-align: left;
+    flex-grow: 1;
+  }
+  .pack-sections li {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid currentColor;
+    border-bottom-color: rgba(128, 128, 128, 0.2);
+    font-size: 0.95rem;
+  }
+  .pack-sections li:last-child { border-bottom: none; }
+  .pack-cta {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px solid;
+    transition: all 0.2s;
+  }
+  .pack-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--color-accent);
+    color: white;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.9rem;
+    margin: 0;
+    z-index: 2;
+    font-weight: 500;
+  }
+
+  .pack-theme-white { background: white; color: var(--color-text); }
+  .pack-theme-white .pack-price { color: var(--color-accent-dark); }
+  .pack-theme-white .pack-cta {
+    background: var(--color-text);
+    color: white;
+    border-color: var(--color-text);
+  }
+  .pack-theme-white .pack-cta:hover {
+    background: transparent;
+    color: var(--color-text);
+  }
+
+  .pack-theme-black {
+    background: #1A1A1A;
+    color: #F0EBE0;
+    border-color: #1A1A1A;
+  }
+  .pack-theme-black .pack-price { color: var(--color-accent); }
+  .pack-theme-black .pack-photos { color: rgba(240, 235, 224, 0.7); }
+  .pack-theme-black .pack-sections li { border-bottom-color: rgba(240, 235, 224, 0.15); }
+  .pack-theme-black .pack-cta {
+    background: var(--color-accent);
+    color: #1A1A1A;
+    border-color: var(--color-accent);
+  }
+  .pack-theme-black .pack-cta:hover {
+    background: transparent;
+    color: var(--color-accent);
+  }
+
+  .pack-theme-gold {
+    background: var(--color-accent);
+    color: #1A1A1A;
+    border-color: var(--color-accent);
+  }
+  .pack-theme-gold .pack-price { color: #1A1A1A; }
+  .pack-theme-gold .pack-photos { color: rgba(26, 26, 26, 0.7); }
+  .pack-theme-gold .pack-sections li { border-bottom-color: rgba(26, 26, 26, 0.2); }
+  .pack-theme-gold .pack-cta {
+    background: #1A1A1A;
+    color: var(--color-accent);
+    border-color: #1A1A1A;
+  }
+  .pack-theme-gold .pack-cta:hover {
+    background: transparent;
+    color: #1A1A1A;
+    border-color: #1A1A1A;
+  }
+
+  .inclus { background: white; }
+  .inclus-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .inclus-item { text-align: center; }
+  .inclus-icon {
+    display: block;
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 1.25rem;
+    color: var(--color-accent-dark);
+  }
+  .inclus-icon svg {
+    display: block;
+    width: 48px;
+    height: 48px;
+  }
+  .inclus-item h3 {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    margin-bottom: 0.5rem;
+  }
+  .inclus-item p { font-size: 0.9rem; }
+
+  .timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+    position: relative;
+  }
+  .timeline-step { text-align: center; position: relative; }
+  .timeline-marker {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  .timeline-number {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    color: var(--color-accent-dark);
+    border: 1px solid var(--color-accent);
+    width: 56px;
+    height: 56px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--color-bg);
+  }
+  .timeline-step h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+  .timeline-step p { font-size: 0.9rem; color: var(--color-text-muted); }
+  .timeline-pack {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-accent-dark);
+    font-weight: 500;
+  }
+
+  .alacarte { background: white; }
+  .alacarte-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0;
+  }
+  .alacarte-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .alacarte-price {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    color: var(--color-accent-dark);
+  }
+
+  .conditions { background: white; }
+  .conditions-cta {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>

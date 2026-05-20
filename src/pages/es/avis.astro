@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import reviewsData from '../../data/reviews.json';
+
+const title = 'Opiniones · Lo que dicen las parejas sobre Black Pixels';
+const description = `Opiniones verificadas de parejas que eligieron Black Pixels para su boda. ${reviewsData.totalReviews} opiniones, calificación media ${reviewsData.aggregateRating}/5, ${reviewsData.recommendationRate}% de recomendación.`;
+
+function formatDate(iso) {
+  const months = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+  const [y, m, d] = iso.split('-');
+  return `${parseInt(d, 10)} de ${months[parseInt(m, 10) - 1]} de ${y}`;
+}
+
+const schemaReviews = reviewsData.reviews.map((r) => ({
+  '@type': 'Review',
+  author: { '@type': 'Person', name: r.author },
+  datePublished: r.date,
+  reviewBody: r.body,
+  name: r.title,
+  reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+}));
+
+const fullSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': 'https://www.blackpixels.fr/#localbusiness',
+  name: 'Black Pixels',
+  image: 'https://www.blackpixels.fr/og-default.jpg',
+  url: 'https://www.blackpixels.fr',
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: String(reviewsData.aggregateRating),
+    bestRating: '5',
+    worstRating: '1',
+    reviewCount: String(reviewsData.totalReviews),
+  },
+  review: schemaReviews,
+};
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="avis-hero">
+    <div class="container-narrow text-center">
+      <p class="eyebrow">Opiniones verificadas</p>
+      <h1>Lo que dicen las parejas<br />que confiaron en mí.</h1>
+      <div class="rating-summary">
+        <span class="stars" aria-label={`Calificación ${reviewsData.aggregateRating} sobre 5`}>★★★★★</span>
+        <span class="rating-value">{reviewsData.aggregateRating.toFixed(1)}</span>
+        <span class="rating-meta">
+          {reviewsData.totalReviews} opiniones · {reviewsData.recommendationRate}% recomiendan
+        </span>
+      </div>
+      <p class="source">
+        Todas las opiniones de abajo son <strong>opiniones verificadas</strong>, publicadas por las propias parejas.
+        Originales en francés (las parejas son francesas).
+      </p>
+    </div>
+  </section>
+
+  <section class="reviews-list">
+    <div class="container-narrow">
+      {reviewsData.reviews.map((r) => (
+        <article class="review-card">
+          <header class="review-head">
+            <div>
+              <p class="review-author">{r.author}</p>
+              <p class="review-date">{formatDate(r.date)}</p>
+            </div>
+            <span class="review-stars" aria-label="5 estrellas sobre 5">★★★★★</span>
+          </header>
+          {r.title && <h2 class="review-title">{r.title}</h2>}
+          <blockquote class="review-body" lang="fr">{r.body}</blockquote>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="cta-final-avis">
+    <div class="container-narrow text-center">
+      <p class="eyebrow">¿Convencidos?</p>
+      <h2>Hablemos de tu boda</h2>
+      <p>Presupuesto personalizado en 48h.</p>
+      <p style="margin-top: 1.5rem;">
+        <a href="/es/contact" class="button">Pedir presupuesto</a>
+      </p>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(fullSchema)} />
+</BaseLayout>
+
+<style>
+  .avis-hero { padding: 5rem 0 3rem; }
+  .rating-summary { display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin: 1.5rem 0 1rem; font-size: 1.1rem; }
+  .rating-summary .stars { color: var(--color-accent); font-size: 1.4rem; letter-spacing: 0.05em; }
+  .rating-summary .rating-value { font-family: var(--font-serif); font-size: 1.8rem; color: var(--color-text); }
+  .rating-summary .rating-meta { color: var(--color-text-muted); }
+  .source { color: var(--color-text-muted); font-size: 0.9rem; margin-top: 1.5rem; }
+  .reviews-list { padding-top: 2rem; }
+  .review-card { background: white; border: 1px solid var(--color-border); padding: 2rem; margin-bottom: 1.5rem; }
+  .review-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; gap: 1rem; }
+  .review-author { font-family: var(--font-serif); font-size: 1.25rem; margin: 0; }
+  .review-date { font-size: 0.85rem; color: var(--color-text-muted); margin: 0.25rem 0 0; }
+  .review-stars { color: var(--color-accent); font-size: 1rem; letter-spacing: 0.05em; flex-shrink: 0; }
+  .review-title { font-family: var(--font-serif); font-size: 1.4rem; margin: 0 0 0.75rem; color: var(--color-text); }
+  .review-body { margin: 0 0 1rem; padding-left: 1rem; border-left: 3px solid var(--color-accent); color: var(--color-text); font-style: italic; line-height: 1.65; }
+  .cta-final-avis { background: white; padding: 5rem 0; }
+</style>

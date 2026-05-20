@@ -1,8 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const title = 'Contact — Devis mariage Bretagne';
-const description = 'Envoyez-moi votre date et votre lieu, je vous réponds sous 48h. Black Pixels — photographe mariage Bretagne.';
+const title = 'Contact · Devis mariage Bretagne';
+const description = 'Envoyez-moi votre date et votre lieu, je vous réponds sous 48h. Black Pixels, photographe mariage Bretagne.';
 ---
 
 <BaseLayout title={title} description={description}>
@@ -46,7 +46,7 @@ const description = 'Envoyez-moi votre date et votre lieu, je vous réponds sous
           <label>
             Pack qui vous intéresse
             <select name="pack">
-              <option value="">— Au choix —</option>
+              <option value="">Au choix</option>
               <option value="white">Pack White (1 500 €)</option>
               <option value="black">Pack Black (2 400 €)</option>
               <option value="gold">Pack Gold (3 300 €)</option>
@@ -60,7 +60,7 @@ const description = 'Envoyez-moi votre date et votre lieu, je vous réponds sous
           <!-- Honeypot anti-spam (caché) -->
           <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
           <!-- Sujet personnalisé dans l'email reçu -->
-          <input type="hidden" name="_subject" value="Nouvelle demande de devis — Black Pixels" />
+          <input type="hidden" name="_subject" value="Nouvelle demande de devis · Black Pixels" />
           <button type="submit" class="button">Envoyer ma demande</button>
           <p class="form-note text-muted">
             Vos données ne sont utilisées que pour répondre à votre demande. Pas de mailing, pas de revente.

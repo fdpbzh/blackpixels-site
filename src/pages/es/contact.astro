@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Contacto · Presupuesto fotografía de bodas Bretaña';
+const description = 'Mándame tu fecha y tu lugar, respondo en 48h. Black Pixels, fotógrafo de bodas en Bretaña.';
+---
+
+<BaseLayout title={title} description={description}>
+  <section>
+    <div class="container-narrow">
+      <p class="eyebrow text-center">Contacto</p>
+      <h1 class="text-center">¿Hablamos?</h1>
+      <p class="text-center text-muted lead">
+        Mándame tu fecha, tu lugar, y lo que tienes en mente. Respondo en 48h.
+      </p>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>Mis datos</h3>
+          <p><strong>Email</strong><br /><a href="mailto:blackpixels.fr@gmail.com">blackpixels.fr@gmail.com</a></p>
+          <p><strong>Teléfono</strong><br /><a href="tel:+33687708908">+33 6 87 70 89 08</a></p>
+          <p><strong>Dirección</strong><br />Pors Poulhan, Bâtiment les Cotiers<br />29780 Plouhinec, Bretaña, Francia</p>
+        </div>
+
+        <form
+          class="contact-form"
+          action="https://formspree.io/f/xgoqvgbg"
+          method="POST"
+        >
+          <label>
+            Tu nombre
+            <input type="text" name="name" required />
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" required />
+          </label>
+          <label>
+            Fecha de la boda (si la conoces)
+            <input type="date" name="wedding_date" />
+          </label>
+          <label>
+            Lugar previsto
+            <input type="text" name="location" placeholder="Ferme du Roudouic, Manoir de Kerhuel…" />
+          </label>
+          <label>
+            Paquete que te interesa
+            <select name="pack">
+              <option value="">Elegir</option>
+              <option value="white">White (1 500 €)</option>
+              <option value="black">Black (2 400 €)</option>
+              <option value="gold">Gold (3 300 €)</option>
+              <option value="autre">A medida</option>
+            </select>
+          </label>
+          <label>
+            Tu mensaje
+            <textarea name="message" rows="5" required placeholder="Unas palabras sobre tu boda, lo que tienes en mente, lo que te importa…"></textarea>
+          </label>
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+          <input type="hidden" name="_subject" value="Nueva solicitud de presupuesto · Black Pixels" />
+          <button type="submit" class="button">Enviar mi solicitud</button>
+          <p class="form-note text-muted">
+            Tus datos solo se usan para responder a tu solicitud. Sin mailing, sin reventa.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .lead { font-size: 1.15rem; margin-bottom: 3rem; }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+  .contact-info h3 { font-family: var(--font-serif); font-size: 1.25rem; margin-bottom: 1rem; }
+  .contact-info p { font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.5; }
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    background: white;
+    padding: 2.5rem;
+    border: 1px solid var(--color-border);
+  }
+  .contact-form label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    gap: 0.5rem;
+    font-weight: 500;
+  }
+  .contact-form input, .contact-form select, .contact-form textarea {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--color-text);
+    text-transform: none;
+    letter-spacing: normal;
+    font-weight: 400;
+  }
+  .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+  }
+  .contact-form button { margin-top: 1rem; align-self: flex-start; }
+  .form-note { font-size: 0.8rem; margin: 0; }
+  @media (max-width: 800px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .contact-form { padding: 1.5rem; }
+  }
+</style>

@@ -1,0 +1,159 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'FAQ · Frequently asked questions';
+const description = 'Your questions about my wedding photography services in Brittany: pricing, delivery, approach, venues, gear, weather, ceremonies. Clear and direct answers.';
+
+const faqs = [
+  {
+    q: "What are your prices?",
+    a: "3 packages: White at €1,500, Black at €2,400, Gold at €3,300. Full details on the Packages page.",
+  },
+  {
+    q: "Do you offer discounts for off-season or weekday weddings?",
+    a: "Yes, I offer a 20% discount for weddings Monday to Thursday (excluding public holidays) and from November to March.",
+  },
+  {
+    q: "What's included in the price of a package?",
+    a: "Travel within Brittany, up to two meetings before the wedding, the wedding day itself (with a smile :)), post-production, and publication on a private gallery. No hidden fees.",
+  },
+  {
+    q: "How many weddings do you cover per year?",
+    a: "Around twenty, no more. Beyond that, I can't guarantee the level of attention each wedding deserves: pre-wedding meeting, full presence on the day, careful editing, fast delivery. I'd rather do less, and do it well.",
+  },
+  {
+    q: "How do you work on the wedding day?",
+    a: "I know you're not used to being in front of a camera, so I do my best to be discreet and let the natural feel of the day come through. I take my time, observe, and capture the most beautiful emotions. I like to surprise you by varying angles, framings, and compositions.",
+  },
+  {
+    q: "What if we're introverted or not comfortable in front of the camera?",
+    a: "Couples who feel comfortable in front of a camera are a myth! The idea isn't to think of it as a shoot, but rather as a nice moment the two of you will spend together. I give you a few tips, place you in the right spot, and let you enjoy that little moment together, so the natural side can come through.",
+  },
+  {
+    q: "Do you cover all of Brittany?",
+    a: "Yes, Finistère, Morbihan, Côtes-d'Armor, Ille-et-Vilaine. Travel within Brittany is included. Outside Brittany, surprise me, let's talk.",
+  },
+  {
+    q: "Which venues do you work in most often?",
+    a: "I have my habits at Ferme du Roudouic, Château de Keriolet, Manoir de Kerhuel, Orangerie de Lanniron and Manoir des Indes. But I adapt to venues anywhere in Brittany.",
+  },
+  {
+    q: "Can we meet before deciding?",
+    a: "With pleasure. If possible, we meet over a coffee or a beer. I usually travel to Quimper or nearby, and if you live far away, we can set up a video call or a phone call.",
+  },
+  {
+    q: "How does the booking work?",
+    a: "Once you've made your decision, I send you the contract. The deposit to book the date is 30%. Bank transfer, cash or cheque, whatever you prefer.",
+  },
+  {
+    q: "What if something unexpected happens?",
+    a: "I have trusted backup photographers for truly exceptional cases (accident, serious illness). But in 9 years, I have never missed a wedding :)",
+  },
+  {
+    q: "How does it work if we have two ceremonies in the same day?",
+    a: "If both ceremonies are back-to-back, it doesn't change anything. If one takes place in the morning, make sure to include the getting-ready segment in your package.",
+  },
+  {
+    q: "How do you handle the unpredictable Brittany weather?",
+    a: "I've always found that weddings in the rain have something extra to them, there's always a beautiful energy, and the sun shows up in your guests instead! :) A small tip: avoid colored umbrellas that could cast a tint on your skin, go for white or transparent (though watch out for some transparent ones that create a rainbow effect). In any case we're in Brittany, the venues are used to it, there's always room indoors. My best advice is not to overthink it, you'll have a beautiful day either way!",
+  },
+  {
+    q: "How long does it take to receive the images?",
+    a: "I'm not the type to stack projects, when I'm back home I get to work. Count 2 weeks maximum.",
+  },
+  {
+    q: "How are the photos delivered?",
+    a: "All photos are available in a private, secure online gallery on my site. The gallery is organized into separate folders: Reportage of the day, Black & White copies, Group photos, Couple session. You can of course download all the photos for free, and share them with your guests.",
+  },
+  {
+    q: "Can we have black & white versions?",
+    a: "All photos are delivered in color AND in black & white, always!",
+  },
+  {
+    q: "What gear do you use?",
+    a: "Nikon Z9 with prime lenses: 50 mm f/1.2, 24 mm f/1.4, 105 mm f/1.4. For the gear nerds: pro gear with a backup body. For everyone else: it takes beautiful photos :)",
+  },
+  {
+    q: "Have you won any awards?",
+    a: "Wedding Awards on Mariages.net in 2021, 2022 and 2026. These are voted by the couples themselves. 100% of my 61 clients recommend me.",
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout title={title} description={description}>
+  <section>
+    <div class="container-narrow">
+      <p class="eyebrow text-center">FAQ</p>
+      <h1 class="text-center">Your questions, my answers</h1>
+      <p class="intro text-center text-muted">
+        If the answer to your question isn't here, just send me a message, I always reply within 48 hours.
+      </p>
+
+      <div class="faqs">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <p class="text-center" style="margin-top: 3rem;">
+        Another question? <a href="/en/contact">Send me a message</a>.
+      </p>
+    </div>
+
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </section>
+</BaseLayout>
+
+<style>
+  .intro {
+    font-size: 1.05rem;
+    max-width: 580px;
+    margin: 1.5rem auto 0;
+  }
+  .faqs { margin-top: 3rem; }
+  .faq-item {
+    border-bottom: 1px solid var(--color-border);
+    padding: 1.25rem 0;
+  }
+  .faq-item summary {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    cursor: pointer;
+    list-style: none;
+    padding: 0.5rem 0;
+    position: relative;
+    padding-right: 2rem;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color: var(--color-accent-dark);
+    transition: transform 0.2s;
+  }
+  .faq-item[open] summary::after {
+    content: '−';
+  }
+  .faq-item p {
+    margin-top: 0.5rem;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+  }
+</style>

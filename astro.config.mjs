@@ -9,11 +9,26 @@ export default defineConfig({
   build: {
     format: 'file',
   },
+  i18n: {
+    defaultLocale: 'fr',
+    locales: ['fr', 'en', 'es'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
   integrations: [
     sitemap({
       changefreq: 'weekly',
       priority: 0.7,
       lastmod: new Date(),
+      i18n: {
+        defaultLocale: 'fr',
+        locales: {
+          fr: 'fr-FR',
+          en: 'en-US',
+          es: 'es-ES',
+        },
+      },
     }),
   ],
 });

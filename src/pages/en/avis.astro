@@ -1,18 +1,16 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import reviewsData from '../data/reviews.json';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import reviewsData from '../../data/reviews.json';
 
-const title = 'Avis · Ce que disent les couples qui m\'ont fait confiance';
-const description = `Découvrez les avis vérifiés des couples qui ont fait appel à Black Pixels pour leur mariage. ${reviewsData.totalReviews} avis sur Mariages.net, note moyenne ${reviewsData.aggregateRating}/5, ${reviewsData.recommendationRate}% de recommandation.`;
+const title = 'Reviews · What couples say about Black Pixels';
+const description = `Verified reviews from couples who chose Black Pixels for their wedding. ${reviewsData.totalReviews} reviews, ${reviewsData.aggregateRating}/5 average rating, ${reviewsData.recommendationRate}% recommendation rate.`;
 
-// Format date en français
 function formatDate(iso) {
-  const months = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const [y, m, d] = iso.split('-');
   return `${parseInt(d, 10)} ${months[parseInt(m, 10) - 1]} ${y}`;
 }
 
-// Schema.org JSON-LD pour les rich snippets Google
 const schemaReviews = reviewsData.reviews.map((r) => ({
   '@type': 'Review',
   author: { '@type': 'Person', name: r.author },
@@ -43,17 +41,18 @@ const fullSchema = {
 <BaseLayout title={title} description={description}>
   <section class="avis-hero">
     <div class="container-narrow text-center">
-      <p class="eyebrow">Avis vérifiés</p>
-      <h1>Ce que disent les couples<br />qui m'ont fait confiance.</h1>
+      <p class="eyebrow">Verified reviews</p>
+      <h1>What couples say<br />about working with me.</h1>
       <div class="rating-summary">
-        <span class="stars" aria-label={`Note ${reviewsData.aggregateRating} sur 5`}>★★★★★</span>
+        <span class="stars" aria-label={`Rating ${reviewsData.aggregateRating} out of 5`}>★★★★★</span>
         <span class="rating-value">{reviewsData.aggregateRating.toFixed(1)}</span>
         <span class="rating-meta">
-          {reviewsData.totalReviews} avis · {reviewsData.recommendationRate}% recommandent
+          {reviewsData.totalReviews} reviews · {reviewsData.recommendationRate}% recommend
         </span>
       </div>
       <p class="source">
-        Tous les avis ci-dessous sont <strong>vérifiés sur Mariages.net</strong>, ils ont été publiés par les couples eux-mêmes.
+        All reviews below are <strong>verified reviews</strong>, published by the couples themselves.
+        Originals in French (the couples are French).
       </p>
     </div>
   </section>
@@ -67,40 +66,22 @@ const fullSchema = {
               <p class="review-author">{r.author}</p>
               <p class="review-date">{formatDate(r.date)}</p>
             </div>
-            <span class="review-stars" aria-label="5 étoiles sur 5">★★★★★</span>
+            <span class="review-stars" aria-label="5 stars out of 5">★★★★★</span>
           </header>
           {r.title && <h2 class="review-title">{r.title}</h2>}
-          <blockquote class="review-body">{r.body}</blockquote>
-          <p class="review-source-link">
-            <a href={reviewsData.sourceUrl} target="_blank" rel="noopener nofollow">
-              Avis vérifié sur Mariages.net ↗
-            </a>
-          </p>
+          <blockquote class="review-body" lang="fr">{r.body}</blockquote>
         </article>
       ))}
     </div>
   </section>
 
-  <section class="cta-more">
-    <div class="container-narrow text-center">
-      <p class="eyebrow">Vous voulez en lire plus ?</p>
-      <h2>{reviewsData.totalReviews - reviewsData.extractedReviews} autres avis vous attendent</h2>
-      <p class="text-muted">L'intégralité des {reviewsData.totalReviews} avis est consultable sur Mariages.net.</p>
-      <p style="margin-top: 2rem;">
-        <a href={reviewsData.sourceUrl} target="_blank" rel="noopener" class="button">
-          Voir les {reviewsData.totalReviews} avis sur Mariages.net
-        </a>
-      </p>
-    </div>
-  </section>
-
   <section class="cta-final-avis">
     <div class="container-narrow text-center">
-      <p class="eyebrow">Convaincus ?</p>
-      <h2>Parlons de votre mariage</h2>
-      <p>Devis personnalisé sous 48h.</p>
+      <p class="eyebrow">Convinced?</p>
+      <h2>Let's talk about your wedding</h2>
+      <p>Custom quote within 48h.</p>
       <p style="margin-top: 1.5rem;">
-        <a href="/contact" class="button">Demander un devis</a>
+        <a href="/en/contact" class="button">Get a quote</a>
       </p>
     </div>
   </section>
@@ -109,9 +90,7 @@ const fullSchema = {
 </BaseLayout>
 
 <style>
-  .avis-hero {
-    padding: 5rem 0 3rem;
-  }
+  .avis-hero { padding: 5rem 0 3rem; }
   .rating-summary {
     display: flex;
     align-items: center;
@@ -157,12 +136,11 @@ const fullSchema = {
     font-family: var(--font-serif);
     font-size: 1.25rem;
     margin: 0;
-    color: var(--color-text);
   }
   .review-date {
     font-size: 0.85rem;
     color: var(--color-text-muted);
-    margin: 0.2rem 0 0;
+    margin: 0.25rem 0 0;
   }
   .review-stars {
     color: var(--color-accent);
@@ -173,31 +151,17 @@ const fullSchema = {
   .review-title {
     font-family: var(--font-serif);
     font-size: 1.4rem;
-    margin: 0.5rem 0 1rem;
-    line-height: 1.3;
+    margin: 0 0 0.75rem;
+    color: var(--color-text);
   }
   .review-body {
-    margin: 0;
-    padding: 0 0 0 1rem;
-    border-left: 2px solid var(--color-accent);
+    margin: 0 0 1rem;
+    padding-left: 1rem;
+    border-left: 3px solid var(--color-accent);
     color: var(--color-text);
-    font-size: 1rem;
-    line-height: 1.7;
-    font-style: normal;
-  }
-  .review-body::before, .review-body::after { content: none; }
-  .review-source-link {
-    margin-top: 1.25rem;
-    font-size: 0.8rem;
-  }
-  .review-source-link a {
-    color: var(--color-text-muted);
-    text-decoration: none;
-  }
-  .review-source-link a:hover {
-    color: var(--color-accent-dark);
+    font-style: italic;
+    line-height: 1.65;
   }
 
-  .cta-more { background: white; }
-  .cta-final-avis { padding-bottom: 6rem; }
+  .cta-final-avis { background: white; padding: 5rem 0; }
 </style>

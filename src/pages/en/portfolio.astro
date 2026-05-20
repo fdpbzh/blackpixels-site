@@ -1,0 +1,188 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Portfolio · Wedding Photographer Brittany';
+const description = 'Wedding photography reportages in Brittany by Black Pixels. A selection of photos: ceremonies, couple sessions, evenings, details. A filmmaker\'s eye at the service of your day.';
+
+const photos = [
+  { n: '001', alt: 'First dance at sunset, Ferme du Roudouic' },
+  { n: '068', alt: 'Outdoor ceremony at Ferme du Roudouic' },
+  { n: '073', alt: 'Bride and groom leaving with confetti' },
+  { n: '002', alt: 'Bride during the getting-ready moments' },
+  { n: '067', alt: 'Detail of the bride\'s hairstyle' },
+  { n: '005', alt: 'Orangerie de Lanniron lit up at night' },
+  { n: '020', alt: "Leaving the church, a child's gaze" },
+  { n: '070', alt: 'Couple session at Ferme du Roudouic' },
+  { n: '063', alt: 'Wedding rings before the ceremony' },
+  { n: '078', alt: 'Wedding venue, manor in Brittany' },
+  { n: '006', alt: 'Children during the wedding' },
+  { n: '016', alt: 'Detail, sheet of paper for a speech' },
+  { n: '003', alt: 'Wedding reportage Brittany' },
+  { n: '004', alt: 'Wedding reportage Brittany' },
+  { n: '007', alt: 'Wedding reportage Brittany' },
+  { n: '008', alt: 'Wedding reportage Brittany' },
+  { n: '009', alt: 'Wedding reportage Brittany' },
+  { n: '010', alt: 'Wedding reportage Brittany' },
+  { n: '011', alt: 'Wedding reportage Brittany' },
+  { n: '012', alt: 'Wedding reportage Brittany' },
+  { n: '013', alt: 'Wedding reportage Brittany' },
+  { n: '014', alt: 'Wedding reportage Brittany' },
+  { n: '015', alt: 'Wedding reportage Brittany' },
+  { n: '017', alt: 'Wedding reportage Brittany' },
+  { n: '018', alt: 'Wedding reportage Brittany' },
+  { n: '019', alt: 'Wedding reportage Brittany' },
+  { n: '021', alt: 'Wedding reportage Brittany' },
+  { n: '022', alt: 'Wedding reportage Brittany' },
+  { n: '023', alt: 'Wedding reportage Brittany' },
+  { n: '025', alt: 'Wedding reportage Brittany' },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="portfolio-hero">
+    <div class="container-narrow text-center">
+      <p class="eyebrow">Portfolio</p>
+      <h1>Wedding reportages in Brittany</h1>
+      <p class="lead text-muted">
+        A selection of moments captured over the years, a filmmaker's eye at the service of your day.
+      </p>
+    </div>
+  </section>
+
+  <section class="portfolio-grid-section">
+    <div class="portfolio-container">
+      <div class="masonry">
+        {photos.map((p, i) => (
+          <button
+            type="button"
+            class="photo-btn"
+            data-index={i}
+            data-src={`/images/photo-${p.n}.jpg`}
+            aria-label={`View photo: ${p.alt}`}
+          >
+            <img
+              src={`/images/photo-${p.n}.jpg`}
+              alt={p.alt}
+              loading="lazy"
+              width="800"
+              height="600"
+            />
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="portfolio-cta">
+    <div class="container-narrow text-center">
+      <p>Want to see more, or talk about your wedding?</p>
+      <a href="/en/contact" class="button">Get a quote</a>
+    </div>
+  </section>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" aria-label="Close">×</button>
+    <button class="lightbox-prev" aria-label="Previous photo">‹</button>
+    <img class="lightbox-img" src="" alt="" />
+    <button class="lightbox-next" aria-label="Next photo">›</button>
+  </div>
+</BaseLayout>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('.lightbox-img');
+    const closeBtn = lightbox.querySelector('.lightbox-close');
+    const prevBtn = lightbox.querySelector('.lightbox-prev');
+    const nextBtn = lightbox.querySelector('.lightbox-next');
+    const buttons = Array.from(document.querySelectorAll('.photo-btn'));
+    let currentIndex = 0;
+    function open(idx) {
+      currentIndex = idx;
+      lightboxImg.src = buttons[idx].dataset.src;
+      lightboxImg.alt = buttons[idx].querySelector('img').alt;
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function close() {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+    function next() { open((currentIndex + 1) % buttons.length); }
+    function prev() { open((currentIndex - 1 + buttons.length) % buttons.length); }
+    buttons.forEach((btn, idx) => btn.addEventListener('click', () => open(idx)));
+    closeBtn.addEventListener('click', close);
+    prevBtn.addEventListener('click', prev);
+    nextBtn.addEventListener('click', next);
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowRight') next();
+      if (e.key === 'ArrowLeft') prev();
+    });
+  });
+</script>
+
+<style>
+  .portfolio-hero { padding: 4rem 0 3rem; }
+  .lead { font-size: 1.1rem; margin-top: 1rem; }
+  .portfolio-container { max-width: 1400px; margin: 0 auto; padding: 0 1rem; }
+  .masonry { column-count: 3; column-gap: 1rem; }
+  @media (max-width: 900px) { .masonry { column-count: 2; } }
+  @media (max-width: 500px) { .masonry { column-count: 1; } }
+  .photo-btn {
+    width: 100%;
+    padding: 0;
+    margin: 0 0 1rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    break-inside: avoid;
+    display: block;
+    overflow: hidden;
+  }
+  .photo-btn img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: opacity 0.3s, transform 0.5s;
+  }
+  .photo-btn:hover img { opacity: 0.85; transform: scale(1.02); }
+  .portfolio-cta { padding: 4rem 0; }
+  .portfolio-cta p { margin-bottom: 1.5rem; }
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox-img {
+    max-width: 92%;
+    max-height: 92%;
+    object-fit: contain;
+    display: block;
+  }
+  .lightbox button {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 2rem;
+    position: absolute;
+    transition: background 0.2s;
+  }
+  .lightbox button:hover { background: rgba(255,255,255,0.2); }
+  .lightbox-close { top: 1.5rem; right: 1.5rem; width: 48px; height: 48px; }
+  .lightbox-prev, .lightbox-next {
+    top: 50%; transform: translateY(-50%); width: 56px; height: 56px;
+  }
+  .lightbox-prev { left: 1.5rem; }
+  .lightbox-next { right: 1.5rem; }
+</style>

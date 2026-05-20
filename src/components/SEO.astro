@@ -4,6 +4,7 @@ interface Props {
   description: string;
   image?: string;
   canonical?: string;
+  lang?: string;
 }
 
 const {
@@ -11,22 +12,53 @@ const {
   description,
   image = '/og-default.jpg',
   canonical = Astro.url.href,
+  lang = 'fr',
 } = Astro.props;
 
 const siteName = 'Black Pixels';
 const fullTitle = title.includes(siteName) ? title : title + ' | ' + siteName;
+
+// Locales OG selon la langue
+const ogLocaleMap = {
+  fr: 'fr_FR',
+  en: 'en_US',
+  es: 'es_ES',
+};
+const ogLocale = ogLocaleMap[lang] || 'fr_FR';
+
+// Construction des URLs hreflang
+const pathname = Astro.url.pathname;
+let pathWithoutLocale = pathname;
+if (pathname.startsWith('/en')) {
+  pathWithoutLocale = pathname.substring(3) || '/';
+} else if (pathname.startsWith('/es')) {
+  pathWithoutLocale = pathname.substring(3) || '/';
+}
+
+const baseSite = Astro.site?.toString().replace(/\/$/, '') || 'https://www.blackpixels.fr';
+const hreflangs = {
+  fr: baseSite + (pathWithoutLocale === '/' ? '/' : pathWithoutLocale),
+  en: baseSite + (pathWithoutLocale === '/' ? '/en' : '/en' + pathWithoutLocale),
+  es: baseSite + (pathWithoutLocale === '/' ? '/es' : '/es' + pathWithoutLocale),
+};
 ---
 
 <title>{fullTitle}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonical} />
 
+<!-- Hreflang tags pour SEO international -->
+<link rel="alternate" hreflang="fr" href={hreflangs.fr} />
+<link rel="alternate" hreflang="en" href={hreflangs.en} />
+<link rel="alternate" hreflang="es" href={hreflangs.es} />
+<link rel="alternate" hreflang="x-default" href={hreflangs.fr} />
+
 <meta property="og:type" content="website" />
 <meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={new URL(image, Astro.site).href} />
 <meta property="og:url" content={canonical} />
-<meta property="og:locale" content="fr_FR" />
+<meta property="og:locale" content={ogLocale} />
 <meta property="og:site_name" content={siteName} />
 
 <meta name="twitter:card" content="summary_large_image" />

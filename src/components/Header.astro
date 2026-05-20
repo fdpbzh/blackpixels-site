@@ -1,33 +1,84 @@
 ---
-const nav = [
-  { href: '/', label: 'Accueil' },
-  { href: '/about', label: 'À propos' },
-  { href: '/portfolio', label: 'Portfolio' },
-  { href: '/prestations-tarifs', label: 'Prestations' },
-  { href: '/avis', label: 'Avis' },
-  { href: '/faq', label: 'FAQ' },
-  { href: '/contact', label: 'Contact' },
-  { href: 'https://www.blackpixels.fr/clients', label: 'Espace client', external: true, button: true },
-];
+import LanguageSwitcher from './LanguageSwitcher.astro';
 
-const current = Astro.url.pathname.replace(/\/$/, '') || '/';
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+// Détecte la langue courante
+let currentLocale = 'fr';
+if (pathname.startsWith('/en')) currentLocale = 'en';
+else if (pathname.startsWith('/es')) currentLocale = 'es';
+
+// Labels et liens selon la langue
+const navByLocale = {
+  fr: [
+    { href: '/', label: 'Accueil' },
+    { href: '/about', label: 'À propos' },
+    { href: '/portfolio', label: 'Portfolio' },
+    { href: '/prestations-tarifs', label: 'Prestations' },
+    { href: '/avis', label: 'Avis' },
+    { href: '/faq', label: 'FAQ' },
+    { href: '/contact', label: 'Contact' },
+  ],
+  en: [
+    { href: '/en', label: 'Home' },
+    { href: '/en/about', label: 'About' },
+    { href: '/en/portfolio', label: 'Portfolio' },
+    { href: '/en/prestations-tarifs', label: 'Packages' },
+    { href: '/en/avis', label: 'Reviews' },
+    { href: '/en/faq', label: 'FAQ' },
+    { href: '/en/contact', label: 'Contact' },
+  ],
+  es: [
+    { href: '/es', label: 'Inicio' },
+    { href: '/es/about', label: 'Sobre mí' },
+    { href: '/es/portfolio', label: 'Portafolio' },
+    { href: '/es/prestations-tarifs', label: 'Tarifas' },
+    { href: '/es/avis', label: 'Opiniones' },
+    { href: '/es/faq', label: 'FAQ' },
+    { href: '/es/contact', label: 'Contacto' },
+  ],
+};
+
+const clientSpaceLabel = {
+  fr: 'Espace client',
+  en: 'Client area',
+  es: 'Área cliente',
+};
+
+const homeAriaLabel = {
+  fr: 'Black Pixels · Accueil',
+  en: 'Black Pixels · Home',
+  es: 'Black Pixels · Inicio',
+};
+
+const nav = navByLocale[currentLocale];
+const current = pathname;
 ---
 
 <header class="site-header">
   <div class="container header-inner">
-    <a href="/" class="logo" aria-label="Black Pixels — Accueil">Black Pixels</a>
-    <nav class="nav" aria-label="Navigation principale">
+    <a href={currentLocale === 'fr' ? '/' : `/${currentLocale}`} class="logo" aria-label={homeAriaLabel[currentLocale]}>Black Pixels</a>
+    <nav class="nav" aria-label="Navigation">
       {nav.map((item) => (
         <a
           href={item.href}
-          class:list={['nav-link', { active: current === item.href, 'nav-button': item.button }]}
-          target={item.external ? '_blank' : undefined}
-          rel={item.external ? 'noopener' : undefined}
+          class:list={['nav-link', { active: current === item.href || (item.href !== '/' && item.href !== '/en' && item.href !== '/es' && current.startsWith(item.href)) }]}
         >
           {item.label}
         </a>
       ))}
+      <a
+        href="https://www.blackpixels.fr/clients"
+        class="nav-link nav-button"
+        target="_blank"
+        rel="noopener"
+      >
+        {clientSpaceLabel[currentLocale]}
+      </a>
     </nav>
+    <div class="lang-zone">
+      <LanguageSwitcher />
+    </div>
   </div>
 </header>
 
@@ -45,7 +96,8 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 2rem;
+    gap: 1.5rem;
+    flex-wrap: wrap;
   }
   .logo {
     font-family: var(--font-serif);
@@ -54,7 +106,7 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
     letter-spacing: 0.02em;
     color: var(--color-text);
   }
-  .nav { display: flex; gap: 2rem; flex-wrap: wrap; }
+  .nav { display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; }
   .nav-link {
     font-size: 0.8rem;
     letter-spacing: 0.1em;
@@ -81,9 +133,16 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
   .nav-link.nav-button.active {
     border-bottom-color: var(--color-accent);
   }
-  @media (max-width: 768px) {
+
+  .lang-zone {
+    padding-left: 1rem;
+    border-left: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 900px) {
     .header-inner { flex-direction: column; gap: 1rem; }
     .nav { gap: 1rem; justify-content: center; }
     .nav-link { font-size: 0.75rem; }
+    .lang-zone { padding-left: 0; border-left: none; }
   }
 </style>

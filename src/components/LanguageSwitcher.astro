@@ -1,0 +1,58 @@
+---
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+// Détecte la langue courante en regardant le préfixe d'URL
+let currentLocale = 'fr';
+let pathWithoutLocale = pathname;
+
+if (pathname.startsWith('/en')) {
+  currentLocale = 'en';
+  pathWithoutLocale = pathname.substring(3) || '/';
+} else if (pathname.startsWith('/es')) {
+  currentLocale = 'es';
+  pathWithoutLocale = pathname.substring(3) || '/';
+}
+
+// Construit les URLs pour les 3 langues
+const urls = {
+  fr: pathWithoutLocale === '/' ? '/' : pathWithoutLocale,
+  en: pathWithoutLocale === '/' ? '/en' : '/en' + pathWithoutLocale,
+  es: pathWithoutLocale === '/' ? '/es' : '/es' + pathWithoutLocale,
+};
+---
+
+<div class="lang-switcher" aria-label="Choix de la langue">
+  <a href={urls.fr} class:list={['lang-link', { active: currentLocale === 'fr' }]} hreflang="fr" aria-current={currentLocale === 'fr' ? 'true' : undefined}>FR</a>
+  <span class="lang-sep">·</span>
+  <a href={urls.en} class:list={['lang-link', { active: currentLocale === 'en' }]} hreflang="en" aria-current={currentLocale === 'en' ? 'true' : undefined}>EN</a>
+  <span class="lang-sep">·</span>
+  <a href={urls.es} class:list={['lang-link', { active: currentLocale === 'es' }]} hreflang="es" aria-current={currentLocale === 'es' ? 'true' : undefined}>ES</a>
+</div>
+
+<style>
+  .lang-switcher {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+  }
+  .lang-link {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    padding: 0.25rem 0;
+    transition: color 0.2s;
+  }
+  .lang-link:hover {
+    color: var(--color-text);
+  }
+  .lang-link.active {
+    color: var(--color-text);
+    font-weight: 600;
+    cursor: default;
+  }
+  .lang-sep {
+    color: var(--color-border);
+  }
+</style>

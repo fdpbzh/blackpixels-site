@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'FAQ · Preguntas frecuentes';
+const description = 'Tus preguntas sobre mis servicios de fotografía de bodas en Bretaña: precios, entrega, método, lugares, equipo, clima, ceremonias. Respuestas claras y directas.';
+
+const faqs = [
+  {
+    q: "¿Cuáles son sus tarifas?",
+    a: "3 paquetes: White a 1 500 €, Black a 2 400 €, Gold a 3 300 €. Todos los detalles en la página de Paquetes y tarifas.",
+  },
+  {
+    q: "¿Ofrecen descuentos para bodas fuera de temporada o entre semana?",
+    a: "Sí, ofrezco un 20% de descuento para bodas de lunes a jueves (excepto festivos) y de noviembre a marzo.",
+  },
+  {
+    q: "¿Qué incluye el precio de un paquete?",
+    a: "El desplazamiento en Bretaña, hasta dos reuniones antes de la boda, la prestación el día J (con una sonrisa :)), la postproducción y la publicación en una galería privada. Sin gastos adicionales.",
+  },
+  {
+    q: "¿Cuántas bodas cubren al año?",
+    a: "Unas veinte, no más. Más allá de eso, ya no puedo garantizar el nivel de atención que cada boda merece: encuentro previo, presencia integral el día J, retoque cuidadoso y entrega rápida. Prefiero hacer menos, y hacerlo bien.",
+  },
+  {
+    q: "¿Cómo trabajas el día de la boda?",
+    a: "Sé que no estás acostumbrado al objetivo, así que hago lo mejor para ser discreto y dejar espacio a lo natural del día. Me gusta tomarme mi tiempo, observar, y capturar las emociones más bellas. Me gusta sorprenderte variando ángulos, encuadres y composiciones.",
+  },
+  {
+    q: "¿Y si somos introvertidos o no estamos a gusto frente a la cámara?",
+    a: "¡Las parejas a gusto frente al objetivo son un mito! La idea no es verlo como una sesión de fotos, sino más bien como un buen momento que pasaréis los dos. Os doy algunos consejos, os coloco en el lugar correcto, y os dejo disfrutar de ese pequeño momento entre los dos, para que la naturalidad ocupe su lugar.",
+  },
+  {
+    q: "¿Cubren toda Bretaña?",
+    a: "Sí, Finistère, Morbihan, Côtes-d'Armor, Ille-et-Vilaine. Desplazamiento incluido por toda Bretaña. Fuera de Bretaña, sorpréndeme, hablamos.",
+  },
+  {
+    q: "¿En qué lugares trabajan más a menudo?",
+    a: "Conozco bien la Ferme du Roudouic, el Château de Keriolet, el Manoir de Kerhuel, l'Orangerie de Lanniron y el Manoir des Indes. Pero me adapto a cualquier lugar en Bretaña.",
+  },
+  {
+    q: "¿Podemos vernos antes de decidir?",
+    a: "Con mucho gusto. Si es posible, nos vemos alrededor de un café o una cerveza. Habitualmente me desplazo a Quimper o alrededores, y si vivís lejos, podemos organizar una videollamada o una llamada.",
+  },
+  {
+    q: "¿Cómo funciona la reserva?",
+    a: "Una vez tomada la decisión, te envío el contrato. El anticipo para reservar la fecha es del 30%. Transferencia, efectivo o cheque, como prefieras.",
+  },
+  {
+    q: "¿Y si hay un imprevisto?",
+    a: "Tengo fotógrafos de confianza como respaldo para los casos verdaderamente excepcionales (accidente, enfermedad grave). Pero en 9 años, nunca me he perdido una boda :)",
+  },
+  {
+    q: "¿Cómo funciona si tenemos dos ceremonias el mismo día?",
+    a: "Si las dos ceremonias se siguen, no cambia nada. Si una tiene lugar por la mañana, aseguraos de tener los preparativos en vuestra fórmula.",
+  },
+  {
+    q: "¿Cómo manejan el clima impredecible de Bretaña?",
+    a: "Siempre he pensado que las bodas bajo la lluvia tienen algo más, hay siempre una energía muy bonita, ¡y el sol se refleja en los invitados! :) Para los consejos, evitad los paraguas de colores que podrían dar un tono extraño a vuestra piel, mejor los blancos o transparentes (aunque ojo, hay transparentes que dan un efecto arcoíris). En cualquier caso estamos en Bretaña, los lugares están acostumbrados, siempre hay espacio cubierto. Mi mejor consejo es no darle demasiadas vueltas: ¡en cualquier caso pasaréis un día precioso!",
+  },
+  {
+    q: "¿Cuánto tiempo para recibir las fotos?",
+    a: "No soy de los que acumulan proyectos, al volver a casa me pongo a trabajar. Cuenta con 2 semanas máximo.",
+  },
+  {
+    q: "¿Cómo se entregan las fotos?",
+    a: "Todas las fotos estarán disponibles en una galería privada y segura en mi web. La galería está organizada en varias carpetas: Reportaje del día, Copia en blanco y negro, Fotos de grupo, Sesión de pareja. Podéis por supuesto descargar todas las fotos gratuitamente, y compartirlas con vuestros invitados.",
+  },
+  {
+    q: "¿Es posible tener las fotos en blanco y negro?",
+    a: "¡Todas las fotos os serán entregadas en color Y en blanco y negro, siempre!",
+  },
+  {
+    q: "¿Qué equipo usas?",
+    a: "Nikon Z9 con objetivos fijos: 50 mm f/1.2, 24 mm f/1.4, 105 mm f/1.4. Para los puristas: equipo profesional con doble cuerpo de respaldo. Para los demás: hace fotos bonitas :)",
+  },
+  {
+    q: "¿Tienes premios?",
+    a: "Wedding Awards en Mariages.net en 2021, 2022 y 2026. Son las propias parejas las que votan. El 100% de mis 61 clientes me recomiendan.",
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout title={title} description={description}>
+  <section>
+    <div class="container-narrow">
+      <p class="eyebrow text-center">FAQ</p>
+      <h1 class="text-center">Tus preguntas, mis respuestas</h1>
+      <p class="intro text-center text-muted">
+        Si la respuesta a tu pregunta no está aquí, escríbeme, siempre respondo en 48h.
+      </p>
+
+      <div class="faqs">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <p class="text-center" style="margin-top: 3rem;">
+        ¿Otra pregunta? <a href="/es/contact">Escríbeme</a>.
+      </p>
+    </div>
+
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </section>
+</BaseLayout>
+
+<style>
+  .intro { font-size: 1.05rem; max-width: 580px; margin: 1.5rem auto 0; }
+  .faqs { margin-top: 3rem; }
+  .faq-item { border-bottom: 1px solid var(--color-border); padding: 1.25rem 0; }
+  .faq-item summary {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    cursor: pointer;
+    list-style: none;
+    padding: 0.5rem 0;
+    position: relative;
+    padding-right: 2rem;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color: var(--color-accent-dark);
+    transition: transform 0.2s;
+  }
+  .faq-item[open] summary::after { content: '−'; }
+  .faq-item p { margin-top: 0.5rem; color: var(--color-text-muted); line-height: 1.65; }
+</style>

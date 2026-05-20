@@ -1,0 +1,188 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Sobre mí · Yohann Strullu, fotógrafo de bodas en Bretaña';
+const description = 'Yohann Strullu, fotógrafo de bodas en Bretaña desde 2017. Cineasta documental (Blue Road, TAN). Wedding Awards 2021, 2022 y 2026.';
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="about-hero">
+    <div class="container about-grid">
+      <div class="about-text">
+        <p class="eyebrow">Sobre mí</p>
+        <h1>Yohann Strullu</h1>
+        <p class="lead">
+          Fotógrafo de bodas en Bretaña. Pors Poulhan, Plouhinec.
+        </p>
+
+        <p>
+          Fotógrafo de bodas desde 2017. Cubro alrededor de veinte parejas al año, no más,
+          y el resto del tiempo viajo, surfeo, y paso tiempo con mi hijo.
+        </p>
+
+        <p class="hook">
+          No empecé en las bodas.
+        </p>
+
+        <p>
+          En 2016, me uno al equipo de <em>Blue Road</em>, una película de surf producida
+          por Alena Ehrenbold. Entré para rodar algunos clips de detrás de cámaras, y
+          terminé filmando y montando una gran parte de la película. Primer premio en un
+          festival, primera chispa.
+          <strong>Al año siguiente, fundo Black Pixels.</strong>
+        </p>
+
+        <p>
+          En 2018, repito con <em>TAN</em>, un documental sobre un shaper bretón, en cámara
+          y montaje. La película recorrió festivales internacionales y recibió una decena
+          de premios, entre ellos Best Cinematography en el Surf Film Festival de San Diego.
+        </p>
+
+        <p>
+          Lo que más recuerdo de TAN es que la película habla de la relación con el tiempo.
+          Y si conmovió, quizá fue porque nos tomamos el tiempo de hacerla, como si
+          hubiéramos aplicado los consejos de la película mientras la rodábamos. O quizá al
+          revés, y es mi manera de ver las cosas lo que ha dado forma a la película.
+        </p>
+
+        <p>
+          Intento aplicar eso a mi oficio: hacer menos, pero hacerlo bien. Por eso no paso
+          de veinte bodas al año. Es lo que me permite estar presente del principio al fin
+          del día J, cuidar la retoque, y entregar rápido.
+        </p>
+
+        <p>
+          Con las bodas, entendí rápido que no se trata solo de fotografía. Es una
+          conexión real con las parejas que se construye antes del día J, y que se siente
+          en las imágenes. Es también un oficio en el que uno nunca se aburre: estás solo
+          a menudo, es verdad, pero cada pareja, cada lugar, cada luz es diferente.
+          Bretaña sobre todo, y a veces más allá.
+        </p>
+
+        <p class="closing">
+          Las bodas me permiten tener la vida con la que siempre soñé.
+          Y hago lo mejor para devolverlo :)
+        </p>
+      </div>
+      <div class="about-photo">
+        <img src="/images/yohann.jpg" alt="Yohann Strullu en una sesión de firmas en el Cinéma Eckmühl, Penmarc'h" width="2048" height="1152" />
+        <p class="photo-caption">Sesión de firmas en el Cinéma Eckmühl</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-film">
+    <div class="container-narrow">
+      <p class="eyebrow text-center">La película</p>
+      <h2 class="text-center">TAN</h2>
+      <p class="film-intro text-center text-muted">
+        Dirigida por Alena Ehrenbold, 2018. Cinematografía y montaje por mí.
+      </p>
+      <div class="film-embed">
+        <iframe
+          src="https://player.vimeo.com/video/275924291?h=400ca2b15b&title=0&byline=0&portrait=0"
+          loading="lazy"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen
+          title="TAN · película de Alena Ehrenbold, cinematografía y montaje de Yohann Strullu"
+        ></iframe>
+      </div>
+      <p class="film-credits text-center text-muted">
+        <a href="https://vimeo.com/275924291" target="_blank" rel="noopener">Ver en Vimeo ↗</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="about-bottom">
+    <div class="container-narrow">
+      <div class="bottom-lines">
+        <p><strong>Reportaje documental</strong>: pocas poses, muchos instantes robados.</p>
+        <p><strong>Color y blanco y negro</strong> siempre.</p>
+        <p><strong>Entrega en 2 semanas</strong>, galería segura para ti y tus invitados.</p>
+      </div>
+
+      <p style="margin-top: 3rem; text-align: center;">
+        <a href="/es/contact" class="button">Hablemos de tu boda</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-hero { padding: 5rem 0; }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .about-text p { margin-bottom: 1.25rem; }
+  .lead {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+  .hook {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    line-height: 1.4;
+    color: var(--color-text);
+    margin: 2rem 0;
+    padding-left: 1.25rem;
+    border-left: 3px solid var(--color-accent);
+  }
+  .closing {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    line-height: 1.45;
+    color: var(--color-accent-dark);
+    margin-top: 2.5rem;
+    letter-spacing: -0.01em;
+  }
+  .about-photo { position: sticky; top: 6rem; }
+  .about-photo img {
+    width: 100%;
+    height: auto;
+    box-shadow: 0 20px 50px rgba(26, 26, 26, 0.15);
+  }
+  .photo-caption {
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    text-align: center;
+    margin-top: 0.75rem;
+  }
+
+  .about-film { background: #1A1A1A; color: #F0EBE0; padding: 5rem 0; }
+  .about-film .eyebrow { color: var(--color-accent); }
+  .about-film h2 { color: #F0EBE0; margin-bottom: 1.5rem; font-size: clamp(2.5rem, 5vw, 4rem); }
+  .film-intro { font-size: 1.05rem; max-width: 580px; margin: 0 auto 2.5rem; color: rgba(240, 235, 224, 0.7); }
+  .film-embed {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+  .film-embed iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .film-credits { margin-top: 1.5rem; font-size: 0.9rem; }
+  .film-credits a { color: var(--color-accent); }
+  .film-credits a:hover { color: var(--color-bg); }
+
+  .about-bottom { background: white; padding: 5rem 0; }
+  .bottom-lines { max-width: 580px; margin: 0 auto; text-align: center; }
+  .bottom-lines p { font-size: 1.05rem; margin: 0.75rem 0; color: var(--color-text); }
+  .bottom-lines strong { color: var(--color-accent-dark); }
+
+  @media (max-width: 900px) {
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-photo { position: static; }
+  }
+</style>

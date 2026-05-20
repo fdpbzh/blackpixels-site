@@ -1,34 +1,84 @@
 ---
 const year = new Date().getFullYear();
+
+const pathname = Astro.url.pathname;
+let currentLocale = 'fr';
+if (pathname.startsWith('/en')) currentLocale = 'en';
+else if (pathname.startsWith('/es')) currentLocale = 'es';
+
+const t = {
+  fr: {
+    tagline1: 'Photographe mariage en Bretagne depuis 2017.',
+    tagline2: 'Wedding Awards 2021, 2022, 2026.',
+    contact: 'Contact',
+    address: ['Pors Poulhan', '29780 Plouhinec', 'Bretagne, France'],
+    links: 'Liens',
+    prestations: 'Prestations & Tarifs',
+    faq: 'FAQ',
+    avis: 'Avis clients',
+    portfolio: 'Portfolio',
+    clientArea: 'Espace client',
+    copyright: 'Tous droits réservés',
+  },
+  en: {
+    tagline1: 'Wedding photographer in Brittany since 2017.',
+    tagline2: 'Wedding Awards 2021, 2022, 2026.',
+    contact: 'Contact',
+    address: ['Pors Poulhan', '29780 Plouhinec', 'Brittany, France'],
+    links: 'Links',
+    prestations: 'Packages & Pricing',
+    faq: 'FAQ',
+    avis: 'Reviews',
+    portfolio: 'Portfolio',
+    clientArea: 'Client area',
+    copyright: 'All rights reserved',
+  },
+  es: {
+    tagline1: 'Fotógrafo de bodas en Bretaña desde 2017.',
+    tagline2: 'Wedding Awards 2021, 2022, 2026.',
+    contact: 'Contacto',
+    address: ['Pors Poulhan', '29780 Plouhinec', 'Bretaña, Francia'],
+    links: 'Enlaces',
+    prestations: 'Paquetes y tarifas',
+    faq: 'FAQ',
+    avis: 'Opiniones',
+    portfolio: 'Portafolio',
+    clientArea: 'Área cliente',
+    copyright: 'Todos los derechos reservados',
+  },
+};
+
+const labels = t[currentLocale];
+const prefix = currentLocale === 'fr' ? '' : `/${currentLocale}`;
 ---
 
 <footer class="site-footer">
   <div class="container footer-inner">
     <div class="footer-col">
       <h4 class="footer-title">Black Pixels</h4>
-      <p class="text-muted">Photographe mariage en Bretagne depuis 2017.</p>
-      <p class="text-muted">Wedding Awards 2021, 2022, 2026.</p>
+      <p class="text-muted">{labels.tagline1}</p>
+      <p class="text-muted">{labels.tagline2}</p>
     </div>
 
     <div class="footer-col">
-      <h4 class="footer-title">Contact</h4>
+      <h4 class="footer-title">{labels.contact}</h4>
       <p><a href="mailto:blackpixels.fr@gmail.com">blackpixels.fr@gmail.com</a></p>
       <p><a href="tel:+33687708908">+33 6 87 70 89 08</a></p>
-      <p class="text-muted">Pors Poulhan<br />29780 Plouhinec<br />Bretagne, France</p>
+      <p class="text-muted">{labels.address[0]}<br />{labels.address[1]}<br />{labels.address[2]}</p>
     </div>
 
     <div class="footer-col">
-      <h4 class="footer-title">Liens</h4>
-      <p><a href="/prestations-tarifs">Prestations & Tarifs</a></p>
-      <p><a href="/faq">FAQ</a></p>
-      <p><a href="/avis">Avis clients</a></p>
-      <p><a href="/portfolio">Portfolio</a></p>
-      <p><a href="https://www.blackpixels.fr/clients" target="_blank" rel="noopener">Espace client</a></p>
+      <h4 class="footer-title">{labels.links}</h4>
+      <p><a href={`${prefix}/prestations-tarifs`}>{labels.prestations}</a></p>
+      <p><a href={`${prefix}/faq`}>{labels.faq}</a></p>
+      <p><a href={`${prefix}/avis`}>{labels.avis}</a></p>
+      <p><a href={`${prefix}/portfolio`}>{labels.portfolio}</a></p>
+      <p><a href="https://www.blackpixels.fr/clients" target="_blank" rel="noopener">{labels.clientArea}</a></p>
     </div>
   </div>
 
   <div class="footer-bottom container">
-    <p class="text-muted">© {year} Black Pixels — Tous droits réservés</p>
+    <p class="text-muted">© {year} Black Pixels · {labels.copyright}</p>
   </div>
 </footer>
 

@@ -1,0 +1,154 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Portafolio · Fotógrafo de bodas Bretaña';
+const description = 'Reportajes de boda en Bretaña por Black Pixels. Selección de fotos: ceremonias, sesiones de pareja, fiesta, detalles. Mirada de cine al servicio de tu día.';
+
+const photos = [
+  { n: '001', alt: 'Primer baile al atardecer, Ferme du Roudouic' },
+  { n: '068', alt: 'Ceremonia al aire libre en la Ferme du Roudouic' },
+  { n: '073', alt: 'Salida de los novios con confeti' },
+  { n: '002', alt: 'Novia durante los preparativos' },
+  { n: '067', alt: 'Detalle del peinado de la novia' },
+  { n: '005', alt: 'Orangerie de Lanniron iluminada de noche' },
+  { n: '020', alt: 'Salida de la iglesia, mirada de niño' },
+  { n: '070', alt: 'Sesión de pareja en la Ferme du Roudouic' },
+  { n: '063', alt: 'Las alianzas antes de la ceremonia' },
+  { n: '078', alt: 'Lugar de boda, mansión en Bretaña' },
+  { n: '006', alt: 'Niños durante la boda' },
+  { n: '016', alt: 'Detalle, hoja de un discurso' },
+  { n: '003', alt: 'Reportaje boda Bretaña' },
+  { n: '004', alt: 'Reportaje boda Bretaña' },
+  { n: '007', alt: 'Reportaje boda Bretaña' },
+  { n: '008', alt: 'Reportaje boda Bretaña' },
+  { n: '009', alt: 'Reportaje boda Bretaña' },
+  { n: '010', alt: 'Reportaje boda Bretaña' },
+  { n: '011', alt: 'Reportaje boda Bretaña' },
+  { n: '012', alt: 'Reportaje boda Bretaña' },
+  { n: '013', alt: 'Reportaje boda Bretaña' },
+  { n: '014', alt: 'Reportaje boda Bretaña' },
+  { n: '015', alt: 'Reportaje boda Bretaña' },
+  { n: '017', alt: 'Reportaje boda Bretaña' },
+  { n: '018', alt: 'Reportaje boda Bretaña' },
+  { n: '019', alt: 'Reportaje boda Bretaña' },
+  { n: '021', alt: 'Reportaje boda Bretaña' },
+  { n: '022', alt: 'Reportaje boda Bretaña' },
+  { n: '023', alt: 'Reportaje boda Bretaña' },
+  { n: '025', alt: 'Reportaje boda Bretaña' },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="portfolio-hero">
+    <div class="container-narrow text-center">
+      <p class="eyebrow">Portafolio</p>
+      <h1>Reportajes de boda en Bretaña</h1>
+      <p class="lead text-muted">
+        Una selección de momentos capturados a lo largo de los años, la mirada de cine al servicio de tu día.
+      </p>
+    </div>
+  </section>
+
+  <section class="portfolio-grid-section">
+    <div class="portfolio-container">
+      <div class="masonry">
+        {photos.map((p, i) => (
+          <button
+            type="button"
+            class="photo-btn"
+            data-index={i}
+            data-src={`/images/photo-${p.n}.jpg`}
+            aria-label={`Ver foto: ${p.alt}`}
+          >
+            <img
+              src={`/images/photo-${p.n}.jpg`}
+              alt={p.alt}
+              loading="lazy"
+              width="800"
+              height="600"
+            />
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="portfolio-cta">
+    <div class="container-narrow text-center">
+      <p>¿Quieres ver más, o hablar de tu boda?</p>
+      <a href="/es/contact" class="button">Pedir presupuesto</a>
+    </div>
+  </section>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" aria-label="Cerrar">×</button>
+    <button class="lightbox-prev" aria-label="Foto anterior">‹</button>
+    <img class="lightbox-img" src="" alt="" />
+    <button class="lightbox-next" aria-label="Foto siguiente">›</button>
+  </div>
+</BaseLayout>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('.lightbox-img');
+    const closeBtn = lightbox.querySelector('.lightbox-close');
+    const prevBtn = lightbox.querySelector('.lightbox-prev');
+    const nextBtn = lightbox.querySelector('.lightbox-next');
+    const buttons = Array.from(document.querySelectorAll('.photo-btn'));
+    let currentIndex = 0;
+    function open(idx) {
+      currentIndex = idx;
+      lightboxImg.src = buttons[idx].dataset.src;
+      lightboxImg.alt = buttons[idx].querySelector('img').alt;
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function close() {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+    function next() { open((currentIndex + 1) % buttons.length); }
+    function prev() { open((currentIndex - 1 + buttons.length) % buttons.length); }
+    buttons.forEach((btn, idx) => btn.addEventListener('click', () => open(idx)));
+    closeBtn.addEventListener('click', close);
+    prevBtn.addEventListener('click', prev);
+    nextBtn.addEventListener('click', next);
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowRight') next();
+      if (e.key === 'ArrowLeft') prev();
+    });
+  });
+</script>
+
+<style>
+  .portfolio-hero { padding: 4rem 0 3rem; }
+  .lead { font-size: 1.1rem; margin-top: 1rem; }
+  .portfolio-container { max-width: 1400px; margin: 0 auto; padding: 0 1rem; }
+  .masonry { column-count: 3; column-gap: 1rem; }
+  @media (max-width: 900px) { .masonry { column-count: 2; } }
+  @media (max-width: 500px) { .masonry { column-count: 1; } }
+  .photo-btn {
+    width: 100%; padding: 0; margin: 0 0 1rem;
+    border: none; background: none; cursor: pointer;
+    break-inside: avoid; display: block; overflow: hidden;
+  }
+  .photo-btn img { width: 100%; height: auto; display: block; transition: opacity 0.3s, transform 0.5s; }
+  .photo-btn:hover img { opacity: 0.85; transform: scale(1.02); }
+  .portfolio-cta { padding: 4rem 0; }
+  .portfolio-cta p { margin-bottom: 1.5rem; }
+  .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center; z-index: 1000; }
+  .lightbox.open { display: flex; }
+  .lightbox-img { max-width: 92%; max-height: 92%; object-fit: contain; display: block; }
+  .lightbox button { background: rgba(255,255,255,0.1); color: white; border: none; cursor: pointer; font-size: 2rem; position: absolute; transition: background 0.2s; }
+  .lightbox button:hover { background: rgba(255,255,255,0.2); }
+  .lightbox-close { top: 1.5rem; right: 1.5rem; width: 48px; height: 48px; }
+  .lightbox-prev, .lightbox-next { top: 50%; transform: translateY(-50%); width: 56px; height: 56px; }
+  .lightbox-prev { left: 1.5rem; }
+  .lightbox-next { right: 1.5rem; }
+</style>
