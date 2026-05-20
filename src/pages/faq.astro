@@ -2,12 +2,16 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = 'FAQ · Questions fréquentes';
-const description = 'Vos questions sur mes prestations photo de mariage en Bretagne : tarifs, livraison, méthode, lieux, matériel. Réponses claires et directes.';
+const description = 'Vos questions sur mes prestations photo de mariage en Bretagne : tarifs, livraison, méthode, lieux, matériel, météo, cérémonies. Réponses claires et directes.';
 
 const faqs = [
   {
     q: "C'est quoi vos tarifs ?",
     a: "3 packs : Pack White à 1 500 €, Pack Black à 2 400 €, Pack Gold à 3 300 €. Le détail complet est sur la page Prestations & Tarifs.",
+  },
+  {
+    q: "Faites-vous des remises pour mariages hors saison ou en semaine ?",
+    a: "Oui, je propose 20 % de réduction pour les mariages du lundi au jeudi (hors jours fériés) et de novembre à mars.",
   },
   {
     q: "Qu'y a-t-il d'inclus dans le prix d'un Pack ?",
@@ -22,6 +26,10 @@ const faqs = [
     a: "Je sais que vous n'êtes pas habitué à l'objectif, j'essaye au mieux possible de me faire discret pour laisser place au naturel de la journée. J'aime prendre mon temps, observer et capturer les plus belles émotions. J'aime vous surprendre en variant prises de vues, angles et compositions.",
   },
   {
+    q: "Et si on est introvertis ou pas à l'aise devant l'objectif ?",
+    a: "Les couples à l'aise devant l'objectif sont un mythe ! L'idée ce n'est pas de voir ça comme un shooting, mais plutôt comme un bon moment que vous passerez tous les deux. Je vous donne quelques conseils, je vous place au bon endroit, et je vous laisse profiter de ce petit moment tous les deux, pour que le naturel prenne sa place.",
+  },
+  {
     q: "Vous intervenez dans toute la Bretagne ?",
     a: "Oui, Finistère, Morbihan, Côtes-d'Armor, Ille-et-Vilaine. Déplacement inclus partout en Bretagne. Hors Bretagne, faites-moi rêver, on en parle.",
   },
@@ -31,15 +39,23 @@ const faqs = [
   },
   {
     q: "Peut-on se rencontrer avant de prendre une décision ?",
-    a: "Avec plaisir. J'habite à Plouhinec (29) et je peux me déplacer sur Quimper ou aux alentours. On peut aussi faire ça en visio si vous êtes loin.",
+    a: "Avec plaisir. Si c'est possible, on se rencontre autour d'un café ou d'une bière. Habituellement je me déplace sur Quimper ou aux alentours, et si vous habitez loin, on peut organiser une visio ou un appel.",
   },
   {
     q: "Comment se passe la réservation ?",
-    a: "Une fois votre décision prise, je vous envoie le contrat. L'acompte pour réserver la date est de 30%. Virement, espèces ou chèque, comme vous préférez.",
+    a: "Une fois votre décision prise, je vous envoie le contrat. L'acompte pour réserver la date est de 30 %. Virement, espèces ou chèque, comme vous préférez.",
   },
   {
     q: "Et s'il y a un imprévu ?",
     a: "J'ai des photographes de confiance en backup pour les cas vraiment exceptionnels (accident, maladie grave). Mais en 9 ans, je n'ai jamais loupé un mariage :)",
+  },
+  {
+    q: "Comment ça se passe si nous avons deux cérémonies dans la journée ?",
+    a: "Si les deux cérémonies se suivent, ça ne change rien. Si une a lieu le matin, assurez-vous d'avoir les préparatifs dans votre formule.",
+  },
+  {
+    q: "Comment gérez-vous la météo capricieuse en Bretagne ?",
+    a: "J'ai toujours trouvé que les mariages sous la pluie avaient quelque chose en plus, il y a toujours une très belle énergie, le soleil se retrouve dans vos invités ! :) Pour les astuces, ce serait d'éviter les parapluies qui pourraient donner une autre teinte à votre peau, donc privilégier le blanc ou le transparent (mais attention, il y a des transparents qui donnent un effet arc-en-ciel). Dans tous les cas nous sommes en Bretagne, les domaines ont l'habitude de ces situations, il y a de la place à l'abri. Mon meilleur conseil serait de ne pas trop y penser, dans tous les cas vous passerez une très belle journée !",
   },
   {
     q: "Combien de temps pour recevoir les images ?",
@@ -51,7 +67,7 @@ const faqs = [
   },
   {
     q: "Est-ce possible d'avoir du Noir & Blanc ?",
-    a: "Chaque photo vous sera rendue en couleur ET en noir & blanc, systématiquement.",
+    a: "Toutes les photos vous seront rendues en couleur ET en noir et blanc !",
   },
   {
     q: "Quel matériel vous utilisez ?",
@@ -93,9 +109,7 @@ const faqSchema = {
       </div>
 
       <p class="text-center" style="margin-top: 3rem;">
-        Pour aller plus loin sur des sujets précis (prix, choix, délais, mariage en Bretagne),
-        voyez les <a href="/guides">guides détaillés</a>. Une autre question ?
-        <a href="/contact">Écrivez-moi</a>.
+        Une autre question ? <a href="/contact">Écrivez-moi</a>.
       </p>
     </div>
 
@@ -140,5 +154,6 @@ const faqSchema = {
   .faq-item p {
     margin-top: 0.5rem;
     color: var(--color-text-muted);
+    line-height: 1.65;
   }
 </style>
