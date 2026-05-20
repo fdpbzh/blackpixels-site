@@ -7,19 +7,19 @@ const description = 'Les critères qui comptent vraiment, les questions à poser
 const faqs = [
   {
     q: 'Faut-il un photographe local pour un mariage en Bretagne ?',
-    a: 'Pas obligatoirement, mais c\'est un vrai atout. Un photographe breton connaît la lumière atlantique (très différente de la lumière méditerranéenne ou continentale), les lieux récurrents — Roudouic, Keriolet, Lanniron, Kerhuel — et les contraintes météo locales. Il vient sans frais de déplacement, il dort chez lui le soir, et il peut faire un repérage gratuit avant le jour J.',
+    a: 'Pas obligatoire, mais c\'est un vrai atout. Un photographe breton connaît la lumière atlantique (très différente de la lumière du sud), les lieux récurrents comme le Roudouic, Keriolet, Lanniron ou Kerhuel, et les contraintes météo locales. Il vient sans frais de déplacement, il dort chez lui le soir, et il peut faire un repérage gratuit avant le jour J.',
   },
   {
     q: 'Combien de photographes faut-il rencontrer avant de choisir ?',
-    a: 'Trois, c\'est l\'idéal. Un seul, et vous n\'avez aucun point de comparaison. Plus de cinq, et vous vous perdez. Trois rendez-vous (en visio ou en personne) permettent de comparer les styles, les personnalités et les façons de travailler.',
+    a: 'Trois, c\'est l\'idéal. Un seul, et vous n\'avez aucun point de comparaison. Plus de cinq, et vous vous perdez. Trois rendez-vous (visio ou en personne) ça permet de comparer les styles, les personnalités et les façons de travailler.',
   },
   {
     q: 'Comment juger un portfolio de photographe de mariage ?',
-    a: 'Trois choses. D\'abord, regardez un mariage complet, pas seulement les "best of" — un best of cache souvent une journée moyenne. Ensuite, regardez les visages dans les moments forts (cérémonie, vin d\'honneur) : sont-ils vrais ou figés ? Enfin, regardez la cohérence d\'éclairage tout au long de la journée : un bon photographe maîtrise aussi bien le plein soleil que la lumière de soirée.',
+    a: 'Trois choses à regarder. D\'abord, demandez à voir un mariage complet, pas seulement les "best of". Un best of cache souvent une journée moyenne. Ensuite, regardez les visages dans les moments forts (cérémonie, vin d\'honneur) : ils sont vrais ou figés ? Enfin, regardez la cohérence d\'éclairage tout au long de la journée. Un bon photographe maîtrise aussi bien le plein soleil que la lumière de soirée.',
   },
   {
     q: 'Doit-on signer un contrat avec son photographe de mariage ?',
-    a: 'Toujours. Sans exception. Le contrat doit préciser la date, le lieu, les horaires de présence, le nombre de photos livrées, le délai de livraison, les droits d\'usage, et les conditions d\'annulation. S\'il n\'y a pas de contrat, il n\'y a pas de mariage. C\'est aussi simple que ça.',
+    a: 'Toujours. Sans exception. Le contrat doit préciser la date, le lieu, les horaires de présence, le nombre de photos livrées, le délai de livraison, les droits d\'usage, et les conditions d\'annulation. S\'il n\'y a pas de contrat, il n\'y a pas de mariage.',
   },
 ];
 
@@ -57,73 +57,80 @@ const faqSchema = {
       <h1>Comment choisir son photographe de mariage en Bretagne ?</h1>
 
       <p class="answer">
-        Le bon photographe combine quatre choses : un <strong>style qui correspond à votre sensibilité</strong>,
-        une <strong>expérience réelle</strong> (50+ mariages, pas trois), une <strong>personnalité avec laquelle
-        vous êtes à l'aise</strong>, et un <strong>contrat clair</strong>. Le reste — matériel, récompenses,
-        followers — est secondaire. En Bretagne, la connaissance des lieux et de la lumière atlantique est un
-        vrai atout supplémentaire.
+        Le bon photographe, c'est quatre choses qui se cumulent. Un <strong>style qui colle à
+        votre sensibilité</strong>, une <strong>expérience réelle</strong> (50 mariages ou plus,
+        pas trois), une <strong>personnalité avec laquelle vous êtes à l'aise</strong>, et un
+        <strong>contrat clair</strong>. Le reste (matériel, récompenses, abonnés Instagram) c'est secondaire.
+        En Bretagne, la connaissance des lieux et de la lumière atlantique est un vrai plus.
       </p>
 
       <h2>Les 5 critères qui comptent vraiment</h2>
 
       <h3>1. Le style photographique</h3>
       <p>
-        Reportage, posé, éditorial, fine art, sombre, lumineux : chaque photographe a un univers. Avant de
-        rencontrer qui que ce soit, sauvegardez 30 photos de mariage que vous aimez sur Pinterest ou Instagram.
-        Puis comparez avec le portfolio des photographes que vous contactez. Si vous ne ressentez rien en
-        regardant leur travail, vous ne ressentirez rien non plus en regardant vos propres photos dans 10 ans.
+        Reportage, posé, éditorial, fine art, sombre, lumineux : chaque photographe a son univers.
+        Avant de rencontrer qui que ce soit, sauvegardez 30 photos de mariage que vous aimez sur
+        Pinterest ou Instagram. Puis comparez avec le portfolio des photographes que vous
+        contactez. Si vous ne ressentez rien en regardant leur travail, vous ne ressentirez rien
+        non plus en regardant vos propres photos dans 10 ans.
       </p>
       <p>
-        Un piège classique : prendre un photographe à un style très différent du vôtre parce qu'il est
-        "techniquement bon". Vos photos ne seront pas mauvaises, mais elles ne vous ressembleront pas.
+        Le piège classique : prendre un photographe au style très différent du vôtre parce qu'il
+        est "techniquement bon". Vos photos ne seront pas mauvaises, mais elles ne vous
+        ressembleront pas.
       </p>
 
       <h3>2. L'expérience réelle, pas l'ancienneté affichée</h3>
       <p>
-        "10 ans d'expérience" ne veut rien dire si la personne fait 3 mariages par an. Demandez deux choses :
-        combien de mariages couvre-t-il par an, et combien depuis le début ? Un photographe avec 5 ans
-        d'activité et 100 mariages au compteur est généralement plus solide qu'un photographe avec 15 ans et 50.
+        "10 ans d'expérience" ne veut rien dire si la personne fait 3 mariages par an. Demandez
+        deux choses : combien de mariages il couvre par an, et combien depuis le début ? Un
+        photographe avec 5 ans d'activité et 100 mariages au compteur est en général plus solide
+        qu'un photographe avec 15 ans et 50.
       </p>
       <p>
-        Demandez aussi à voir un mariage complet, du matin au soir, pas seulement les meilleures images. C'est
-        dans les transitions, les moments creux, les lumières difficiles que vous voyez le vrai niveau de
-        quelqu'un.
+        Demandez aussi à voir un mariage complet, du matin au soir. Pas seulement les meilleures
+        images. C'est dans les transitions, les moments creux, les lumières difficiles que vous
+        voyez le vrai niveau.
       </p>
 
       <h3>3. Le feeling humain</h3>
       <p>
-        Votre photographe va passer 10 à 14 heures à côté de vous le jour le plus important de votre vie. Il sera
-        là quand vous pleurerez, quand vous danserez, quand vous serez nu·e en train de mettre la robe. Si vous
-        ne vous sentez pas à l'aise avec lui dès le premier rendez-vous, vous ne le serez pas plus le jour J.
+        Votre photographe va passer 10 à 14 heures à côté de vous le jour le plus important de
+        votre vie. Il sera là quand vous pleurerez, quand vous danserez, quand vous serez à
+        moitié nu·e en train de mettre la robe. Si vous ne vous sentez pas à l'aise avec lui dès
+        le premier rendez-vous, vous ne le serez pas plus le jour J.
       </p>
       <p>
-        Question simple à se poser après une rencontre : est-ce que j'aurais envie de prendre un café avec cette
-        personne en dehors de ce contexte ? Si la réponse est non, cherchez ailleurs.
+        Question simple à se poser après une rencontre : est-ce que j'aurais envie de prendre un
+        café avec cette personne en dehors de ce contexte ? Si la réponse est non, cherchez
+        ailleurs.
       </p>
 
       <h3>4. La logistique et le contrat</h3>
       <p>
-        Un professionnel sérieux vous remet un devis détaillé et un contrat. Le contrat doit préciser : date et
-        lieu du mariage, plage horaire de présence, nombre minimum de photos livrées, délai de livraison maximum,
-        droits d'usage des photos (privé, web, presse), conditions d'annulation et de report, et matériel de
-        secours en cas de panne. S'il vous propose un accord verbal ou une simple confirmation par email, fuyez.
+        Un pro sérieux vous remet un devis détaillé et un contrat. Le contrat doit préciser : la
+        date et le lieu, la plage horaire de présence, le nombre minimum de photos livrées, le
+        délai de livraison maximum, les droits d'usage des photos (privé, web, presse), les
+        conditions d'annulation et de report, et le matériel de secours en cas de panne. S'il
+        vous propose un accord verbal ou une simple confirmation par email, fuyez.
       </p>
 
       <h3>5. La connaissance du terrain breton</h3>
       <p>
-        Ce n'est pas un critère absolu, mais c'est un atout réel. Un photographe basé en Bretagne connaît la
-        lumière atlantique — très douce et changeante, rien à voir avec la lumière dure du sud — et a généralement
-        ses habitudes dans les lieux récurrents : Château de Keriolet, Ferme du Roudouic, Manoir de Kerhuel,
-        Orangerie de Lanniron, Manoir des Indes. Cette connaissance vous fait gagner du temps le jour J et
-        souvent plusieurs cadrages exclusifs qu'un photographe qui découvre le lieu n'identifierait pas.
+        Ce n'est pas un critère absolu, mais c'est un vrai plus. Un photographe basé en Bretagne
+        connaît la lumière atlantique, très douce et changeante, rien à voir avec la lumière
+        dure du sud. Et il a en général ses habitudes dans les lieux récurrents : Château de
+        Keriolet, Ferme du Roudouic, Manoir de Kerhuel, Orangerie de Lanniron, Manoir des
+        Indes. Cette connaissance vous fait gagner du temps le jour J, et souvent plusieurs
+        cadrages exclusifs qu'un photographe qui découvre le lieu ne verra pas.
       </p>
 
       <h2>Les 7 questions à poser en rendez-vous</h2>
       <ol>
         <li>Combien de mariages couvrez-vous par an ? <em>(Au-delà de 30, méfiance sur l'attention par client.)</em></li>
-        <li>Êtes-vous présent personnellement le jour J ou envoyez-vous un assistant ? <em>(Certaines marques sous-traitent.)</em></li>
-        <li>Quel est votre délai de livraison maximum ? <em>(2 à 6 semaines est raisonnable, au-delà c'est long.)</em></li>
-        <li>Combien de photos sont livrées en moyenne ? <em>(Pour une journée complète, comptez 300 à 700 selon le pack.)</em></li>
+        <li>Êtes-vous présent en personne le jour J ou envoyez-vous un assistant ? <em>(Certaines marques sous-traitent.)</em></li>
+        <li>Quel est votre délai de livraison maximum ? <em>(2 à 6 semaines est raisonnable. Au-delà c'est long.)</em></li>
+        <li>Combien de photos livrez-vous en moyenne ? <em>(Pour une journée complète, comptez 300 à 700 selon le pack.)</em></li>
         <li>Avez-vous du matériel de secours sur place ? <em>(Si non, vous prenez un risque inutile.)</em></li>
         <li>Que se passe-t-il si vous tombez malade le jour J ? <em>(Il doit avoir un réseau de photographes en backup.)</em></li>
         <li>Puis-je voir un mariage complet, pas seulement vos meilleures photos ?</li>
@@ -131,27 +138,32 @@ const faqSchema = {
 
       <h2>Les pièges classiques à éviter</h2>
       <p>
-        <strong>Choisir uniquement sur le prix.</strong> En photo de mariage, l'écart entre 1 200 € et 2 500 € est
-        souvent énorme en qualité. L'écart entre 2 500 € et 5 000 € est plus marginal. Si vous devez arbitrer,
-        sacrifiez sur la déco ou le menu — pas sur les photos. Vous trouverez le détail des fourchettes du marché
-        dans <a href="/guides/prix-photographe-mariage-france">le guide sur les prix</a>.
+        <strong>Choisir uniquement sur le prix.</strong> En photo de mariage, l'écart entre
+        1 200 € et 2 500 € est souvent énorme en qualité. L'écart entre 2 500 € et 5 000 € est
+        plus marginal. Si vous devez arbitrer, sacrifiez sur la déco ou le menu, pas sur les
+        photos. Vous trouverez le détail des fourchettes du marché dans
+        <a href="/guides/prix-photographe-mariage-france">le guide sur les prix</a>.
       </p>
       <p>
-        <strong>Se laisser séduire par Instagram uniquement.</strong> Instagram montre toujours les 1 % de
-        meilleures images, jamais les 99 % du quotidien. Demandez systématiquement à voir une livraison complète.
+        <strong>Se laisser séduire par Instagram uniquement.</strong> Instagram montre toujours
+        les 1 % de meilleures images, jamais les 99 % du quotidien. Demandez systématiquement à
+        voir une livraison complète.
       </p>
       <p>
-        <strong>Réserver trop tard.</strong> Les bons photographes bretons sont bookés 10 à 14 mois à l'avance
-        pour la saison d'été. Voir <a href="/guides/quand-reserver-photographe-mariage">le guide sur les délais</a>.
+        <strong>Réserver trop tard.</strong> Les bons photographes bretons sont bookés 10 à 14
+        mois à l'avance pour la saison d'été. Voir
+        <a href="/guides/quand-reserver-photographe-mariage">le guide sur les délais</a>.
       </p>
       <p>
-        <strong>Ne pas faire de rendez-vous physique ou visio.</strong> Échanger uniquement par mail ne vous dit
-        rien sur la personne. Demandez systématiquement un appel ou un café avant de signer.
+        <strong>Ne pas faire de rendez-vous physique ou visio.</strong> Échanger uniquement par
+        mail ne vous dit rien sur la personne. Demandez systématiquement un appel ou un café
+        avant de signer.
       </p>
       <p>
-        <strong>Confondre belles photos et bonne couverture.</strong> Un photographe peut faire de belles photos
-        de couple et rater complètement la cérémonie ou les regards des invités. Vérifiez qu'il a une vraie
-        approche reportage, pas seulement une approche "shooting".
+        <strong>Confondre belles photos et bonne couverture.</strong> Un photographe peut faire
+        de belles photos de couple et rater complètement la cérémonie ou les regards des
+        invités. Vérifiez qu'il a une vraie approche reportage, pas seulement une approche
+        "shooting".
       </p>
 
       <hr />
