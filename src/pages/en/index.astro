@@ -222,7 +222,18 @@ const description = 'Yohann Strullu, high-end wedding photographer based in Brit
     .strip-grid { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 600px) {
-    .hero-full { aspect-ratio: auto; min-height: 80vh; }
+    .hero-full { aspect-ratio: auto; }
+    .hero-full > img { position: static; width: 100%; height: auto; aspect-ratio: 16 / 9; }
+    .hero-overlay {
+      position: static;
+      height: auto;
+      background: transparent;
+      color: var(--color-text);
+      padding: 2.5rem 1.5rem 1rem;
+    }
+    .hero-eyebrow { color: var(--color-accent-dark); }
+    .hero-overlay h1 { color: var(--color-text); }
+    .hero-sub { color: var(--color-text-muted); }
     .strip-grid { grid-template-columns: 1fr; }
     .strip-grid img { aspect-ratio: 16 / 9; }
   }
