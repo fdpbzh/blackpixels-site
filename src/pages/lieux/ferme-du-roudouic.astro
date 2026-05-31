@@ -1,0 +1,177 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Photographe mariage à la Ferme du Roudouic, Concarneau';
+const description = 'Photographe de mariage à la Ferme du Roudouic (Concarneau, Finistère). Reportage au naturel, œil de cinéma. Un lieu que je connais bien : lumière, coins photo, conseils.';
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="lieu-hero">
+    <div class="container-narrow text-center">
+      <p class="eyebrow">Lieu de mariage · Concarneau · Finistère</p>
+      <h1>Photographe de mariage à la Ferme du Roudouic</h1>
+      <p class="lead text-muted">
+        Vous vous mariez à la Ferme du Roudouic ? C'est un lieu que je connais,
+        et que j'aime photographier. Voici ce que j'en retiens, et comment je le raconte en images.
+      </p>
+    </div>
+  </section>
+
+  <section class="lieu-photo-wide">
+    <img src="/images/couple-bord-mer.jpg" alt="Séance couple au coucher de soleil au bord de mer, près de Concarneau en Bretagne" width="580" height="326" />
+  </section>
+
+  <section class="lieu-bloc">
+    <div class="container lieu-grid">
+      <div>
+        <p class="eyebrow">Le lieu</p>
+        <h2>Un corps de ferme, à deux pas de la mer</h2>
+        <p>
+          La Ferme du Roudouic, c'est un ancien corps de ferme rénové, en lisière
+          d'un bois, à quelques minutes du port de Concarneau et du bord de mer.
+          Une grande cour intérieure fermée, un jardin, deux salles de réception
+          et un jardin d'hiver : de quoi recevoir jusqu'à environ 200 invités,
+          en intérieur comme en plein air.
+        </p>
+        <p>
+          C'est un lieu calme, entouré de verdure, mais à deux pas de la côte.
+          Cette proximité avec la mer, c'est aussi ce qui me parle : j'ai appris
+          à photographier face à l'océan, et la lumière de fin de journée par ici
+          est souvent magnifique.
+        </p>
+      </div>
+      <div>
+        <p class="eyebrow">Mon regard</p>
+        <h2>Ce que j'aime y photographier</h2>
+        <p>
+          La cour intérieure est idéale pour le cocktail et les photos de groupe :
+          tout le monde est réuni, à l'abri du vent, dans un beau cadre de pierre.
+        </p>
+        <p>
+          Pour la séance couple, j'aime profiter de la fin de journée et, quand
+          c'est possible, filer quelques minutes vers la côte. Une lumière douce,
+          le ciel breton, et on capte des images qui vous ressemblent.
+        </p>
+        <p>
+          Le soir, les vieilles pierres et les jeux de lumière de la salle se
+          prêtent bien au noir et blanc. Je me fais discret, et je laisse la fête
+          raconter son histoire :)
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="lieu-strip">
+    <img src="/images/groupes-famille.jpg" alt="Photos de groupe dans une cour de ferme en Bretagne" width="400" height="225" loading="lazy" />
+    <img src="/images/cocktail-moment.jpg" alt="Cocktail de mariage en extérieur en Bretagne" width="400" height="225" loading="lazy" />
+    <img src="/images/couple-paysage.jpg" alt="Séance couple dans un paysage breton" width="580" height="326" loading="lazy" />
+    <img src="/images/ambiance-soiree.jpg" alt="Ambiance de soirée de mariage, jeux de lumière" width="400" height="225" loading="lazy" />
+  </section>
+
+  <section class="lieu-infos">
+    <div class="container-narrow">
+      <p class="eyebrow text-center">Infos pratiques</p>
+      <div class="infos-grid">
+        <div>
+          <h3>Où</h3>
+          <p>13 rue de Kérose, Concarneau, Finistère (29).</p>
+        </div>
+        <div>
+          <h3>Capacité</h3>
+          <p>Jusqu'à environ 200 invités, plusieurs espaces intérieurs et extérieurs.</p>
+        </div>
+        <div>
+          <h3>Le lieu</h3>
+          <p><a href="https://www.roudouic.com" target="_blank" rel="noopener">roudouic.com ↗</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lieu-cta">
+    <div class="container-narrow text-center">
+      <p class="eyebrow">On en parle ?</p>
+      <h2>Un mariage prévu à la Ferme du Roudouic ?</h2>
+      <p>
+        Dites-moi votre date, je vous dirai si je suis disponible, et on prendra
+        le temps d'échanger sur votre journée.
+      </p>
+      <p class="cta-actions">
+        <a href="/contact" class="button">Me contacter</a>
+        <a href="/portfolio" class="button button-outline">Voir le portfolio</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .lieu-hero { padding: 5rem 0 2.5rem; }
+  .lieu-hero h1 { margin-bottom: 1.5rem; }
+  .lieu-hero .lead { font-size: 1.2rem; max-width: 44rem; margin: 0 auto; }
+
+  .lieu-photo-wide { padding: 0; }
+  .lieu-photo-wide img {
+    width: 100%;
+    aspect-ratio: 2.35 / 1;
+    object-fit: cover;
+    display: block;
+  }
+
+  .lieu-bloc { padding: 5rem 0; background: white; }
+  .lieu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .lieu-grid h2 { margin: 0.5rem 0 1.25rem; }
+  .lieu-grid p { margin-bottom: 1.1rem; }
+
+  .lieu-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0;
+  }
+  .lieu-strip img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    display: block;
+  }
+
+  .lieu-infos { padding: 5rem 0; }
+  .infos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2.5rem;
+    margin-top: 2rem;
+    text-align: center;
+  }
+  .infos-grid h3 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-accent-dark);
+    margin-bottom: 0.5rem;
+  }
+  .infos-grid p { color: var(--color-text-muted); margin: 0; }
+  .infos-grid a { color: var(--color-accent-dark); }
+
+  .lieu-cta { padding: 5rem 0; background: white; }
+  .lieu-cta h2 { margin: 0.5rem 0 1rem; }
+  .lieu-cta > div > p { max-width: 38rem; margin: 0 auto; color: var(--color-text-muted); }
+  .cta-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 900px) {
+    .lieu-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .lieu-strip { grid-template-columns: 1fr 1fr; }
+    .infos-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .lieu-photo-wide img { aspect-ratio: 16 / 9; }
+  }
+</style>
