@@ -7,7 +7,7 @@ export default defineConfig({
   site: 'https://www.blackpixels.fr',
   trailingSlash: 'ignore',
   build: {
-    format: 'file',
+    format: 'directory',
   },
   i18n: {
     defaultLocale: 'fr',
