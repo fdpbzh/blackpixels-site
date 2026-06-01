@@ -1,11 +1,117 @@
-# Redirections 301 — préservation du SEO Zenfolio
-# Format : /ancienne-url  /nouvelle-url  301
-# Cloudflare Pages applique automatiquement ce fichier.
+# Redirections 301 des anciens liens de galeries Zenfolio
+# vers la page portfolio client Pic-Time (annuaire + mot de passe).
+# Genere depuis zenfolio_slugs.csv.
 
-# À compléter après audit Search Console des 106 pages indexées.
-# Exemples :
-# /about.html         /about                  301
-# /contact.html       /contact                301
-# /portfolio-mariage  https://portfolio.blackpixels.fr/portfolio-mariage  301
-
-# Fallback : Cloudflare Pages sert dist/404.html automatiquement.
+/bf  https://clients.blackpixels.fr/  301
+/ac  https://clients.blackpixels.fr/  301
+/kt  https://clients.blackpixels.fr/  301
+/soda  https://clients.blackpixels.fr/  301
+/gpa  https://clients.blackpixels.fr/  301
+/jk  https://clients.blackpixels.fr/  301
+/lt  https://clients.blackpixels.fr/  301
+/leta  https://clients.blackpixels.fr/  301
+/frax  https://clients.blackpixels.fr/  301
+/apl  https://clients.blackpixels.fr/  301
+/aeta  https://clients.blackpixels.fr/  301
+/sn  https://clients.blackpixels.fr/  301
+/nf  https://clients.blackpixels.fr/  301
+/dp  https://clients.blackpixels.fr/  301
+/af  https://clients.blackpixels.fr/  301
+/vd  https://clients.blackpixels.fr/  301
+/lf  https://clients.blackpixels.fr/  301
+/aamn  https://clients.blackpixels.fr/  301
+/cs  https://clients.blackpixels.fr/  301
+/sg  https://clients.blackpixels.fr/  301
+/nk  https://clients.blackpixels.fr/  301
+/mh  https://clients.blackpixels.fr/  301
+/yd  https://clients.blackpixels.fr/  301
+/fjra  https://clients.blackpixels.fr/  301
+/kjm  https://clients.blackpixels.fr/  301
+/sjm  https://clients.blackpixels.fr/  301
+/dy  https://clients.blackpixels.fr/  301
+/fa  https://clients.blackpixels.fr/  301
+/cj  https://clients.blackpixels.fr/  301
+/fjb  https://clients.blackpixels.fr/  301
+/sas  https://clients.blackpixels.fr/  301
+/va  https://clients.blackpixels.fr/  301
+/lpa  https://clients.blackpixels.fr/  301
+/lp  https://clients.blackpixels.fr/  301
+/cl  https://clients.blackpixels.fr/  301
+/jm  https://clients.blackpixels.fr/  301
+/kb  https://clients.blackpixels.fr/  301
+/asp  https://clients.blackpixels.fr/  301
+/mett  https://clients.blackpixels.fr/  301
+/mcv  https://clients.blackpixels.fr/  301
+/asr  https://clients.blackpixels.fr/  301
+/mf  https://clients.blackpixels.fr/  301
+/la  https://clients.blackpixels.fr/  301
+/cm  https://clients.blackpixels.fr/  301
+/cw  https://clients.blackpixels.fr/  301
+/cr  https://clients.blackpixels.fr/  301
+/aa  https://clients.blackpixels.fr/  301
+/ct  https://clients.blackpixels.fr/  301
+/nico  https://clients.blackpixels.fr/  301
+/bi  https://clients.blackpixels.fr/  301
+/st  https://clients.blackpixels.fr/  301
+/av  https://clients.blackpixels.fr/  301
+/mt  https://clients.blackpixels.fr/  301
+/lq  https://clients.blackpixels.fr/  301
+/manonetalex  https://clients.blackpixels.fr/  301
+/marineetvincent  https://clients.blackpixels.fr/  301
+/aetd  https://clients.blackpixels.fr/  301
+/soleneetmartin  https://clients.blackpixels.fr/  301
+/paulineetfernando  https://clients.blackpixels.fr/  301
+/angeliqueetgauthier  https://clients.blackpixels.fr/  301
+/manonadrienttd  https://clients.blackpixels.fr/  301
+/paulinewilly  https://clients.blackpixels.fr/  301
+/morganeetjf  https://clients.blackpixels.fr/  301
+/juliettexavier  https://clients.blackpixels.fr/  301
+/margaritaetsebastien  https://clients.blackpixels.fr/  301
+/charlinewiliam  https://clients.blackpixels.fr/  301
+/leilajeremy  https://clients.blackpixels.fr/  301
+/vcr  https://clients.blackpixels.fr/  301
+/vanessaetsylvain  https://clients.blackpixels.fr/  301
+/mariesylvain  https://clients.blackpixels.fr/  301
+/paulinearnaud  https://clients.blackpixels.fr/  301
+/chloeetyann  https://clients.blackpixels.fr/  301
+/caroetju  https://clients.blackpixels.fr/  301
+/manonetadrien  https://clients.blackpixels.fr/  301
+/katelletalix  https://clients.blackpixels.fr/  301
+/melinaetstephan  https://clients.blackpixels.fr/  301
+/claireetromain  https://clients.blackpixels.fr/  301
+/ireneetfabien  https://clients.blackpixels.fr/  301
+/fannyjordan  https://clients.blackpixels.fr/  301
+/sophieethugo  https://clients.blackpixels.fr/  301
+/justineetguillaume  https://clients.blackpixels.fr/  301
+/anaisetclement  https://clients.blackpixels.fr/  301
+/maryseettristan  https://clients.blackpixels.fr/  301
+/julieetpierre  https://clients.blackpixels.fr/  301
+/laurianneetselah  https://clients.blackpixels.fr/  301
+/gaelleetremi  https://clients.blackpixels.fr/  301
+/aureliedavid  https://clients.blackpixels.fr/  301
+/camilleetmatthieu  https://clients.blackpixels.fr/  301
+/juliedavid  https://clients.blackpixels.fr/  301
+/laureneetpierre  https://clients.blackpixels.fr/  301
+/marinesebastien  https://clients.blackpixels.fr/  301
+/marionarnaud  https://clients.blackpixels.fr/  301
+/ameliemanu  https://clients.blackpixels.fr/  301
+/marineetyann  https://clients.blackpixels.fr/  301
+/cetm  https://clients.blackpixels.fr/  301
+/detk  https://clients.blackpixels.fr/  301
+/metm  https://clients.blackpixels.fr/  301
+/carlottaetjeanseb  https://clients.blackpixels.fr/  301
+/nhaetyannick  https://clients.blackpixels.fr/  301
+/annaetshuai  https://clients.blackpixels.fr/  301
+/manonetamit  https://clients.blackpixels.fr/  301
+/candiceetmael  https://clients.blackpixels.fr/  301
+/da  https://clients.blackpixels.fr/  301
+/oceaneetbenjamin  https://clients.blackpixels.fr/  301
+/alana  https://clients.blackpixels.fr/  301
+/francoiseetmael  https://clients.blackpixels.fr/  301
+/marionetthibault  https://clients.blackpixels.fr/  301
+/anaetludo  https://clients.blackpixels.fr/  301
+/floetsteph  https://clients.blackpixels.fr/  301
+/pa  https://clients.blackpixels.fr/  301
+/lj  https://clients.blackpixels.fr/  301
+/a-sp  https://clients.blackpixels.fr/  301
+/sodaprepa  https://clients.blackpixels.fr/  301
