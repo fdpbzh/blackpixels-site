@@ -115,3 +115,35 @@
 /lj  https://clients.blackpixels.fr/  301
 /a-sp  https://clients.blackpixels.fr/  301
 /sodaprepa  https://clients.blackpixels.fr/  301
+
+# --- Anciennes URL .html (ancien format) vers URL propres ---
+/en.html  /en  301
+/es.html  /es  301
+/about.html  /about  301
+/portfolio.html  /portfolio  301
+/prestations-tarifs.html  /prestations-tarifs  301
+/avis.html  /avis  301
+/faq.html  /faq  301
+/contact.html  /contact  301
+/exemple-reportage.html  /exemple-reportage  301
+/en/about.html  /en/about  301
+/en/portfolio.html  /en/portfolio  301
+/en/prestations-tarifs.html  /en/prestations-tarifs  301
+/en/avis.html  /en/avis  301
+/en/faq.html  /en/faq  301
+/en/contact.html  /en/contact  301
+/en/exemple-reportage.html  /en/exemple-reportage  301
+/es/about.html  /es/about  301
+/es/portfolio.html  /es/portfolio  301
+/es/prestations-tarifs.html  /es/prestations-tarifs  301
+/es/avis.html  /es/avis  301
+/es/faq.html  /es/faq  301
+/es/contact.html  /es/contact  301
+/es/exemple-reportage.html  /es/exemple-reportage  301
+
+# --- Anciennes sections Zenfolio ---
+/mariages  /portfolio  301
+/mariages/*  /portfolio  301
+/portfolio-mariage  /portfolio  301
+/clients  https://clients.blackpixels.fr/  301
+/clients/*  https://clients.blackpixels.fr/  301
