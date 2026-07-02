@@ -27,13 +27,6 @@ const fullSchema = {
   name: 'Black Pixels',
   image: 'https://www.blackpixels.fr/og-default.jpg',
   url: 'https://www.blackpixels.fr',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: String(reviewsData.aggregateRating),
-    bestRating: '5',
-    worstRating: '1',
-    reviewCount: String(reviewsData.totalReviews),
-  },
   review: schemaReviews,
 };
 ---
