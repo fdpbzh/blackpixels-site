@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Contrats — Administration Black Pixels</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --dark:#272727; --gray:#9e9e9e; --accent:#2e8b8b; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Lato',sans-serif; background:#f0efed; color:#555; }
+  header { background:var(--dark); padding:18px 16px; display:flex; align-items:center; gap:14px; }
+  header img { width:44px; height:44px; border-radius:50%; }
+  header .t { color:var(--gray); font-weight:300; font-size:18px; letter-spacing:4px; text-transform:uppercase; }
+  header button { margin-left:auto; background:none; border:1px solid #555; color:#999; padding:6px 12px;
+                  border-radius:6px; cursor:pointer; font-family:inherit; font-size:12px; }
+  main { max-width:980px; margin:0 auto; padding:24px 16px 60px; }
+  .carte { background:#fff; border-radius:10px; padding:26px 24px; margin-top:20px; box-shadow:0 2px 10px rgba(0,0,0,.06); }
+  h2 { font-size:13px; letter-spacing:3px; text-transform:uppercase; color:#333; font-weight:600;
+       border-bottom:1px solid #eee; padding-bottom:10px; margin-bottom:16px; }
+  label { display:block; font-size:12px; letter-spacing:1px; text-transform:uppercase; color:#888; font-weight:600; margin:14px 0 4px; }
+  input { width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:6px; font-size:15px; font-family:inherit; color:#222; background:#fafafa; }
+  input:focus { outline:none; border-color:var(--accent); background:#fff; }
+  input[readonly] { background:#f2f2f2; color:#777; }
+  .grille { display:grid; grid-template-columns:repeat(3,1fr); gap:0 16px; }
+  .grille2 { display:grid; grid-template-columns:repeat(2,1fr); gap:0 16px; }
+  @media (max-width:640px){ .grille,.grille2 { grid-template-columns:1fr; } }
+  .btn { margin-top:20px; padding:13px 26px; background:var(--dark); color:#fff; border:none; border-radius:8px;
+         font-size:14px; letter-spacing:2px; text-transform:uppercase; font-family:inherit; font-weight:600; cursor:pointer; }
+  .btn:disabled { opacity:.45; }
+  .btn.mini { padding:6px 10px; font-size:11px; letter-spacing:1px; margin:0; }
+  .btn.vert { background:var(--accent); }
+  .btn.rouge { background:#b23a3a; }
+  .erreur, .info { padding:12px 14px; border-radius:6px; margin-top:14px; font-size:14px; display:none; }
+  .erreur { background:#fdecec; color:#b23a3a; }
+  .info { background:#e8f4ef; color:#1e6b4f; }
+  .lien-box { display:none; margin-top:16px; background:#f4faf9; border:1px solid #cfe7e4; border-radius:8px; padding:16px; }
+  .lien-box code { display:block; background:#fff; border:1px solid #ddd; border-radius:6px; padding:10px;
+                   font-size:13px; word-break:break-all; margin:10px 0; }
+  table { width:100%; border-collapse:collapse; font-size:14px; }
+  th { text-align:left; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#999; padding:8px 8px; border-bottom:2px solid #eee; }
+  td { padding:10px 8px; border-bottom:1px solid #f0f0f0; color:#333; vertical-align:middle; }
+  .badge { display:inline-block; padding:3px 10px; border-radius:20px; font-size:11px; font-weight:700; letter-spacing:1px; }
+  .badge.envoye { background:#fdf3e3; color:#a8730a; }
+  .badge.signe { background:#e5f5ec; color:#1e7a48; }
+  .actions { display:flex; gap:6px; flex-wrap:wrap; }
+  #app { display:none; }
+</style>
+</head>
+<body>
+<header>
+  <img src="logo.png" alt="">
+  <div class="t">Contrats &mdash; Admin</div>
+  <button id="deconnexion" style="display:none">Déconnexion</button>
+</header>
+
+<main>
+  <!-- ================= LOGIN ================= -->
+  <div id="login" class="carte" style="max-width:440px;margin:40px auto">
+    <h2>Connexion</h2>
+    <label>E-mail</label><input id="l-email" type="email" value="blackpixels.fr@gmail.com">
+    <label>Mot de passe</label><input id="l-pass" type="password">
+    <div class="erreur" id="l-erreur"></div>
+    <div class="info" id="l-info"></div>
+    <button class="btn" id="l-connexion">Se connecter</button>
+    <button class="btn vert" id="l-creer" style="margin-left:8px">Créer mon compte</button>
+    <p style="font-size:12px;color:#999;margin-top:14px">
+      Première visite : choisissez un mot de passe puis « Créer mon compte ».
+      Un email de confirmation vous sera envoyé (à faire une seule fois).
+    </p>
+  </div>
+
+  <!-- ================= APP ================= -->
+  <div id="app">
+    <form class="carte" id="nouveau">
+      <h2>Nouveau contrat</h2>
+      <div class="grille">
+        <div><label>Nom du dossier *</label><input id="n-titre" placeholder="Emma & Lucas" required></div>
+        <div><label>Date du mariage *</label><input id="n-date" placeholder="18/09/2027" required></div>
+        <div><label>Forfait *</label><input id="n-forfait" list="forfaits" placeholder="Pack Black" required>
+          <datalist id="forfaits"><option>Pack Black</option><option>Pack Pixels</option></datalist></div>
+      </div>
+      <div class="grille">
+        <div><label>Prix TTC (€) *</label><input id="n-prix" type="number" min="0" step="1" required></div>
+        <div><label>Acompte (%)</label><input id="n-acompte-pct" type="number" min="0" max="100" value="30"></div>
+        <div><label>Acompte (€) — auto</label><input id="n-acompte-eur" readonly></div>
+      </div>
+      <div class="grille">
+        <div><label>Solde (%) — auto</label><input id="n-solde-pct" readonly></div>
+        <div><label>Solde (€) — auto</label><input id="n-solde-eur" readonly></div>
+        <div><label>Délai de livraison</label><input id="n-delai" value="deux semaines"></div>
+      </div>
+      <div class="grille2">
+        <div><label>Signé (vous) à</label><input id="n-lieu" value="Plouhinec"></div>
+        <div><label>Signé (vous) le</label><input id="n-datesig"></div>
+      </div>
+      <div class="erreur" id="n-erreur"></div>
+      <button class="btn" id="n-creer" type="submit">Créer le contrat</button>
+
+      <div class="lien-box" id="lien-box">
+        <b style="color:#1e6b4f">Contrat créé — envoyez ce lien aux mariés :</b>
+        <code id="lien-url"></code>
+        <button type="button" class="btn mini vert" id="lien-copier">Copier le lien</button>
+        <a id="lien-mail" style="margin-left:8px"><button type="button" class="btn mini">Ouvrir un email pré-rempli</button></a>
+      </div>
+    </form>
+
+    <div class="carte">
+      <h2>Suivi des contrats</h2>
+      <div style="overflow-x:auto">
+      <table>
+        <thead><tr><th>Dossier</th><th>Mariage</th><th>Forfait</th><th>Prix</th><th>Statut</th><th>Actions</th></tr></thead>
+        <tbody id="liste"></tbody>
+      </table>
+      </div>
+      <p id="vide" style="display:none;color:#999;font-size:14px;padding:10px 0">Aucun contrat pour le moment.</p>
+    </div>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script src="config.js"></script>
+<script src="pdf-contrat.js"></script>
+<script>
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const $ = id => document.getElementById(id);
+
+// ---------- auth ----------
+async function majSession() {
+  const { data: { session } } = await sb.auth.getSession();
+  const ok = !!session;
+  $('login').style.display = ok ? 'none' : 'block';
+  $('app').style.display = ok ? 'block' : 'none';
+  $('deconnexion').style.display = ok ? 'block' : 'none';
+  if (ok) { $('n-datesig').value = new Date().toLocaleDateString('fr-FR'); chargerListe(); }
+}
+$('l-connexion').onclick = async () => {
+  const { error } = await sb.auth.signInWithPassword({ email: $('l-email').value, password: $('l-pass').value });
+  if (error) { $('l-erreur').textContent = error.message; $('l-erreur').style.display = 'block'; }
+  else majSession();
+};
+$('l-creer').onclick = async () => {
+  const { error } = await sb.auth.signUp({ email: $('l-email').value, password: $('l-pass').value });
+  const el = error ? $('l-erreur') : $('l-info');
+  el.textContent = error ? error.message :
+    'Compte créé ! Cliquez sur le lien de confirmation reçu par email, puis connectez-vous.';
+  el.style.display = 'block';
+};
+$('deconnexion').onclick = async () => { await sb.auth.signOut(); majSession(); };
+
+// ---------- calculs auto ----------
+function calc() {
+  const prix = parseFloat($('n-prix').value) || 0;
+  const pct = parseFloat($('n-acompte-pct').value) || 0;
+  const acompte = Math.round(prix * pct / 100);
+  $('n-acompte-eur').value = prix ? acompte : '';
+  $('n-solde-pct').value = prix ? (100 - pct) : '';
+  $('n-solde-eur').value = prix ? (prix - acompte) : '';
+}
+$('n-prix').addEventListener('input', calc);
+$('n-acompte-pct').addEventListener('input', calc);
+
+// ---------- création ----------
+$('nouveau').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  calc();
+  $('n-erreur').style.display = 'none';
+  const btn = $('n-creer'); btn.disabled = true;
+  const ligne = {
+    titre: $('n-titre').value.trim(),
+    date_mariage: $('n-date').value.trim(),
+    forfait: $('n-forfait').value.trim(),
+    prix: $('n-prix').value,
+    acompte_pct: $('n-acompte-pct').value,
+    acompte_eur: $('n-acompte-eur').value,
+    solde_pct: $('n-solde-pct').value,
+    solde_eur: $('n-solde-eur').value,
+    delai_livraison: $('n-delai').value.trim() || 'deux semaines',
+    photographe_lieu: $('n-lieu').value.trim(),
+    photographe_date: $('n-datesig').value.trim()
+  };
+  const { data, error } = await sb.from('contracts').insert(ligne).select().single();
+  btn.disabled = false;
+  if (error) { $('n-erreur').textContent = error.message; $('n-erreur').style.display = 'block'; return; }
+  montrerLien(data);
+  chargerListe();
+});
+
+function lienPour(c) {
+  return location.href.replace(/admin\.html.*$/, '') + '#' + c.token;
+}
+function montrerLien(c) {
+  const url = lienPour(c);
+  $('lien-box').style.display = 'block';
+  $('lien-url').textContent = url;
+  $('lien-copier').onclick = () => navigator.clipboard.writeText(url);
+  const sujet = encodeURIComponent('Votre contrat photo — Black Pixels');
+  const corps = encodeURIComponent(
+`Bonjour,
+
+Voici votre contrat pour la couverture photo de votre mariage.
+Vous pouvez le lire, le remplir et le signer directement en ligne :
+
+${url}
+
+Une fois signé, vous pourrez le télécharger en PDF.
+
+À très vite,
+Yohann — Black Pixels`);
+  $('lien-mail').href = `mailto:?subject=${sujet}&body=${corps}`;
+}
+
+// ---------- liste ----------
+async function chargerListe() {
+  const { data, error } = await sb.from('contracts').select('*').order('created_at', { ascending: false });
+  if (error) return;
+  $('vide').style.display = data.length ? 'none' : 'block';
+  $('liste').innerHTML = data.map(c => `
+    <tr>
+      <td><b>${c.titre}</b><br><small style="color:#999">créé le ${new Date(c.created_at).toLocaleDateString('fr-FR')}</small></td>
+      <td>${c.date_mariage}</td>
+      <td>${c.forfait}</td>
+      <td>${c.prix} €</td>
+      <td><span class="badge ${c.status}">${c.status === 'signe' ? 'Signé' : 'Envoyé'}</span>
+        ${c.signed_at ? `<br><small style="color:#999">le ${new Date(c.signed_at).toLocaleDateString('fr-FR')}</small>` : ''}</td>
+      <td class="actions">
+        <button class="btn mini" onclick="copierLien('${c.id}')">Copier lien</button>
+        ${c.status === 'signe' ? `<button class="btn mini vert" onclick="pdf('${c.id}')">PDF</button>` : ''}
+        <button class="btn mini rouge" onclick="suppr('${c.id}')">✕</button>
+      </td>
+    </tr>`).join('');
+  window._contrats = Object.fromEntries(data.map(c => [c.id, c]));
+}
+window.copierLien = id => navigator.clipboard.writeText(lienPour(window._contrats[id]));
+window.pdf = async id => {
+  const c = window._contrats[id];
+  telechargerPdf(await genererPdfContrat(c), nomFichierContrat(c));
+};
+window.suppr = async id => {
+  const c = window._contrats[id];
+  if (!confirm(`Supprimer le contrat « ${c.titre} » ? Cette action est définitive.`)) return;
+  await sb.from('contracts').delete().eq('id', id);
+  chargerListe();
+};
+
+sb.auth.onAuthStateChange(() => majSession());
+majSession();
+</script>
+</body>
+</html>

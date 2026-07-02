@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Contrat — Black Pixels</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --dark:#272727; --gray:#9e9e9e; --body:#555; --accent:#2e8b8b; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Lato',sans-serif; background:#f0efed; color:var(--body); }
+  header { background:var(--dark); padding:26px 16px 70px; text-align:center; }
+  header .titre { color:var(--gray); font-weight:300; font-size:26px; letter-spacing:8px; text-transform:uppercase; }
+  header .sous { color:#777; font-weight:300; font-size:13px; letter-spacing:4px; margin-top:6px; text-transform:uppercase; }
+  .logo { width:96px; height:96px; border-radius:50%; margin:-48px auto 0; display:block; box-shadow:0 4px 16px rgba(0,0,0,.25); position:relative; }
+  main { max-width:680px; margin:0 auto; padding:24px 16px 60px; }
+  .carte { background:#fff; border-radius:10px; padding:26px 24px; margin-top:20px; box-shadow:0 2px 10px rgba(0,0,0,.06); }
+  h2 { font-size:13px; letter-spacing:3px; text-transform:uppercase; color:#333; font-weight:600;
+       border-bottom:1px solid #eee; padding-bottom:10px; margin-bottom:16px; }
+  .recap { display:grid; grid-template-columns:1fr 1fr; gap:12px 18px; }
+  .recap div b { display:block; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#999; font-weight:600; margin-bottom:2px; }
+  .recap div span { font-size:16px; color:#222; font-weight:600; }
+  details { margin-top:14px; }
+  summary { cursor:pointer; color:var(--accent); font-weight:600; font-size:14px; }
+  .articles p { font-size:13.5px; line-height:1.55; margin:10px 0; }
+  .articles h3 { font-size:13px; color:#333; margin-top:14px; }
+  label { display:block; font-size:12px; letter-spacing:1px; text-transform:uppercase; color:#888; font-weight:600; margin:14px 0 4px; }
+  input { width:100%; padding:11px 12px; border:1px solid #ddd; border-radius:6px; font-size:16px; font-family:inherit; color:#222; background:#fafafa; }
+  input:focus { outline:none; border-color:var(--accent); background:#fff; }
+  .deux { display:grid; grid-template-columns:1fr 1fr; gap:0 14px; }
+  @media (max-width:520px){ .deux { grid-template-columns:1fr; } .recap { grid-template-columns:1fr; } }
+  .pad-wrap { border:2px dashed #bbb; border-radius:8px; background:#fbfbfa; position:relative; }
+  canvas#pad { width:100%; height:180px; display:block; touch-action:none; }
+  .pad-hint { position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+              color:#c5c5c5; font-size:14px; pointer-events:none; letter-spacing:1px; }
+  .effacer { background:none; border:none; color:var(--accent); font-size:13px; cursor:pointer; margin-top:6px; font-family:inherit; }
+  .consent { display:flex; gap:10px; align-items:flex-start; margin-top:18px; font-size:14px; line-height:1.5; color:#444; }
+  .consent input { width:18px; height:18px; margin-top:2px; }
+  .btn { display:block; width:100%; margin-top:22px; padding:15px; background:var(--dark); color:#fff;
+         border:none; border-radius:8px; font-size:16px; letter-spacing:2px; text-transform:uppercase;
+         font-family:inherit; font-weight:600; cursor:pointer; }
+  .btn:disabled { opacity:.45; cursor:not-allowed; }
+  .btn.secondaire { background:var(--accent); }
+  .erreur { background:#fdecec; color:#b23a3a; padding:12px 14px; border-radius:6px; margin-top:16px; font-size:14px; display:none; }
+  .succes-icone { font-size:44px; text-align:center; }
+  .centre { text-align:center; }
+  footer { text-align:center; font-size:12px; color:#aaa; padding:20px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="titre">Contrat</div>
+  <div class="sous">Prestation photo &mdash; mariage</div>
+</header>
+<img class="logo" src="logo.png" alt="Black Pixels">
+
+<main>
+  <div id="chargement" class="carte centre">Chargement du contrat…</div>
+
+  <div id="invalide" class="carte centre" style="display:none">
+    <div class="succes-icone">🤔</div>
+    <p style="margin-top:10px">Ce lien de contrat n'est pas valide.<br>
+    Contactez Yohann : <a href="mailto:blackpixels.fr@gmail.com">blackpixels.fr@gmail.com</a></p>
+  </div>
+
+  <div id="contenu" style="display:none">
+    <div class="carte">
+      <h2>Votre prestation</h2>
+      <div class="recap">
+        <div><b>Date du mariage</b><span id="r-date"></span></div>
+        <div><b>Forfait</b><span id="r-forfait"></span></div>
+        <div><b>Prix TTC</b><span id="r-prix"></span></div>
+        <div><b>Acompte à la signature</b><span id="r-acompte"></span></div>
+        <div><b>Solde le jour du mariage</b><span id="r-solde"></span></div>
+        <div><b>Livraison</b><span id="r-delai"></span></div>
+      </div>
+      <details>
+        <summary>Lire le contrat complet</summary>
+        <div class="articles" id="articles"></div>
+      </details>
+    </div>
+
+    <form class="carte" id="form">
+      <h2>Vos informations</h2>
+      <div class="deux">
+        <div><label>Nom et prénom de la mariée *</label><input id="f-mariee" required autocomplete="name"></div>
+        <div><label>Nom et prénom du marié *</label><input id="f-marie" required autocomplete="name"></div>
+      </div>
+      <label>Adresse *</label><input id="f-adresse" required autocomplete="street-address">
+      <div class="deux">
+        <div><label>Code postal *</label><input id="f-cp" required inputmode="numeric" autocomplete="postal-code"></div>
+        <div><label>Ville *</label><input id="f-ville" required autocomplete="address-level2"></div>
+      </div>
+      <div class="deux">
+        <div><label>Mobile mariée</label><input id="f-mob1" inputmode="tel" autocomplete="tel"></div>
+        <div><label>Mobile marié</label><input id="f-mob2" inputmode="tel"></div>
+      </div>
+      <label>E-mail *</label><input id="f-email" type="email" required autocomplete="email">
+
+      <h2 style="margin-top:28px">Signature</h2>
+      <div class="deux">
+        <div><label>Fait à *</label><input id="f-lieu" required></div>
+        <div><label>Le</label><input id="f-datesig" readonly></div>
+      </div>
+      <label>Signez ci-dessous (au doigt ou à la souris)</label>
+      <div class="pad-wrap">
+        <canvas id="pad"></canvas>
+        <div class="pad-hint" id="pad-hint">✎ &nbsp;Votre signature ici</div>
+      </div>
+      <button type="button" class="effacer" id="effacer">Effacer la signature</button>
+
+      <div class="consent">
+        <input type="checkbox" id="consent">
+        <label for="consent" style="all:unset;cursor:pointer">
+          Nous avons lu l'intégralité du contrat et les Conditions Générales de Vente, et nous le signons
+          électroniquement avec la mention <b>« Bon pour accord »</b>.
+        </label>
+      </div>
+
+      <div class="erreur" id="erreur"></div>
+      <button class="btn" id="valider" type="submit">Signer et valider le contrat</button>
+    </form>
+  </div>
+
+  <div id="signe" class="carte centre" style="display:none">
+    <div class="succes-icone">✓</div>
+    <h2 style="border:none;margin-top:8px">Contrat signé</h2>
+    <p id="signe-detail" style="font-size:14px;line-height:1.6"></p>
+    <button class="btn secondaire" id="retelecharger" style="max-width:340px;margin:22px auto 0">
+      Télécharger le contrat (PDF)
+    </button>
+  </div>
+</main>
+<footer>Black Pixels — Yohann Strullu, photographe · Plouhinec</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
+<script src="config.js"></script>
+<script src="pdf-contrat.js"></script>
+<script>
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const $ = id => document.getElementById(id);
+let contrat = null;
+
+const ARTICLES = (c) => `
+<h3>Article 1 - Objet du contrat</h3>
+<p>Les clients ont souhaité faire appel à Black Pixels pour la couverture photo de leur mariage,
+dont la date est précisée ci-après : <b>${c.date_mariage}</b>.</p>
+<h3>Article 2 - Choix du forfait - Prix</h3>
+<p>Parmi les différents forfaits proposés par la société, les clients ont fait choix du forfait suivant :
+« <b>${c.forfait}</b> » pour un prix de <b>${c.prix} €</b>. Ce montant s'entend TTC.</p>
+<h3>Article 3 - Conditions de paiement</h3>
+<p>À la signature du contrat, un acompte de <b>${c.acompte_pct} % (${c.acompte_eur} €)</b> du montant total
+sera versé par chèque (encaissable tout de suite), virement ou en espèces, et le reste dû :
+<b>${c.solde_pct} % (${c.solde_eur} €)</b> le jour du mariage.
+La date ne sera réservée que lors de l'encaissement de l'acompte.</p>
+<h3>Article 4 - Post Production</h3>
+<p>Black Pixels s'engage à prendre en compte les demandes particulières en amont du jour J.
+Les clients s'engagent à lui donner entière confiance pour la partie Post Production.
+Une fois les images livrées, les clients pourront rédiger toutes les modifications exigées
+dans un seul et même email : blackpixels.fr@gmail.com.
+Black Pixels s'engage à effectuer ces modifications dans la mesure du possible et du raisonnable.
+Toute modification supplémentaire par la suite fera l'objet d'un devis.</p>
+<h3>Article 5 - Délai de livraison</h3>
+<p>À compter du jour suivant la date du mariage : <b>${c.delai_livraison}</b>.</p>
+<h3>Article 6 - Informations complémentaires</h3>
+<p>1. Les frais de déplacement sont définis au préalable, offerts en Bretagne.<br>
+2. L'acompte constitue un premier versement à valoir sur le prix total du reportage.
+Il manifeste la preuve d'un engagement ferme et irrévocable des parties du contrat.</p>`;
+
+// ---- signature pad ----
+let pad;
+function initPad() {
+  const canvas = $('pad');
+  const ratio = Math.max(window.devicePixelRatio || 1, 1);
+  canvas.width = canvas.offsetWidth * ratio;
+  canvas.height = canvas.offsetHeight * ratio;
+  canvas.getContext('2d').scale(ratio, ratio);
+  pad = new SignaturePad(canvas, { penColor: '#1a1a3a', minWidth: 1, maxWidth: 2.2 });
+  pad.addEventListener('beginStroke', () => $('pad-hint').style.display = 'none');
+}
+$('effacer')?.addEventListener('click', () => { pad.clear(); $('pad-hint').style.display = 'flex'; });
+
+function montrerSigne(c) {
+  $('contenu').style.display = 'none';
+  $('signe').style.display = 'block';
+  const d = c.signed_at ? new Date(c.signed_at).toLocaleDateString('fr-FR') : '';
+  $('signe-detail').innerHTML =
+    `Le contrat de <b>${[c.nom_mariee, c.nom_marie].filter(Boolean).join(' & ')}</b>` +
+    ` a bien été signé le <b>${d}</b>.<br>Vous pouvez le télécharger et le conserver.`;
+  $('retelecharger').onclick = async () => {
+    $('retelecharger').disabled = true;
+    try { telechargerPdf(await genererPdfContrat(c), nomFichierContrat(c)); }
+    finally { $('retelecharger').disabled = false; }
+  };
+}
+
+async function charger() {
+  const token = location.hash.slice(1).trim();
+  if (!token) { $('chargement').style.display='none'; $('invalide').style.display='block'; return; }
+  const { data, error } = await sb.rpc('get_contract', { p_token: token });
+  $('chargement').style.display = 'none';
+  if (error || !data) { $('invalide').style.display = 'block'; return; }
+  contrat = data;
+  if (data.status === 'signe') { montrerSigne(data); return; }
+
+  $('contenu').style.display = 'block';
+  $('r-date').textContent = data.date_mariage;
+  $('r-forfait').textContent = data.forfait;
+  $('r-prix').textContent = data.prix + ' €';
+  $('r-acompte').textContent = `${data.acompte_pct} % — ${data.acompte_eur} €`;
+  $('r-solde').textContent = `${data.solde_pct} % — ${data.solde_eur} €`;
+  $('r-delai').textContent = data.delai_livraison;
+  $('articles').innerHTML = ARTICLES(data);
+  $('f-datesig').value = new Date().toLocaleDateString('fr-FR');
+  initPad();
+}
+
+$('form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const err = $('erreur');
+  err.style.display = 'none';
+  if (pad.isEmpty()) { err.textContent = 'Merci de signer dans le cadre prévu.'; err.style.display='block'; return; }
+  if (!$('consent').checked) { err.textContent = 'Merci de cocher la case « Bon pour accord » pour valider.'; err.style.display='block'; return; }
+
+  const btn = $('valider');
+  btn.disabled = true; btn.textContent = 'Enregistrement…';
+  try {
+    const { data, error } = await sb.rpc('sign_contract', {
+      p_token: location.hash.slice(1).trim(),
+      p_nom_mariee: $('f-mariee').value.trim(),
+      p_nom_marie: $('f-marie').value.trim(),
+      p_adresse: $('f-adresse').value.trim(),
+      p_code_postal: $('f-cp').value.trim(),
+      p_ville: $('f-ville').value.trim(),
+      p_mobile_mariee: $('f-mob1').value.trim(),
+      p_mobile_marie: $('f-mob2').value.trim(),
+      p_email: $('f-email').value.trim(),
+      p_clients_lieu: $('f-lieu').value.trim(),
+      p_clients_date: $('f-datesig').value,
+      p_signature_png: pad.toDataURL('image/png')
+    });
+    if (error) throw error;
+    montrerSigne(data);
+    telechargerPdf(await genererPdfContrat(data), nomFichierContrat(data));
+  } catch (ex) {
+    err.textContent = 'Erreur : ' + (ex.message || 'enregistrement impossible. Réessayez.');
+    err.style.display = 'block';
+    btn.disabled = false; btn.textContent = 'Signer et valider le contrat';
+  }
+});
+
+charger();
+</script>
+</body>
+</html>
