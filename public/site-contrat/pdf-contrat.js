@@ -11,7 +11,7 @@ async function genererPdfContrat(c) {
   const form = doc.getForm();
   const set = (n, v) => { try { form.getTextField(n).setText(v || ''); } catch (e) {} };
 
-  // Page 1 — clients
+  // Page 1 - clients
   set('nom_mariee', c.nom_mariee);
   set('nom_marie', c.nom_marie);
   set('adresse', c.adresse);
@@ -20,8 +20,13 @@ async function genererPdfContrat(c) {
   set('mobile_mariee', c.mobile_mariee);
   set('mobile_marie', c.mobile_marie);
   set('email', c.email);
+  set('lieu_reception', c.lieu_reception);
 
-  // Page 2 — photographe
+  // Page 3 : choix de diffusion des images
+  set('droit_image', c.droit_image === true ? 'autorisée' : c.droit_image === false ? 'refusée' : '');
+
+  // Page 2 - photographe
+  set('prestation', c.prestation || 'photo');
   set('date_mariage', c.date_mariage);
   set('forfait', c.forfait);
   set('prix', c.prix);
@@ -40,11 +45,11 @@ async function genererPdfContrat(c) {
     const page = doc.getPages()[1];
     const font = await doc.embedFont(StandardFonts.Helvetica);
 
-    // Intérieur de la zone (repère PDF, origine en bas à gauche)
-    page.drawRectangle({ x: 342, y: 25.5, width: 196, height: 41, color: rgb(1, 1, 1) });
+    // Intérieur de la zone en pointillés (repère PDF, origine en bas à gauche)
+    page.drawRectangle({ x: 332, y: 53.5, width: 196, height: 70, color: rgb(0.98, 0.973, 0.957) });
 
     const png = await doc.embedPng(c.signature_png);
-    const box = { x: 346, y: 34, w: 188, h: 30 };
+    const box = { x: 336, y: 66, w: 188, h: 52 };
     const s = Math.min(box.w / png.width, box.h / png.height, 1);
     const w = png.width * s, h = png.height * s;
     page.drawImage(png, {
@@ -57,11 +62,11 @@ async function genererPdfContrat(c) {
     const horo = c.signed_at
       ? new Date(c.signed_at).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' })
       : '';
-    const mention = `Bon pour accord — ${noms}` + (horo ? ` — signé électroniquement le ${horo}` : '');
-    const size = 5.2;
+    const mention = `Bon pour accord - ${noms}` + (horo ? ` - signé électroniquement le ${horo}` : '');
+    const size = 5.5;
     const tw = font.widthOfTextAtSize(mention, size);
     page.drawText(mention, {
-      x: 440 - tw / 2, y: 27, size, font, color: rgb(0.35, 0.35, 0.35)
+      x: 430 - tw / 2, y: 57, size, font, color: rgb(0.35, 0.35, 0.35)
     });
   }
 

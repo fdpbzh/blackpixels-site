@@ -4,56 +4,65 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Contrat — Black Pixels</title>
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700&display=swap" rel="stylesheet">
+<title>Contrat - Black Pixels</title>
 <style>
-  :root { --dark:#272727; --gray:#9e9e9e; --body:#555; --accent:#2e8b8b; }
+  @font-face { font-family:'Cormorant Garamond'; font-weight:600; font-display:swap;
+    src:url('/fonts/cormorant-garamond-latin-600-normal.woff2') format('woff2'); }
+  @font-face { font-family:'Cormorant Garamond'; font-weight:500; font-display:swap;
+    src:url('/fonts/cormorant-garamond-latin-500-normal.woff2') format('woff2'); }
+  @font-face { font-family:'Inter'; font-weight:400; font-display:swap;
+    src:url('/fonts/inter-latin-400-normal.woff2') format('woff2'); }
+  @font-face { font-family:'Inter'; font-weight:500; font-display:swap;
+    src:url('/fonts/inter-latin-500-normal.woff2') format('woff2'); }
+  :root { --bg:#FAF8F4; --txt:#1A1A1A; --muted:#6B6B6B; --accent:#B5985A; --accent-dark:#8B7544; --border:#E5E0D5; }
   * { box-sizing:border-box; margin:0; padding:0; }
-  body { font-family:'Lato',sans-serif; background:#f0efed; color:var(--body); }
-  header { background:var(--dark); padding:26px 16px 70px; text-align:center; }
-  header .titre { color:var(--gray); font-weight:300; font-size:26px; letter-spacing:8px; text-transform:uppercase; }
-  header .sous { color:#777; font-weight:300; font-size:13px; letter-spacing:4px; margin-top:6px; text-transform:uppercase; }
-  .logo { width:96px; height:96px; border-radius:50%; margin:-48px auto 0; display:block; box-shadow:0 4px 16px rgba(0,0,0,.25); position:relative; }
-  main { max-width:680px; margin:0 auto; padding:24px 16px 60px; }
-  .carte { background:#fff; border-radius:10px; padding:26px 24px; margin-top:20px; box-shadow:0 2px 10px rgba(0,0,0,.06); }
-  h2 { font-size:13px; letter-spacing:3px; text-transform:uppercase; color:#333; font-weight:600;
-       border-bottom:1px solid #eee; padding-bottom:10px; margin-bottom:16px; }
-  .recap { display:grid; grid-template-columns:1fr 1fr; gap:12px 18px; }
-  .recap div b { display:block; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#999; font-weight:600; margin-bottom:2px; }
-  .recap div span { font-size:16px; color:#222; font-weight:600; }
-  details { margin-top:14px; }
-  summary { cursor:pointer; color:var(--accent); font-weight:600; font-size:14px; }
-  .articles p { font-size:13.5px; line-height:1.55; margin:10px 0; }
-  .articles h3 { font-size:13px; color:#333; margin-top:14px; }
-  label { display:block; font-size:12px; letter-spacing:1px; text-transform:uppercase; color:#888; font-weight:600; margin:14px 0 4px; }
-  input { width:100%; padding:11px 12px; border:1px solid #ddd; border-radius:6px; font-size:16px; font-family:inherit; color:#222; background:#fafafa; }
+  body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color:var(--txt); line-height:1.6; }
+  header { padding:44px 16px 8px; text-align:center; }
+  header .marque { font-family:'Cormorant Garamond',Georgia,serif; font-weight:600; font-size:30px; color:var(--txt); }
+  header .sous { color:var(--accent-dark); font-size:11px; letter-spacing:3px; margin-top:6px; text-transform:uppercase; font-weight:500; }
+  header .filet { width:56px; height:1px; background:var(--accent); margin:18px auto 0; }
+  main { max-width:680px; margin:0 auto; padding:10px 16px 60px; }
+  .carte { background:#fff; border:1px solid var(--border); padding:28px 26px; margin-top:22px; }
+  h2 { font-family:'Cormorant Garamond',Georgia,serif; font-weight:600; font-size:24px; color:var(--txt);
+       border-bottom:1px solid var(--border); padding-bottom:12px; margin-bottom:18px; }
+  .recap { display:grid; grid-template-columns:1fr 1fr; gap:14px 18px; }
+  .recap div b { display:block; font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color:var(--accent-dark); font-weight:500; margin-bottom:2px; }
+  .recap div span { font-size:16px; color:var(--txt); font-weight:500; }
+  details { margin-top:16px; }
+  summary { cursor:pointer; color:var(--accent-dark); font-weight:500; font-size:14px; }
+  .articles p { font-size:13.5px; line-height:1.6; margin:10px 0; color:#3d3d3d; }
+  .articles h3 { font-family:'Cormorant Garamond',Georgia,serif; font-size:18px; font-weight:600; color:var(--txt); margin-top:16px; }
+  label { display:block; font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); font-weight:500; margin:16px 0 5px; }
+  input { width:100%; padding:11px 12px; border:1px solid var(--border); font-size:16px; font-family:inherit; color:var(--txt); background:var(--bg); }
   input:focus { outline:none; border-color:var(--accent); background:#fff; }
   .deux { display:grid; grid-template-columns:1fr 1fr; gap:0 14px; }
   @media (max-width:520px){ .deux { grid-template-columns:1fr; } .recap { grid-template-columns:1fr; } }
-  .pad-wrap { border:2px dashed #bbb; border-radius:8px; background:#fbfbfa; position:relative; }
+  .pad-wrap { border:1.5px dashed var(--accent); background:#fff; position:relative; }
   canvas#pad { width:100%; height:180px; display:block; touch-action:none; }
   .pad-hint { position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
-              color:#c5c5c5; font-size:14px; pointer-events:none; letter-spacing:1px; }
-  .effacer { background:none; border:none; color:var(--accent); font-size:13px; cursor:pointer; margin-top:6px; font-family:inherit; }
-  .consent { display:flex; gap:10px; align-items:flex-start; margin-top:18px; font-size:14px; line-height:1.5; color:#444; }
-  .consent input { width:18px; height:18px; margin-top:2px; }
-  .btn { display:block; width:100%; margin-top:22px; padding:15px; background:var(--dark); color:#fff;
-         border:none; border-radius:8px; font-size:16px; letter-spacing:2px; text-transform:uppercase;
-         font-family:inherit; font-weight:600; cursor:pointer; }
+              color:#cfc9bc; font-size:14px; pointer-events:none; letter-spacing:1px; }
+  .effacer { background:none; border:none; color:var(--accent-dark); font-size:13px; cursor:pointer; margin-top:6px; font-family:inherit; }
+  .consent { display:flex; gap:10px; align-items:flex-start; margin-top:18px; font-size:14px; line-height:1.5; color:#3d3d3d; }
+  .consent input { width:18px; height:18px; margin-top:2px; accent-color:var(--accent-dark); }
+  .btn { display:block; width:100%; margin-top:22px; padding:15px; background:var(--txt); color:var(--bg);
+         border:1px solid var(--txt); font-size:14px; letter-spacing:2px; text-transform:uppercase;
+         font-family:inherit; font-weight:500; cursor:pointer; transition:all .2s; }
+  .btn:hover { background:transparent; color:var(--txt); }
   .btn:disabled { opacity:.45; cursor:not-allowed; }
-  .btn.secondaire { background:var(--accent); }
-  .erreur { background:#fdecec; color:#b23a3a; padding:12px 14px; border-radius:6px; margin-top:16px; font-size:14px; display:none; }
-  .succes-icone { font-size:44px; text-align:center; }
+  .btn.secondaire { background:var(--accent-dark); border-color:var(--accent-dark); }
+  .btn.secondaire:hover { background:transparent; color:var(--accent-dark); }
+  .erreur { background:#f9ece8; color:#a04430; padding:12px 14px; margin-top:16px; font-size:14px; display:none; border:1px solid #ecd5cc; }
+  .succes-icone { font-size:44px; text-align:center; color:var(--accent-dark); }
   .centre { text-align:center; }
-  footer { text-align:center; font-size:12px; color:#aaa; padding:20px; }
+  footer { text-align:center; font-size:12px; color:var(--muted); padding:24px; }
 </style>
 </head>
 <body>
 <header>
-  <div class="titre">Contrat</div>
-  <div class="sous">Prestation photo &mdash; mariage</div>
+  <div class="marque">Black Pixels</div>
+  <div class="sous" id="sous-titre">Contrat - prestation photo</div>
+  <div class="filet"></div>
 </header>
-<img class="logo" src="logo.png" alt="Black Pixels">
 
 <main>
   <div id="chargement" class="carte centre">Chargement du contrat…</div>
@@ -61,7 +70,7 @@
   <div id="invalide" class="carte centre" style="display:none">
     <div class="succes-icone">🤔</div>
     <p style="margin-top:10px">Ce lien de contrat n'est pas valide.<br>
-    Contactez Yohann : <a href="mailto:blackpixels.fr@gmail.com">blackpixels.fr@gmail.com</a></p>
+    Contactez Yohann : <a href="mailto:contact@blackpixels.fr">contact@blackpixels.fr</a></p>
   </div>
 
   <div id="contenu" style="display:none">
@@ -69,6 +78,7 @@
       <h2>Votre prestation</h2>
       <div class="recap">
         <div><b>Date du mariage</b><span id="r-date"></span></div>
+        <div><b>Prestation</b><span id="r-prestation"></span></div>
         <div><b>Forfait</b><span id="r-forfait"></span></div>
         <div><b>Prix TTC</b><span id="r-prix"></span></div>
         <div><b>Acompte à la signature</b><span id="r-acompte"></span></div>
@@ -97,6 +107,7 @@
         <div><label>Mobile marié</label><input id="f-mob2" inputmode="tel"></div>
       </div>
       <label>E-mail *</label><input id="f-email" type="email" required autocomplete="email">
+      <label>Lieu de réception du mariage *</label><input id="f-lieu-reception" required placeholder="Nom du lieu, ville">
 
       <h2 style="margin-top:28px">Signature</h2>
       <div class="deux">
@@ -111,10 +122,18 @@
       <button type="button" class="effacer" id="effacer">Effacer la signature</button>
 
       <div class="consent">
+        <input type="checkbox" id="droit-image" checked>
+        <label for="droit-image" style="all:unset;cursor:pointer">
+          Nous autorisons Black Pixels à partager quelques images de notre mariage
+          (site, réseaux sociaux, concours professionnels). Choix modifiable à tout moment par simple email.
+        </label>
+      </div>
+
+      <div class="consent">
         <input type="checkbox" id="consent">
         <label for="consent" style="all:unset;cursor:pointer">
-          Nous avons lu l'intégralité du contrat et les Conditions Générales de Vente, et nous le signons
-          électroniquement avec la mention <b>« Bon pour accord »</b>.
+          Nous avons lu l'intégralité du contrat, conditions particulières et conditions générales comprises,
+          et nous le signons électroniquement avec la mention <b>« Bon pour accord »</b>.
         </label>
       </div>
 
@@ -132,7 +151,7 @@
     </button>
   </div>
 </main>
-<footer>Black Pixels — Yohann Strullu, photographe · Plouhinec</footer>
+<footer>Black Pixels - Yohann Strullu, photographe · Plouhinec</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
@@ -146,7 +165,7 @@ let contrat = null;
 
 const ARTICLES = (c) => `
 <h3>Article 1 - Objet du contrat</h3>
-<p>Les clients ont souhaité faire appel à Black Pixels pour la couverture photo de leur mariage,
+<p>Les clients ont souhaité faire appel à Black Pixels pour la couverture <b>${c.prestation || 'photo'}</b> de leur mariage,
 dont la date est précisée ci-après : <b>${c.date_mariage}</b>.</p>
 <h3>Article 2 - Choix du forfait - Prix</h3>
 <p>Parmi les différents forfaits proposés par la société, les clients ont fait choix du forfait suivant :
@@ -168,7 +187,21 @@ Toute modification supplémentaire par la suite fera l'objet d'un devis.</p>
 <h3>Article 6 - Informations complémentaires</h3>
 <p>1. Les frais de déplacement sont définis au préalable, offerts en Bretagne.<br>
 2. L'acompte constitue un premier versement à valoir sur le prix total du reportage.
-Il manifeste la preuve d'un engagement ferme et irrévocable des parties du contrat.</p>`;
+Il matérialise la réservation ferme de la date ; annulation et report sont détaillés dans les conditions générales.</p>
+
+<h3 style="margin-top:24px">Conditions générales</h3>
+<p><b>1. Objet.</b> Les présentes conditions générales s'appliquent à toute prestation de reportage photo et/ou vidéo de mariage conclue entre Black Pixels et les Clients. La signature du contrat vaut acceptation pleine et entière. En cas de contradiction, les conditions particulières prévalent sur les conditions générales.</p>
+<p><b>2. Réservation de la date.</b> La date du mariage n'est définitivement réservée qu'à réception du contrat signé et encaissement de l'acompte. Jusque-là, Black Pixels reste libre de l'attribuer à d'autres clients.</p>
+<p><b>3. Annulation par les Clients.</b> En cas d'annulation par les Clients, quelle qu'en soit la raison, l'acompte reste acquis à Black Pixels au titre de l'immobilisation de la date. Aucune autre somme ne sera réclamée. En cas de simple report de la date, Black Pixels s'efforcera, selon ses disponibilités, d'accompagner les Clients sur la nouvelle date sans frais supplémentaires.</p>
+<p><b>4. Empêchement du photographe.</b> En cas de force majeure, de maladie ou d'accident empêchant Yohann Strullu d'assurer la prestation, Black Pixels s'engage à proposer un photographe professionnel de niveau équivalent. Si aucun remplacement n'est possible, l'intégralité des sommes versées sera remboursée aux Clients.</p>
+<p><b>5. Déroulement du jour J.</b> Les Clients informent Black Pixels, en amont, du programme de la journée et des contraintes éventuelles du lieu. Pour les couvertures incluant la soirée, les Clients prévoient un repas pour le photographe. Black Pixels ne peut être tenu responsable des aléas indépendants de sa volonté (météo, retards, restrictions du lieu ou de l'officiant).</p>
+<p><b>6. Livraison.</b> Les images retouchées sont livrées via une galerie en ligne privée et sécurisée, en haute définition et sans filigrane, en couleur et en noir et blanc, dans le délai indiqué à l'article 5 des conditions particulières.</p>
+<p><b>7. Propriété intellectuelle.</b> Les photographies sont des œuvres protégées par le Code de la propriété intellectuelle et restent la propriété de leur auteur. Les Clients bénéficient d'un droit d'usage privé, permanent et illimité : impression, partage avec leurs proches, publication sur leurs comptes personnels. Tout usage commercial ou publicitaire nécessite l'accord écrit de Black Pixels.</p>
+<p><b>8. Diffusion des images.</b> Black Pixels ne diffuse les images des Clients (site internet, réseaux sociaux, concours professionnels) qu'avec leur accord, exprimé au moment de la signature du contrat et modifiable à tout moment sur simple email.</p>
+<p><b>9. Conservation des fichiers.</b> Les fichiers sont conservés par Black Pixels pendant un an à compter de la livraison. Au-delà, la sauvegarde des images incombe aux Clients, qui sont invités à réaliser plusieurs copies dès réception.</p>
+<p><b>10. Responsabilité.</b> Black Pixels est tenu à une obligation de moyens et met en œuvre tout le soin et le matériel nécessaires à la réussite du reportage. En cas de défaillance technique indépendante de sa volonté rendant tout ou partie des images inexploitables, sa responsabilité est limitée au remboursement des sommes perçues, au prorata des images concernées.</p>
+<p><b>11. Données personnelles.</b> Les coordonnées des Clients sont utilisées uniquement pour l'exécution du contrat et ne sont jamais transmises à des tiers. Conformément au RGPD, les Clients peuvent demander l'accès, la rectification ou la suppression de leurs données à contact@blackpixels.fr.</p>
+<p><b>12. Rétractation, médiation et litiges.</b> La prestation étant fournie à une date déterminée, elle n'est pas soumise au droit de rétractation (article L221-28 12° du Code de la consommation). Toute réclamation est d'abord adressée à contact@blackpixels.fr ; Black Pixels y répondra avec la plus grande attention. À défaut d'accord, les Clients peuvent recourir gratuitement au médiateur de la consommation dont relève Black Pixels, ou aux tribunaux compétents. Le présent contrat est soumis au droit français.</p>`;
 
 // ---- signature pad ----
 let pad;
@@ -207,11 +240,13 @@ async function charger() {
   if (data.status === 'signe') { montrerSigne(data); return; }
 
   $('contenu').style.display = 'block';
+  $('sous-titre').textContent = `Contrat - prestation ${data.prestation || 'photo'}`;
+  $('r-prestation').textContent = data.prestation || 'photo';
   $('r-date').textContent = data.date_mariage;
   $('r-forfait').textContent = data.forfait;
   $('r-prix').textContent = data.prix + ' €';
-  $('r-acompte').textContent = `${data.acompte_pct} % — ${data.acompte_eur} €`;
-  $('r-solde').textContent = `${data.solde_pct} % — ${data.solde_eur} €`;
+  $('r-acompte').textContent = `${data.acompte_pct} % - ${data.acompte_eur} €`;
+  $('r-solde').textContent = `${data.solde_pct} % - ${data.solde_eur} €`;
   $('r-delai').textContent = data.delai_livraison;
   $('articles').innerHTML = ARTICLES(data);
   $('f-datesig').value = new Date().toLocaleDateString('fr-FR');
@@ -238,6 +273,8 @@ $('form').addEventListener('submit', async (e) => {
       p_mobile_mariee: $('f-mob1').value.trim(),
       p_mobile_marie: $('f-mob2').value.trim(),
       p_email: $('f-email').value.trim(),
+      p_lieu_reception: $('f-lieu-reception').value.trim(),
+      p_droit_image: $('droit-image').checked,
       p_clients_lieu: $('f-lieu').value.trim(),
       p_clients_date: $('f-datesig').value,
       p_signature_png: pad.toDataURL('image/png')
