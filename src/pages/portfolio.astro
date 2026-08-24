@@ -1,13 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import altData from '../data/photo-alts.json';
 
 const title = 'Portfolio · Photographe Mariage Bretagne';
 const description = 'Reportages de mariage en Bretagne par Black Pixels. Sélection de photos : cérémonies, séances couple, soirée, détails. Œil cinéma au service de votre journée.';
 
 // 95 photos sélectionnées : portfolio-001 à portfolio-095
+const alts = altData['fr']['portfolio'];
 const photos = Array.from({ length: 95 }, (_, i) => {
   const n = String(i + 1).padStart(3, '0');
-  return { n, alt: `Reportage mariage Bretagne, photo ${i + 1}` };
+  return { n, alt: alts[`portfolio-${n}.jpg`] };
 });
 ---
 

@@ -1,12 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import altData from '../../data/photo-alts.json';
 
 const title = 'Portfolio · Wedding Photographer Brittany';
 const description = 'Wedding photography reportages in Brittany by Black Pixels. A selection of photos: ceremonies, couple sessions, evenings, details. A filmmaker\'s eye at the service of your day.';
 
+const alts = altData['en']['portfolio'];
 const photos = Array.from({ length: 95 }, (_, i) => {
   const n = String(i + 1).padStart(3, '0');
-  return { n, alt: `Wedding reportage Brittany, photo ${i + 1}` };
+  return { n, alt: alts[`portfolio-${n}.jpg`] };
 });
 ---
 

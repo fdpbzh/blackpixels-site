@@ -1,13 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import altData from '../data/photo-alts.json';
 
 const title = 'Exemple de reportage · Mariage complet en Bretagne';
 const description = 'Un reportage de mariage complet en Bretagne, du début à la fin. 115 photos pour vous montrer concrètement ce que vous recevez après votre journée.';
 
 // 115 photos : reportage-001 à reportage-115
+const alts = altData['fr']['reportage'];
 const photos = Array.from({ length: 115 }, (_, i) => {
   const n = String(i + 1).padStart(3, '0');
-  return { n, alt: `Reportage mariage Bretagne, photo ${i + 1}` };
+  return { n, alt: alts[`reportage-${n}.jpg`] };
 });
 ---
 

@@ -1,12 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import altData from '../../data/photo-alts.json';
 
 const title = 'Portafolio · Fotógrafo de bodas Bretaña';
 const description = 'Reportajes de boda en Bretaña por Black Pixels. Selección de fotos: ceremonias, sesiones de pareja, fiesta, detalles. Mirada de cine al servicio de tu día.';
 
+const alts = altData['es']['portfolio'];
 const photos = Array.from({ length: 95 }, (_, i) => {
   const n = String(i + 1).padStart(3, '0');
-  return { n, alt: `Reportaje boda Bretaña, foto ${i + 1}` };
+  return { n, alt: alts[`portfolio-${n}.jpg`] };
 });
 ---
 

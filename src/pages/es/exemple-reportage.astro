@@ -1,12 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import altData from '../../data/photo-alts.json';
 
 const title = 'Reportaje de ejemplo · Boda completa en Bretaña';
 const description = 'Un reportaje de boda completo en Bretaña, de principio a fin. 115 fotos para mostrarte exactamente lo que recibes después de tu día.';
 
+const alts = altData['es']['reportage'];
 const photos = Array.from({ length: 115 }, (_, i) => {
   const n = String(i + 1).padStart(3, '0');
-  return { n, alt: `Reportaje boda Bretaña, foto ${i + 1}` };
+  return { n, alt: alts[`reportage-${n}.jpg`] };
 });
 ---
 
