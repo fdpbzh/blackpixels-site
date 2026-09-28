@@ -1,0 +1,30 @@
+name: Garder la base Supabase active
+
+# Supabase met en pause les projets gratuits sans activité pendant 7 jours.
+# Chaque jour, cette tâche envoie une vraie requête à l'API de la base des contrats.
+# Si la base ne répond pas, la tâche échoue et GitHub t'envoie un e-mail.
+
+on:
+  schedule:
+    - cron: '17 6 * * *'   # tous les jours à 6h17 UTC (8h17 l'été, 7h17 l'hiver à Paris)
+  workflow_dispatch:        # bouton « Run workflow » pour la lancer à la main
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Requête vers la base des contrats
+        run: |
+          # Clé publique : c'est la même que dans public/site-contrat/config.js
+          URL="https://dicmtfpjxouajtcdftyf.supabase.co/rest/v1/prestations?select=id&limit=1"
+          KEY="sb_publishable_Q--P1yw64i6c7QlO_6HIxQ_6z3piBLp"
+          for essai in 1 2 3; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 60 \
+              -H "apikey: $KEY" -H "User-Agent: blackpixels-keepalive" "$URL")
+            echo "Essai $essai : réponse $code"
+            if [ "$code" = "200" ]; then exit 0; fi
+            sleep 30
+          done
+          echo "La base ne répond pas (code $code). Elle est peut-être en pause : ouvre le tableau de bord Supabase."
+          exit 1
