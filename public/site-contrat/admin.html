@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Contrats - Administration Black Pixels</title>
+<title>Contrats et planning - Administration Black Pixels</title>
 <style>
   @font-face { font-family:'Cormorant Garamond'; font-weight:600; font-display:swap;
     src:url('/fonts/cormorant-garamond-latin-600-normal.woff2') format('woff2'); }
@@ -56,6 +56,7 @@
   .actions { display:flex; gap:6px; flex-wrap:wrap; }
   #app { display:none; }
 </style>
+<link rel="stylesheet" href="planning.css">
 </head>
 <body>
 <header>
@@ -63,6 +64,10 @@
   <div class="st">Contrats - Administration</div>
   <button id="deconnexion" style="display:none">Déconnexion</button>
 </header>
+<nav class="onglets" id="onglets" role="tablist" style="display:none">
+  <button type="button" role="tab" data-vue="contrats" aria-selected="true">Contrats</button>
+  <button type="button" role="tab" data-vue="planning" aria-selected="false">Planning</button>
+</nav>
 
 <main>
   <!-- ================= LOGIN ================= -->
@@ -82,6 +87,7 @@
 
   <!-- ================= APP ================= -->
   <div id="app">
+   <div id="vue-contrats">
     <form class="carte" id="nouveau">
       <h2>Nouveau contrat</h2>
       <div class="grille">
@@ -142,6 +148,8 @@
       </div>
       <p id="vide" style="display:none;color:#999;font-size:14px;padding:10px 0">Aucun contrat pour le moment.</p>
     </div>
+   </div>
+   <div id="vue-planning" style="display:none"></div>
   </div>
 </main>
 
@@ -149,6 +157,7 @@
 <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 <script src="config.js"></script>
 <script src="pdf-contrat.js"></script>
+<script src="planning.js"></script>
 <script>
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 const $ = id => document.getElementById(id);
@@ -160,8 +169,23 @@ async function majSession() {
   $('login').style.display = ok ? 'none' : 'block';
   $('app').style.display = ok ? 'block' : 'none';
   $('deconnexion').style.display = ok ? 'block' : 'none';
-  if (ok) { $('n-datesig').value = new Date().toLocaleDateString('fr-FR'); chargerListe(); }
+  $('onglets').style.display = ok ? 'flex' : 'none';
+  if (ok) { $('n-datesig').value = new Date().toLocaleDateString('fr-FR'); chargerListe(); montrerVue(vueActive()); }
 }
+
+// ---------- onglets Contrats / Planning ----------
+function vueActive() {
+  if (location.hash === '#planning') return 'planning';
+  try { return localStorage.getItem('bp.admin.vue') || 'contrats'; } catch (e) { return 'contrats'; }
+}
+function montrerVue(v) {
+  $('vue-contrats').style.display = v === 'contrats' ? 'block' : 'none';
+  $('vue-planning').style.display = v === 'planning' ? 'block' : 'none';
+  document.querySelectorAll('#onglets button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.vue === v)));
+  try { localStorage.setItem('bp.admin.vue', v); } catch (e) {}
+  if (v === 'planning' && window.planning) window.planning.init(sb);
+}
+document.querySelectorAll('#onglets button').forEach(b => { b.onclick = () => montrerVue(b.dataset.vue); });
 $('l-connexion').onclick = async () => {
   const { error } = await sb.auth.signInWithPassword({ email: $('l-email').value, password: $('l-pass').value });
   if (error) { $('l-erreur').textContent = error.message; $('l-erreur').style.display = 'block'; }
@@ -224,6 +248,7 @@ $('nouveau').addEventListener('submit', async (e) => {
   if (error) { $('n-erreur').textContent = error.message; $('n-erreur').style.display = 'block'; return; }
   montrerLien(data);
   chargerListe();
+  if (window.planning) window.planning.apresContrat(data);
 });
 
 function lienPour(c) {
